@@ -47,6 +47,15 @@ export const Events: CollectionConfig = {
       },
     },
     {
+      name: 'endDate',
+      type: 'date',
+      access: {
+        create: adminOnly,
+        update: adminOnly,
+        read: authenticated,
+      },
+    },
+    {
       type: 'tabs',
       tabs: [
         {

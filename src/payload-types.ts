@@ -374,6 +374,7 @@ export interface Event {
   id: number;
   name?: string | null;
   domain?: string | null;
+  endDate?: string | null;
   guests?: {
     docs?: (number | Guest)[] | null;
     hasNextPage?: boolean | null;
@@ -1260,6 +1261,7 @@ export interface UsersSelect<T extends boolean = true> {
 export interface EventsSelect<T extends boolean = true> {
   name?: T;
   domain?: T;
+  endDate?: T;
   guests?: T;
   hero?:
     | T
