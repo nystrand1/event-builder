@@ -1,5 +1,5 @@
+'use client'
 import type { StaticImageData } from 'next/image'
-
 import { cn } from 'src/utilities/cn'
 import React from 'react'
 import RichText from '@/components/RichText'
@@ -7,6 +7,8 @@ import RichText from '@/components/RichText'
 import type { MediaBlock as MediaBlockProps } from '@/payload-types'
 
 import { Media } from '../../components/Media'
+import { motion } from 'motion/react'
+import { twMerge } from 'tailwind-merge'
 
 type Props = MediaBlockProps & {
   breakout?: boolean
@@ -31,20 +33,16 @@ export const MediaBlock: React.FC<Props> = (props) => {
 
   let caption
   if (media && typeof media === 'object') caption = media.caption
-
   return (
-    <div
-      className={cn(
-        '',
-        {
-          container: enableGutter,
-        },
-        className,
-      )}
+    <motion.div
+      className={twMerge(enableGutter ? 'container' : '', className)}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
     >
       {(media || staticImage) && (
         <Media
-          imgClassName={cn('border border-border rounded-[0.8rem]', imgClassName)}
+          imgClassName={cn('border border-border rounded-2xl', imgClassName)}
           resource={media}
           src={staticImage}
         />
@@ -62,6 +60,6 @@ export const MediaBlock: React.FC<Props> = (props) => {
           <RichText data={caption} enableGutter={false} />
         </div>
       )}
-    </div>
+    </motion.div>
   )
 }

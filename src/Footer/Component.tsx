@@ -9,7 +9,7 @@ import { Logo } from '@/components/Logo/Logo'
 
 export async function Footer() {
   const footerData: Footer = await getCachedGlobal('footer')()
-
+  return null
   const navItems = footerData?.navItems || []
 
   return (

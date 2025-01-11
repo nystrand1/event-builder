@@ -12,19 +12,27 @@ export const EventCountdown = ({ eventDate, className, ...props }: EventCountdow
     <div className={className} {...props}>
       <div className="flex flex-row space-x-6">
         <div className="flex flex-col items-center justify-center">
-          <p className="text-2xl font-medium">{timeLeft.days}</p>
+          <p className="text-2xl font-medium" suppressHydrationWarning>
+            {timeLeft.days}
+          </p>
           <p>dagar</p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <p className="text-2xl font-medium">{timeLeft.hours}</p>
+          <p className="text-2xl font-medium" suppressHydrationWarning>
+            {timeLeft.hours}
+          </p>
           <p>timmar</p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <p className="text-2xl font-medium">{timeLeft.minutes}</p>
+          <p className="text-2xl font-medium" suppressHydrationWarning>
+            {timeLeft.minutes}
+          </p>
           <p>minuter</p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <p className="text-2xl font-medium">{timeLeft.seconds}</p>
+          <p className="text-2xl font-medium" suppressHydrationWarning>
+            {timeLeft.seconds}
+          </p>
           <p>sekunder</p>
         </div>
       </div>
