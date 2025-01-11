@@ -16,7 +16,9 @@ export const Users: CollectionConfig = {
     defaultColumns: ['name', 'email'],
     useAsTitle: 'name',
   },
-  auth: true,
+  auth: {
+    useAPIKey: true,
+  },
   fields: [
     {
       name: 'name',
@@ -33,10 +35,11 @@ export const Users: CollectionConfig = {
       ],
     },
     {
-      name: 'sites',
+      name: 'events',
       type: 'relationship',
-      relationTo: 'sites',
+      relationTo: 'events',
       hasMany: true,
+      access: {},
     },
   ],
   timestamps: true,

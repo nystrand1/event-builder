@@ -16,7 +16,8 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
-    sites: Site;
+    events: Event;
+    guests: Guest;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -26,14 +27,19 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    events: {
+      guests: 'guests';
+    };
+  };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
-    sites: SitesSelect<false> | SitesSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
+    guests: GuestsSelect<false> | GuestsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -345,9 +351,12 @@ export interface User {
   id: number;
   name?: string | null;
   role?: ('admin' | 'basicUser' | 'mediumUser' | 'premiumUser') | null;
-  sites?: (number | Site)[] | null;
+  events?: (number | Event)[] | null;
   updatedAt: string;
   createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
   email: string;
   resetPasswordToken?: string | null;
   resetPasswordExpiration?: string | null;
@@ -359,12 +368,16 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sites".
+ * via the `definition` "events".
  */
-export interface Site {
+export interface Event {
   id: number;
   name?: string | null;
   domain?: string | null;
+  guests?: {
+    docs?: (number | Guest)[] | null;
+    hasNextPage?: boolean | null;
+  } | null;
   hero: {
     richText?: {
       root: {
@@ -385,6 +398,18 @@ export interface Site {
     media: number | Media;
   };
   layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "guests".
+ */
+export interface Guest {
+  id: number;
+  name?: string | null;
+  userId?: string | null;
+  events?: (number | null) | Event;
   updatedAt: string;
   createdAt: string;
 }
@@ -874,8 +899,12 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
-        relationTo: 'sites';
-        value: number | Site;
+        relationTo: 'events';
+        value: number | Event;
+      } | null)
+    | ({
+        relationTo: 'guests';
+        value: number | Guest;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1210,9 +1239,12 @@ export interface CategoriesSelect<T extends boolean = true> {
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
   role?: T;
-  sites?: T;
+  events?: T;
   updatedAt?: T;
   createdAt?: T;
+  enableAPIKey?: T;
+  apiKey?: T;
+  apiKeyIndex?: T;
   email?: T;
   resetPasswordToken?: T;
   resetPasswordExpiration?: T;
@@ -1223,11 +1255,12 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sites_select".
+ * via the `definition` "events_select".
  */
-export interface SitesSelect<T extends boolean = true> {
+export interface EventsSelect<T extends boolean = true> {
   name?: T;
   domain?: T;
+  guests?: T;
   hero?:
     | T
     | {
@@ -1244,6 +1277,17 @@ export interface SitesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "guests_select".
+ */
+export interface GuestsSelect<T extends boolean = true> {
+  name?: T;
+  userId?: T;
+  events?: T;
   updatedAt?: T;
   createdAt?: T;
 }
