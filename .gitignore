@@ -6,6 +6,8 @@ node_modules
 .next
 .vercel
 
+.postgres_data
+
 # Payload default media upload directory
 public/media/
 

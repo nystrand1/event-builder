@@ -1,15 +1,16 @@
 import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
+import { adminOnly } from '@/access/adminOnly'
 
 export const Users: CollectionConfig = {
   slug: 'users',
   access: {
     admin: authenticated,
-    create: authenticated,
-    delete: authenticated,
-    read: authenticated,
-    update: authenticated,
+    create: adminOnly,
+    delete: adminOnly,
+    read: adminOnly,
+    update: adminOnly,
   },
   admin: {
     defaultColumns: ['name', 'email'],
@@ -20,6 +21,22 @@ export const Users: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+    },
+    {
+      name: 'role',
+      type: 'select',
+      options: [
+        { label: 'Admin', value: 'admin' },
+        { label: 'Basic User', value: 'basicUser' },
+        { label: 'Medium User', value: 'mediumUser' },
+        { label: 'Premium User', value: 'premiumUser' },
+      ],
+    },
+    {
+      name: 'sites',
+      type: 'relationship',
+      relationTo: 'sites',
+      hasMany: true,
     },
   ],
   timestamps: true,
