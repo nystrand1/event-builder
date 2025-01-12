@@ -9,6 +9,8 @@ import { Archive } from '@/blocks/ArchiveBlock/config'
 import { FormBlock } from '@/blocks/Form/config'
 import { adminOnly } from '@/access/adminOnly'
 import { Event } from '@/payload-types'
+import { Countdown } from '@/blocks/Countdown/config'
+import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
 
 export const Events: CollectionConfig = {
   slug: 'events',
@@ -16,7 +18,7 @@ export const Events: CollectionConfig = {
     admin: authenticated,
     create: authenticated,
     delete: authenticated,
-    read: authenticated,
+    read: () => true,
     update: authenticated,
   },
   admin: {
@@ -38,12 +40,15 @@ export const Events: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'eventDate',
+      type: 'date',
+    },
+    {
       name: 'domain',
       type: 'text',
       access: {
         create: adminOnly,
         update: adminOnly,
-        read: adminOnly,
       },
     },
     {
@@ -78,7 +83,7 @@ export const Events: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [Countdown, CallToAction, Content, MediaBlock, Archive, FormBlock],
               required: true,
               admin: {
                 initCollapsed: true,

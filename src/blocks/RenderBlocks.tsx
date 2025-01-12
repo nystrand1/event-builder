@@ -1,7 +1,6 @@
-import { cn } from 'src/utilities/cn'
 import React, { Fragment } from 'react'
 
-import type { Page } from '@/payload-types'
+import type { Page, Event } from '@/payload-types'
 
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
@@ -9,6 +8,7 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { twMerge } from 'tailwind-merge'
+import { EventCountdown } from '@/components/EventCountdown/EventCountdown'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -16,10 +16,11 @@ const blockComponents = {
   cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
+  countdown: EventCountdown,
 }
 
 export const RenderBlocks: React.FC<{
-  blocks: Page['layout'][0][]
+  blocks: Page['layout'][0][] | Event['layout'][0][]
 }> = (props) => {
   const { blocks } = props
 
@@ -29,7 +30,7 @@ export const RenderBlocks: React.FC<{
     return (
       <Fragment>
         {blocks.map((block, index) => {
-          const { blockType } = block
+          const { blockType, blockName } = block
 
           if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType]
@@ -40,7 +41,6 @@ export const RenderBlocks: React.FC<{
                   className={twMerge('py-16', index % 2 === 0 ? 'bg-secondary' : '')}
                   key={index}
                 >
-                  {/* @ts-expect-error there may be some mismatch between the expected types here */}
                   <Block {...block} disableInnerContainer />
                 </div>
               )

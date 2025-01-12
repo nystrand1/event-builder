@@ -1,5 +1,8 @@
+'use client'
+
 import { useTimeToEvent } from '@/hooks/useTimeToEvent'
 import React from 'react'
+import { twMerge } from 'tailwind-merge'
 
 interface EventCountdownProps extends React.HTMLAttributes<HTMLDivElement> {
   eventDate: Date
@@ -9,7 +12,7 @@ export const EventCountdown = ({ eventDate, className, ...props }: EventCountdow
   const timeLeft = useTimeToEvent(eventDate)
 
   return (
-    <div className={className} {...props}>
+    <div className={twMerge('flex items-center justify-center', className)} {...props}>
       <div className="flex flex-row space-x-6">
         <div className="flex flex-col items-center justify-center">
           <p className="text-2xl font-medium" suppressHydrationWarning>

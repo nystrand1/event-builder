@@ -24,7 +24,7 @@ export const Guests: CollectionConfig<'guests'> = {
       type: 'text',
     },
     {
-      name: 'userId',
+      name: 'guestId',
       type: 'text',
       unique: true,
       defaultValue: () => randomUUID(),

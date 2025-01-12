@@ -373,6 +373,7 @@ export interface User {
 export interface Event {
   id: number;
   name?: string | null;
+  eventDate?: string | null;
   domain?: string | null;
   endDate?: string | null;
   guests?: {
@@ -398,7 +399,19 @@ export interface Event {
     eventDate?: string | null;
     media: number | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | {
+        eventDate?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'countdown';
+      }
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+  )[];
   updatedAt: string;
   createdAt: string;
 }
@@ -409,7 +422,7 @@ export interface Event {
 export interface Guest {
   id: number;
   name?: string | null;
-  userId?: string | null;
+  guestId?: string | null;
   events?: (number | null) | Event;
   updatedAt: string;
   createdAt: string;
@@ -1260,6 +1273,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface EventsSelect<T extends boolean = true> {
   name?: T;
+  eventDate?: T;
   domain?: T;
   endDate?: T;
   guests?: T;
@@ -1273,6 +1287,13 @@ export interface EventsSelect<T extends boolean = true> {
   layout?:
     | T
     | {
+        countdown?:
+          | T
+          | {
+              eventDate?: T;
+              id?: T;
+              blockName?: T;
+            };
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
@@ -1288,7 +1309,7 @@ export interface EventsSelect<T extends boolean = true> {
  */
 export interface GuestsSelect<T extends boolean = true> {
   name?: T;
-  userId?: T;
+  guestId?: T;
   events?: T;
   updatedAt?: T;
   createdAt?: T;
