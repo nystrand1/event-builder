@@ -13,7 +13,7 @@ export const EventCountdown = ({ eventDate, className, ...props }: EventCountdow
 
   return (
     <div className={twMerge('flex items-center justify-center', className)} {...props}>
-      <div className="flex flex-row space-x-24">
+      <div className="flex flex-col md:flex-row md:space-x-24">
         <div className="flex flex-col items-center justify-center">
           <p className="text-[96px] font-medium" suppressHydrationWarning>
             {timeLeft.days}

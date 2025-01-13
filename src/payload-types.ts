@@ -409,7 +409,9 @@ export interface Event {
     | MediaBlock
     | ArchiveBlock
     | FormBlock
+    | PeopleBlock
   )[];
+  wishlist?: WishlistBlock[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -717,6 +719,72 @@ export interface Form {
     | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PeopleBlock".
+ */
+export interface PeopleBlock {
+  title?: string | null;
+  people?:
+    | {
+        name: string;
+        role: string;
+        image: number | Media;
+        bio: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'peopleBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WishlistBlock".
+ */
+export interface WishlistBlock {
+  title?: string | null;
+  text?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  items?:
+    | {
+        name: string;
+        link: string;
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'wishlistBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1295,9 +1363,51 @@ export interface EventsSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        peopleBlock?: T | PeopleBlockSelect<T>;
+      };
+  wishlist?:
+    | T
+    | {
+        wishlistBlock?: T | WishlistBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PeopleBlock_select".
+ */
+export interface PeopleBlockSelect<T extends boolean = true> {
+  title?: T;
+  people?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        image?: T;
+        bio?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WishlistBlock_select".
+ */
+export interface WishlistBlockSelect<T extends boolean = true> {
+  title?: T;
+  text?: T;
+  items?:
+    | T
+    | {
+        name?: T;
+        link?: T;
+        image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

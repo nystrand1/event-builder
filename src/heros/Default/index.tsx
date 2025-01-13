@@ -19,7 +19,7 @@ export const DefaultHero: React.FC<Page['hero']> = ({ media, richText }) => {
         >
           {richText && (
             <RichText
-              className="mb-6 [&_h1]:text-8xl [&_h1]:font-normal"
+              className="font-amatic mb-6 [&_p]:text-3xl prose-h1:mb-0 [&_h1]:text-8xl"
               data={richText}
               enableGutter={false}
             />

@@ -94,6 +94,7 @@ export default {
       fontFamily: {
         mono: ['var(--font-geist-mono)'],
         sans: ['var(--font-geist-sans)'],
+        amatic: ['var(--font-amatic)'],
       },
       keyframes: {
         'accordion-down': {

@@ -11,6 +11,8 @@ import { adminOnly } from '@/access/adminOnly'
 import { Event } from '@/payload-types'
 import { Countdown } from '@/blocks/Countdown/config'
 import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
+import { PeopleBlock } from '@/blocks/People/config'
+import { WishlistBlock } from '@/blocks/Wishlist/config'
 
 export const Events: CollectionConfig = {
   slug: 'events',
@@ -83,7 +85,15 @@ export const Events: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Countdown, CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [
+                Countdown,
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+                PeopleBlock,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,
@@ -91,6 +101,16 @@ export const Events: CollectionConfig = {
             },
           ],
           label: 'Content',
+        },
+        {
+          label: 'Wishlist',
+          fields: [
+            {
+              name: 'wishlist',
+              type: 'blocks',
+              blocks: [WishlistBlock],
+            },
+          ],
         },
       ],
     },

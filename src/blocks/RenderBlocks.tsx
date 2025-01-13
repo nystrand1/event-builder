@@ -9,6 +9,7 @@ import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { twMerge } from 'tailwind-merge'
 import { EventCountdown } from '@/components/EventCountdown/EventCountdown'
+import { PeopleBlock } from './People/PeopleBlock'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -17,6 +18,7 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   countdown: EventCountdown,
+  peopleBlock: PeopleBlock,
 }
 
 export const RenderBlocks: React.FC<{
