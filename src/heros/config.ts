@@ -27,11 +27,6 @@ export const hero: Field = {
       label: false,
     },
     {
-      name: 'eventDate',
-      type: 'date',
-      label: 'Event Date',
-    },
-    {
       name: 'media',
       type: 'upload',
       relationTo: 'media',

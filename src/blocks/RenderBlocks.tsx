@@ -30,7 +30,7 @@ export const RenderBlocks: React.FC<{
     return (
       <Fragment>
         {blocks.map((block, index) => {
-          const { blockType, blockName } = block
+          const { blockType } = block
 
           if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType]

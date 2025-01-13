@@ -10,8 +10,8 @@ export const GET = async () => {
     data: {
       name: 'My first event',
       domain: 'snyggdoman.se',
+      eventDate: new Date().toISOString(),
       hero: {
-        eventDate: new Date().toISOString(),
         media: 2,
       },
       layout: [

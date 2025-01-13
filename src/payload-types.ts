@@ -116,7 +116,6 @@ export interface Page {
       };
       [k: string]: unknown;
     } | null;
-    eventDate?: string | null;
     media: number | Media;
   };
   layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
@@ -396,7 +395,6 @@ export interface Event {
       };
       [k: string]: unknown;
     } | null;
-    eventDate?: string | null;
     media: number | Media;
   };
   layout: (
@@ -992,7 +990,6 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         richText?: T;
-        eventDate?: T;
         media?: T;
       };
   layout?:
@@ -1281,7 +1278,6 @@ export interface EventsSelect<T extends boolean = true> {
     | T
     | {
         richText?: T;
-        eventDate?: T;
         media?: T;
       };
   layout?:

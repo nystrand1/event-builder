@@ -47,6 +47,17 @@
     --success: 196 52% 74%;
     --warning: 34 89% 85%;
     --error: 10 100% 86%;
+
+    /* Typography */
+    --step--1: clamp(0.8rem, 0.7004rem + 0.4249vi, 1.1253rem);
+    --step-0: clamp(1rem, 0.8469rem + 0.6531vi, 1.5rem);
+    --step-1: clamp(1.25rem, 1.0206rem + 0.9789vi, 1.9995rem);
+    --step-2: clamp(1.5625rem, 1.2249rem + 1.4404vi, 2.6653rem);
+    --step-3: clamp(1.9531rem, 1.4634rem + 2.0895vi, 3.5529rem);
+    --step-4: clamp(2.4414rem, 1.739rem + 2.997vi, 4.736rem);
+    --step-5: clamp(3.0518rem, 2.0534rem + 4.2597vi, 6.3131rem);
+    --step-6: clamp(3.8147rem, 2.4063rem + 6.009vi, 8.4153rem);
+
   }
 }
 

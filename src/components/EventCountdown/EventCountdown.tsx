@@ -13,30 +13,30 @@ export const EventCountdown = ({ eventDate, className, ...props }: EventCountdow
 
   return (
     <div className={twMerge('flex items-center justify-center', className)} {...props}>
-      <div className="flex flex-row space-x-6">
+      <div className="flex flex-row space-x-24">
         <div className="flex flex-col items-center justify-center">
-          <p className="text-2xl font-medium" suppressHydrationWarning>
+          <p className="text-[96px] font-medium" suppressHydrationWarning>
             {timeLeft.days}
           </p>
-          <p>dagar</p>
+          <p className="text-lg uppercase">dagar</p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <p className="text-2xl font-medium" suppressHydrationWarning>
+          <p className="text-[96px] font-medium" suppressHydrationWarning>
             {timeLeft.hours}
           </p>
-          <p>timmar</p>
+          <p className="text-lg uppercase">timmar</p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <p className="text-2xl font-medium" suppressHydrationWarning>
+          <p className="text-[96px] font-medium" suppressHydrationWarning>
             {timeLeft.minutes}
           </p>
-          <p>minuter</p>
+          <p className="text-lg uppercase">minuter</p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <p className="text-2xl font-medium" suppressHydrationWarning>
+          <p className="text-[96px] font-medium" suppressHydrationWarning>
             {timeLeft.seconds}
           </p>
-          <p>sekunder</p>
+          <p className="text-lg uppercase">sekunder</p>
         </div>
       </div>
     </div>
