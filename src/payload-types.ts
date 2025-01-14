@@ -18,6 +18,7 @@ export interface Config {
     users: User;
     events: Event;
     guests: Guest;
+    wishlists: Wishlist;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -40,6 +41,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     guests: GuestsSelect<false> | GuestsSelect<true>;
+    wishlists: WishlistsSelect<false> | WishlistsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -410,6 +412,7 @@ export interface Event {
     | ArchiveBlock
     | FormBlock
     | PeopleBlock
+    | WishlistBlock
   )[];
   wishlist?: WishlistBlock[] | null;
   updatedAt: string;
@@ -778,6 +781,14 @@ export interface WishlistBlock {
     | {
         name: string;
         link: string;
+        quantity?: number | null;
+        reservationCodes?:
+          | {
+              code?: string | null;
+              quantity?: number | null;
+              id?: string | null;
+            }[]
+          | null;
         image: number | Media;
         id?: string | null;
       }[]
@@ -785,6 +796,30 @@ export interface WishlistBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'wishlistBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wishlists".
+ */
+export interface Wishlist {
+  id: number;
+  title: string;
+  event?: (number | null) | Event;
+  items: {
+    name: string;
+    link: string;
+    quantity?: number | null;
+    reservationCodes?:
+      | {
+          code?: string | null;
+          quantity?: number | null;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -985,6 +1020,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'guests';
         value: number | Guest;
+      } | null)
+    | ({
+        relationTo: 'wishlists';
+        value: number | Wishlist;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1364,6 +1403,7 @@ export interface EventsSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         peopleBlock?: T | PeopleBlockSelect<T>;
+        wishlistBlock?: T | WishlistBlockSelect<T>;
       };
   wishlist?:
     | T
@@ -1403,6 +1443,14 @@ export interface WishlistBlockSelect<T extends boolean = true> {
     | {
         name?: T;
         link?: T;
+        quantity?: T;
+        reservationCodes?:
+          | T
+          | {
+              code?: T;
+              quantity?: T;
+              id?: T;
+            };
         image?: T;
         id?: T;
       };
@@ -1417,6 +1465,31 @@ export interface GuestsSelect<T extends boolean = true> {
   name?: T;
   guestId?: T;
   events?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wishlists_select".
+ */
+export interface WishlistsSelect<T extends boolean = true> {
+  title?: T;
+  event?: T;
+  items?:
+    | T
+    | {
+        name?: T;
+        link?: T;
+        quantity?: T;
+        reservationCodes?:
+          | T
+          | {
+              code?: T;
+              quantity?: T;
+              id?: T;
+            };
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

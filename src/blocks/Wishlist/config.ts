@@ -43,6 +43,27 @@ export const WishlistBlock: Block = {
           required: true,
         },
         {
+          name: 'quantity',
+          type: 'number',
+        },
+        {
+          name: 'reservationCodes',
+          type: 'array',
+          admin: {
+            disabled: true,
+          },
+          fields: [
+            {
+              name: 'code',
+              type: 'text',
+            },
+            {
+              name: 'quantity',
+              type: 'number',
+            },
+          ],
+        },
+        {
           name: 'image',
           type: 'upload',
           relationTo: 'media',

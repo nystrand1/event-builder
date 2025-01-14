@@ -10,7 +10,6 @@ import { FormBlock } from '@/blocks/Form/config'
 import { adminOnly } from '@/access/adminOnly'
 import { Event } from '@/payload-types'
 import { Countdown } from '@/blocks/Countdown/config'
-import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
 import { PeopleBlock } from '@/blocks/People/config'
 import { WishlistBlock } from '@/blocks/Wishlist/config'
 
@@ -93,6 +92,7 @@ export const Events: CollectionConfig = {
                 Archive,
                 FormBlock,
                 PeopleBlock,
+                WishlistBlock,
               ],
               required: true,
               admin: {

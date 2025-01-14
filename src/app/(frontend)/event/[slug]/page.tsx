@@ -23,7 +23,6 @@ export const Page = async ({ params }: Params) => {
   }
 
   const page = await queryEventBySlug({ slug })
-
   return (
     <div>
       <RenderHero {...page.hero} />

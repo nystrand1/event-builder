@@ -95,6 +95,7 @@ export default {
         mono: ['var(--font-geist-mono)'],
         sans: ['var(--font-geist-sans)'],
         amatic: ['var(--font-amatic)'],
+        'anonymous-pro': ['var(--font-anonymous-pro)'],
       },
       keyframes: {
         'accordion-down': {

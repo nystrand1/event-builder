@@ -10,6 +10,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { twMerge } from 'tailwind-merge'
 import { EventCountdown } from '@/components/EventCountdown/EventCountdown'
 import { PeopleBlock } from './People/PeopleBlock'
+import { WishlistBlock } from './Wishlist/WishlistBlock'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -19,6 +20,7 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   countdown: EventCountdown,
   peopleBlock: PeopleBlock,
+  wishlistBlock: WishlistBlock,
 }
 
 export const RenderBlocks: React.FC<{

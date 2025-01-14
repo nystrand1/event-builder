@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { cn } from 'src/utilities/cn'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import { Amatic_SC } from 'next/font/google'
+import { Amatic_SC, Anonymous_Pro } from 'next/font/google'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
@@ -19,12 +19,18 @@ const amatic = Amatic_SC({
   variable: '--font-amatic',
 })
 
+const anonymousPro = Anonymous_Pro({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-anonymous-pro',
+})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
   return (
     <html
-      className={cn(GeistSans.variable, GeistMono.variable, amatic.variable)}
+      className={cn(GeistSans.variable, GeistMono.variable, amatic.variable, anonymousPro.variable)}
       lang="en"
       suppressHydrationWarning
     >
