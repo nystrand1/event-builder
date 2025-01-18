@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { cn } from 'src/utilities/cn'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import { Amatic_SC, Anonymous_Pro } from 'next/font/google'
+import { Amatic_SC, Anonymous_Pro, Tangerine } from 'next/font/google'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
@@ -25,12 +25,24 @@ const anonymousPro = Anonymous_Pro({
   variable: '--font-anonymous-pro',
 })
 
+const tangerine = Tangerine({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-tangerine',
+})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
   return (
     <html
-      className={cn(GeistSans.variable, GeistMono.variable, amatic.variable, anonymousPro.variable)}
+      className={cn(
+        GeistSans.variable,
+        GeistMono.variable,
+        amatic.variable,
+        anonymousPro.variable,
+        tangerine.variable,
+      )}
       lang="en"
       suppressHydrationWarning
     >

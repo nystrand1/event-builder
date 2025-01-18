@@ -96,6 +96,7 @@ export default {
         sans: ['var(--font-geist-sans)'],
         amatic: ['var(--font-amatic)'],
         'anonymous-pro': ['var(--font-anonymous-pro)'],
+        tangerine: ['var(--font-tangerine)'],
       },
       keyframes: {
         'accordion-down': {

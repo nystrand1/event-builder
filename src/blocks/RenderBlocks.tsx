@@ -42,7 +42,7 @@ export const RenderBlocks: React.FC<{
             if (Block) {
               return (
                 <div
-                  className={twMerge('py-16', index % 2 === 0 ? 'bg-secondary' : '')}
+                  className={twMerge('py-16', index % 2 === 0 ? 'bg-[#f0e9d6]' : '')}
                   key={index}
                 >
                   <Block {...block} disableInnerContainer />
