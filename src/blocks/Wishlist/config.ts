@@ -1,3 +1,4 @@
+import { defaultEvent } from '@/utilities/defaultValues/defaultEventRelation'
 import {
   FixedToolbarFeature,
   HeadingFeature,
@@ -29,47 +30,11 @@ export const WishlistBlock: Block = {
       }),
     },
     {
-      name: 'items',
-      type: 'array',
-      fields: [
-        {
-          name: 'name',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'link',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'quantity',
-          type: 'number',
-        },
-        {
-          name: 'reservationCodes',
-          type: 'array',
-          admin: {
-            disabled: true,
-          },
-          fields: [
-            {
-              name: 'code',
-              type: 'text',
-            },
-            {
-              name: 'quantity',
-              type: 'number',
-            },
-          ],
-        },
-        {
-          name: 'image',
-          type: 'upload',
-          relationTo: 'media',
-          required: true,
-        },
-      ],
+      name: 'wishList',
+      type: 'relationship',
+      relationTo: 'wishlists',
+      hasMany: false,
+      defaultValue: defaultEvent,
     },
   ],
 }

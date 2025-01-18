@@ -4,6 +4,8 @@ import { authenticated } from '../../access/authenticated'
 import { adminOnly } from '@/access/adminOnly'
 import { Event } from '@/payload-types'
 import { randomUUID } from 'crypto'
+import { defaultEvent } from '@/utilities/defaultValues/defaultEventRelation'
+import { onlyTenantOrAdmin } from '@/utilities/filterOptions/onlyTenantOrAdmin'
 
 export const Guests: CollectionConfig<'guests'> = {
   slug: 'guests',
@@ -54,21 +56,8 @@ export const Guests: CollectionConfig<'guests'> = {
           },
         ],
       },
-      defaultValue: ({ req }) => {
-        const userEvents = req.user?.events?.map((event: Event) => event.id)
-        if (userEvents?.length) {
-          return userEvents[0]
-        }
-      },
-      filterOptions: (props) => {
-        if (props.user?.role === 'admin') return true
-        const userEvents = props.user?.events?.map((event: Event) => event.id)
-        return {
-          id: {
-            in: userEvents,
-          },
-        }
-      },
+      defaultValue: defaultEvent,
+      filterOptions: onlyTenantOrAdmin,
     },
   ],
   timestamps: true,

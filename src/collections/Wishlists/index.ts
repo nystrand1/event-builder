@@ -40,6 +40,7 @@ export const WishLists: CollectionConfig<'wishlists'> = {
       label: 'Event',
       type: 'relationship',
       relationTo: 'events',
+      hasMany: false,
       filterOptions: (props) => {
         if (props.user?.role === 'admin') return true
         const userEvents = props.user?.events?.map((event: Event) => event.id)
@@ -48,6 +49,9 @@ export const WishLists: CollectionConfig<'wishlists'> = {
             in: userEvents,
           },
         }
+      },
+      admin: {
+        allowEdit: false,
       },
     },
     {
@@ -75,12 +79,15 @@ export const WishLists: CollectionConfig<'wishlists'> = {
           type: 'number',
         },
         {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+        {
           name: 'reservationCodes',
           label: 'Reservation Codes',
           type: 'array',
-          admin: {
-            disabled: true,
-          },
           fields: [
             {
               name: 'code',

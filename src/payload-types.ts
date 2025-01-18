@@ -777,22 +777,7 @@ export interface WishlistBlock {
     };
     [k: string]: unknown;
   } | null;
-  items?:
-    | {
-        name: string;
-        link: string;
-        quantity?: number | null;
-        reservationCodes?:
-          | {
-              code?: string | null;
-              quantity?: number | null;
-              id?: string | null;
-            }[]
-          | null;
-        image: number | Media;
-        id?: string | null;
-      }[]
-    | null;
+  wishList?: (number | null) | Wishlist;
   id?: string | null;
   blockName?: string | null;
   blockType: 'wishlistBlock';
@@ -809,6 +794,7 @@ export interface Wishlist {
     name: string;
     link: string;
     quantity?: number | null;
+    image: number | Media;
     reservationCodes?:
       | {
           code?: string | null;
@@ -1438,22 +1424,7 @@ export interface PeopleBlockSelect<T extends boolean = true> {
 export interface WishlistBlockSelect<T extends boolean = true> {
   title?: T;
   text?: T;
-  items?:
-    | T
-    | {
-        name?: T;
-        link?: T;
-        quantity?: T;
-        reservationCodes?:
-          | T
-          | {
-              code?: T;
-              quantity?: T;
-              id?: T;
-            };
-        image?: T;
-        id?: T;
-      };
+  wishList?: T;
   id?: T;
   blockName?: T;
 }
@@ -1481,6 +1452,7 @@ export interface WishlistsSelect<T extends boolean = true> {
         name?: T;
         link?: T;
         quantity?: T;
+        image?: T;
         reservationCodes?:
           | T
           | {
