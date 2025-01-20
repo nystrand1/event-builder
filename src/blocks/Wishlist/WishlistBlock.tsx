@@ -25,7 +25,7 @@ export const WishlistBlock = (props: WishlistBlockProps) => {
     >
       <h2 className="text-3xl">{props.title}</h2>
       {props.text && <RichText data={props.text} />}
-      <ul className="flex items-stretch flex-col md:flex-row justify-center w-full gap-4">
+      <ul className="flex items-stretch flex-col md:flex-row justify-center w-full gap-4 flex-wrap">
         {wishlist?.items?.map((item, i) => (
           <WishlistItem key={i} item={item} wishlist={wishlist} />
         ))}

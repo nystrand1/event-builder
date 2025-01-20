@@ -68,10 +68,14 @@ export const WishLists: CollectionConfig<'wishlists'> = {
           required: true,
         },
         {
+          name: 'description',
+          label: 'Description',
+          type: 'richText',
+        },
+        {
           name: 'link',
           label: 'Link',
           type: 'text',
-          required: true,
         },
         {
           name: 'quantity',

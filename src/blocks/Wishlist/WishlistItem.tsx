@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { SubmitButton } from '../../components/SubmitButton/SubmitButton'
 import { reserveItem } from './actions'
+import RichText from '@/components/RichText'
 
 interface WishlistItemProps {
   item: NonNullable<Wishlist['items']>[number]
@@ -26,7 +27,6 @@ const reservableAmount = (item: WishlistItemProps['item']) => {
 
 export const WishlistItem = ({ item, wishlist, className }: WishlistItemProps) => {
   const [quantity, setQuantity] = useState(1)
-
   return (
     <motion.li
       initial={{ opacity: 0, y: 20 }}
@@ -41,14 +41,19 @@ export const WishlistItem = ({ item, wishlist, className }: WishlistItemProps) =
         </CardHeader>
         <CardContent className="space-y-4">
           <Media resource={item.image} imgClassName="aspect-[3/2] object-cover" />
-          <div className="flex justify-between">
-            {item.quantity && <p>Antal: {item.quantity}</p>}
-            {reservedAmount(item) > 0 && <p>Reserverat: {reservedAmount(item)}</p>}
-          </div>
-          <Button className="w-full" asChild>
-            <Link href={item.link}>Länk</Link>
-          </Button>
-          {reservableAmount(item) > 1 && (
+          {item.quantity && (
+            <div className="flex justify-between">
+              {item.quantity && <p>Antal: {item.quantity}</p>}
+              {reservedAmount(item) > 0 && <p>Reserverat: {reservedAmount(item)}</p>}
+            </div>
+          )}
+          {item.description && <RichText data={item.description} enableGutter={false} />}
+          {item.link && (
+            <Button className="w-full" asChild>
+              <Link href={item.link}>Länk</Link>
+            </Button>
+          )}
+          {reservableAmount(item) > 1 && item.quantity && (
             <div className="flex flex-row justify-center gap-2">
               <Button
                 variant="outline"
@@ -63,9 +68,22 @@ export const WishlistItem = ({ item, wishlist, className }: WishlistItemProps) =
               </Button>
               <Input
                 type="number"
+                min={0}
+                max={reservableAmount(item)}
                 className="font bg-transparent w-[70px]"
                 value={quantity}
-                onChange={(e) => setQuantity(parseInt(e.target.value))}
+                onChange={(e) => {
+                  const value = parseInt(e.target.value)
+                  if (value > reservableAmount(item)) {
+                    setQuantity(reservableAmount(item))
+                    return
+                  }
+                  if (value < 0) {
+                    setQuantity(1)
+                    return
+                  }
+                  setQuantity(value)
+                }}
               />
               <Button
                 variant="outline"
@@ -80,16 +98,18 @@ export const WishlistItem = ({ item, wishlist, className }: WishlistItemProps) =
               </Button>
             </div>
           )}
-          <form action={reserveItem}>
-            <input type="hidden" name="wishlistId" value={wishlist.id} />
-            <input type="hidden" name="itemId" value={item.id!} />
-            <input type="hidden" name="quantity" value={quantity} />
-            <SubmitButton
-              isDisabled={reservableAmount(item) === 0}
-              pendingLabel="Reserverar..."
-              label={reservableAmount(item) === 0 ? 'Helt reserverad' : 'Reservera'}
-            />
-          </form>
+          {reservableAmount(item) > 0 && (
+            <form action={reserveItem}>
+              <input type="hidden" name="wishlistId" value={wishlist.id} />
+              <input type="hidden" name="itemId" value={item.id!} />
+              <input type="hidden" name="quantity" value={quantity} />
+              <SubmitButton
+                isDisabled={reservableAmount(item) === 0}
+                pendingLabel="Reserverar..."
+                label={reservableAmount(item) === 0 ? 'Helt reserverad' : 'Reservera'}
+              />
+            </form>
+          )}
         </CardContent>
       </Card>
     </motion.li>
