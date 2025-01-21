@@ -413,6 +413,7 @@ export interface Event {
     | FormBlock
     | PeopleBlock
     | WishlistBlock
+    | ScheduleBlock
   )[];
   wishlist?: WishlistBlock[] | null;
   updatedAt: string;
@@ -821,6 +822,38 @@ export interface Wishlist {
   }[];
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ScheduleBlock".
+ */
+export interface ScheduleBlock {
+  title: string;
+  schedule?:
+    | {
+        title?: string | null;
+        time: string;
+        description: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'schedule';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1405,6 +1438,7 @@ export interface EventsSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         peopleBlock?: T | PeopleBlockSelect<T>;
         wishlistBlock?: T | WishlistBlockSelect<T>;
+        schedule?: T | ScheduleBlockSelect<T>;
       };
   wishlist?:
     | T
@@ -1440,6 +1474,23 @@ export interface WishlistBlockSelect<T extends boolean = true> {
   title?: T;
   text?: T;
   wishList?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ScheduleBlock_select".
+ */
+export interface ScheduleBlockSelect<T extends boolean = true> {
+  title?: T;
+  schedule?:
+    | T
+    | {
+        title?: T;
+        time?: T;
+        description?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

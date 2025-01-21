@@ -11,6 +11,7 @@ import { twMerge } from 'tailwind-merge'
 import { EventCountdown } from '@/components/EventCountdown/EventCountdown'
 import { PeopleBlock } from './People/PeopleBlock'
 import { WishlistBlock } from './Wishlist/WishlistBlock'
+import { ScheduleBlock } from './Schedule/ScheduleBlock'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -21,6 +22,7 @@ const blockComponents = {
   countdown: EventCountdown,
   peopleBlock: PeopleBlock,
   wishlistBlock: WishlistBlock,
+  schedule: ScheduleBlock,
 }
 
 export const RenderBlocks: React.FC<{

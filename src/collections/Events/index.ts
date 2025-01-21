@@ -12,6 +12,7 @@ import { Event } from '@/payload-types'
 import { Countdown } from '@/blocks/Countdown/config'
 import { PeopleBlock } from '@/blocks/People/config'
 import { WishlistBlock } from '@/blocks/Wishlist/config'
+import { ScheduleBlock } from '@/blocks/Schedule/config'
 
 export const Events: CollectionConfig = {
   slug: 'events',
@@ -93,6 +94,7 @@ export const Events: CollectionConfig = {
                 FormBlock,
                 PeopleBlock,
                 WishlistBlock,
+                ScheduleBlock,
               ],
               required: true,
               admin: {
