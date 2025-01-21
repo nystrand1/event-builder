@@ -10,7 +10,7 @@ export const Countdown: Block = {
       hooks: {
         beforeChange: [
           async ({ data }) => {
-            return data?.eventDate ?? new Date()
+            return data?.eventDetails?.eventDate ?? new Date()
           },
         ],
       },

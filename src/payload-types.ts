@@ -374,9 +374,15 @@ export interface User {
 export interface Event {
   id: number;
   name?: string | null;
-  eventDate?: string | null;
-  domain?: string | null;
-  endDate?: string | null;
+  eventDetails?: {
+    eventDate?: string | null;
+    domain?: string | null;
+  };
+  theme?: {
+    primaryColor?: string | null;
+    secondaryColor?: string | null;
+    accentColor?: string | null;
+  };
   guests?: {
     docs?: (number | Guest)[] | null;
     hasNextPage?: boolean | null;
@@ -414,7 +420,6 @@ export interface Event {
     | WishlistBlock
     | ScheduleBlock
   )[];
-  wishlist?: WishlistBlock[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1410,9 +1415,19 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface EventsSelect<T extends boolean = true> {
   name?: T;
-  eventDate?: T;
-  domain?: T;
-  endDate?: T;
+  eventDetails?:
+    | T
+    | {
+        eventDate?: T;
+        domain?: T;
+      };
+  theme?:
+    | T
+    | {
+        primaryColor?: T;
+        secondaryColor?: T;
+        accentColor?: T;
+      };
   guests?: T;
   hero?:
     | T
@@ -1437,11 +1452,6 @@ export interface EventsSelect<T extends boolean = true> {
         peopleBlock?: T | PeopleBlockSelect<T>;
         wishlistBlock?: T | WishlistBlockSelect<T>;
         schedule?: T | ScheduleBlockSelect<T>;
-      };
-  wishlist?:
-    | T
-    | {
-        wishlistBlock?: T | WishlistBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;

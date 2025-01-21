@@ -4,6 +4,8 @@ import { cache } from 'react'
 import configPromise from '@payload-config'
 import { RenderHero } from '@/heros/Tenant/RenderTenantHero'
 import { RenderBlocks } from '@/blocks/Tenant/RenderTenantBlocks'
+import PageClient from './page.client'
+import { hexToHSL } from '@/utilities/hexToHSL'
 
 export const generateStaticParams = async () => {
   return []
@@ -23,8 +25,21 @@ export const Page = async ({ params }: Params) => {
   }
 
   const page = await queryEventBySlug({ slug })
+
+  const cssVars = {}
+
+  if (page.theme?.accentColor) {
+    cssVars['--accent'] = hexToHSL(page.theme.accentColor)
+  }
+  if (page.theme?.primaryColor) {
+    cssVars['--primary'] = hexToHSL(page.theme.primaryColor)
+  }
+  if (page.theme?.secondaryColor) {
+    cssVars['--secondary'] = hexToHSL(page.theme.secondaryColor)
+  }
+
   return (
-    <div>
+    <div style={cssVars}>
       <RenderHero {...page.hero} />
       <RenderBlocks blocks={page.layout} />
     </div>
@@ -43,7 +58,7 @@ const queryEventBySlug = cache(async ({ slug }: { slug: string }) => {
     pagination: false,
     overrideAccess: draft,
     where: {
-      domain: {
+      'eventDetails.domain': {
         equals: slug,
       },
     },

@@ -13,6 +13,8 @@ import { PeopleBlock } from '@/blocks/People/config'
 import { WishlistBlock } from '@/blocks/Tenant/Wishlist/config'
 import { ScheduleBlock } from '@/blocks/Tenant/Schedule/config'
 
+import { colorPickerField } from '@innovixx/payload-color-picker-field'
+
 export const Events: CollectionConfig = {
   slug: 'events',
   access: {
@@ -41,25 +43,59 @@ export const Events: CollectionConfig = {
       type: 'text',
     },
     {
-      name: 'eventDate',
-      type: 'date',
-    },
-    {
-      name: 'domain',
-      type: 'text',
-      access: {
-        create: adminOnly,
-        update: adminOnly,
+      type: 'tabs',
+      admin: {
+        position: 'sidebar',
       },
-    },
-    {
-      name: 'endDate',
-      type: 'date',
-      access: {
-        create: adminOnly,
-        update: adminOnly,
-        read: authenticated,
-      },
+      tabs: [
+        {
+          label: 'Event details',
+          fields: [
+            {
+              type: 'group',
+              name: 'eventDetails',
+              label: 'Event details',
+              fields: [
+                {
+                  name: 'eventDate',
+                  type: 'date',
+                },
+                {
+                  name: 'domain',
+                  type: 'text',
+                  access: {
+                    create: adminOnly,
+                    update: adminOnly,
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          label: 'Theme',
+          fields: [
+            {
+              type: 'group',
+              name: 'theme',
+              fields: [
+                colorPickerField({
+                  name: 'primaryColor',
+                  label: 'Primary color',
+                }),
+                colorPickerField({
+                  name: 'secondaryColor',
+                  label: 'Secondary color',
+                }),
+                colorPickerField({
+                  name: 'accentColor',
+                  label: 'Accent color',
+                }),
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       type: 'tabs',
@@ -101,16 +137,6 @@ export const Events: CollectionConfig = {
             },
           ],
           label: 'Content',
-        },
-        {
-          label: 'Wishlist',
-          fields: [
-            {
-              name: 'wishlist',
-              type: 'blocks',
-              blocks: [WishlistBlock],
-            },
-          ],
         },
       ],
     },

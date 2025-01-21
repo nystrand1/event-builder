@@ -7,7 +7,7 @@ import { motion } from 'motion/react'
 import Link from 'next/link'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { SubmitButton } from '../../components/SubmitButton/SubmitButton'
+import { SubmitButton } from '@/components/SubmitButton/SubmitButton'
 import { reserveItem } from './actions'
 import RichText from '@/components/RichText'
 

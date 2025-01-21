@@ -8,6 +8,8 @@ import { MediaBlock } from '@/blocks/Tenant/MediaBlock/Component'
 import { twMerge } from 'tailwind-merge'
 import { EventCountdown } from '@/components/EventCountdown/EventCountdown'
 import { ScheduleBlock } from './Schedule/ScheduleBlock'
+import { WishlistBlock } from './Wishlist/WishlistBlock'
+import { PeopleBlock } from '../People/PeopleBlock'
 
 const blockComponents = {
   content: ContentBlock,
@@ -15,6 +17,8 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   countdown: EventCountdown,
   schedule: ScheduleBlock,
+  wishlistBlock: WishlistBlock,
+  peopleBlock: PeopleBlock,
 }
 
 export const RenderBlocks: React.FC<{
@@ -36,7 +40,7 @@ export const RenderBlocks: React.FC<{
             if (Block) {
               return (
                 <div
-                  className={twMerge('py-16', index % 2 === 0 ? 'bg-[#f0e9d6]' : '')}
+                  className={twMerge('py-16', index % 2 === 0 ? 'bg-[#f0e9d6]' : 'bg-secondary')}
                   key={index}
                 >
                   <Block {...block} disableInnerContainer />
