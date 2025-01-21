@@ -2,26 +2,18 @@ import React, { Fragment } from 'react'
 
 import type { Page, Event } from '@/payload-types'
 
-import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
-import { CallToActionBlock } from '@/blocks/CallToAction/Component'
-import { ContentBlock } from '@/blocks/Content/Component'
-import { FormBlock } from '@/blocks/Form/Component'
-import { MediaBlock } from '@/blocks/MediaBlock/Component'
+import { ContentBlock } from '@/blocks/Tenant/Content/Component'
+import { FormBlock } from '@/blocks/Shared/Form/Component'
+import { MediaBlock } from '@/blocks/Tenant/MediaBlock/Component'
 import { twMerge } from 'tailwind-merge'
 import { EventCountdown } from '@/components/EventCountdown/EventCountdown'
-import { PeopleBlock } from './People/PeopleBlock'
-import { WishlistBlock } from './Wishlist/WishlistBlock'
 import { ScheduleBlock } from './Schedule/ScheduleBlock'
 
 const blockComponents = {
-  archive: ArchiveBlock,
   content: ContentBlock,
-  cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   countdown: EventCountdown,
-  peopleBlock: PeopleBlock,
-  wishlistBlock: WishlistBlock,
   schedule: ScheduleBlock,
 }
 

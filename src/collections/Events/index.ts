@@ -1,18 +1,17 @@
 import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
-import { hero } from '@/heros/config'
-import { CallToAction } from '@/blocks/CallToAction/config'
-import { Content } from '@/blocks/Content/config'
-import { MediaBlock } from '@/blocks/MediaBlock/config'
-import { Archive } from '@/blocks/ArchiveBlock/config'
-import { FormBlock } from '@/blocks/Form/config'
+import { hero } from '@/heros/Tenant/Default/config'
+import { Content } from '@/blocks/Tenant/Content/config'
+import { MediaBlock } from '@/blocks/Tenant/MediaBlock/config'
+import { Archive } from '@/blocks/Main/ArchiveBlock/config'
+import { FormBlock } from '@/blocks/Shared/Form/config'
 import { adminOnly } from '@/access/adminOnly'
 import { Event } from '@/payload-types'
-import { Countdown } from '@/blocks/Countdown/config'
+import { Countdown } from '@/blocks/Tenant/Countdown/config'
 import { PeopleBlock } from '@/blocks/People/config'
-import { WishlistBlock } from '@/blocks/Wishlist/config'
-import { ScheduleBlock } from '@/blocks/Schedule/config'
+import { WishlistBlock } from '@/blocks/Tenant/Wishlist/config'
+import { ScheduleBlock } from '@/blocks/Tenant/Schedule/config'
 
 export const Events: CollectionConfig = {
   slug: 'events',
@@ -87,7 +86,6 @@ export const Events: CollectionConfig = {
               type: 'blocks',
               blocks: [
                 Countdown,
-                CallToAction,
                 Content,
                 MediaBlock,
                 Archive,

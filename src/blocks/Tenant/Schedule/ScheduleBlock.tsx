@@ -7,7 +7,7 @@ import { useRef } from 'react'
 
 export function ScheduleBlock({ title, schedule }: ScheduleBlockProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress, scrollY } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start 60%', 'end 40%'], // Adjust these values to match card animations
   })

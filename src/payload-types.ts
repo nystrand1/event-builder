@@ -406,7 +406,6 @@ export interface Event {
         blockName?: string | null;
         blockType: 'countdown';
       }
-    | CallToActionBlock
     | ContentBlock
     | MediaBlock
     | ArchiveBlock
@@ -1431,7 +1430,6 @@ export interface EventsSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;

@@ -1,4 +1,4 @@
-import { MediaBlock } from '@/blocks/MediaBlock/Component'
+import { MediaBlock as MediaBlockTenant } from '@/blocks/Tenant/MediaBlock/Component'
 import {
   DefaultNodeTypes,
   SerializedBlockNode,
@@ -11,15 +11,15 @@ import {
   RichText as RichTextWithoutBlocks,
 } from '@payloadcms/richtext-lexical/react'
 
-import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
+import { CodeBlock, CodeBlockProps } from '@/blocks/Main/Code/Component'
 
 import type {
   BannerBlock as BannerBlockProps,
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
 } from '@/payload-types'
-import { BannerBlock } from '@/blocks/Banner/Component'
-import { CallToActionBlock } from '@/blocks/CallToAction/Component'
+import { BannerBlock } from '@/blocks/Main/Banner/Component'
+import { CallToActionBlock as CallToActionBlockMain } from '@/blocks/Main/CallToAction/Component'
 import { cn } from '@/utilities/cn'
 
 type NodeTypes =
@@ -42,7 +42,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
   blocks: {
     banner: ({ node }) => <BannerBlock className="col-start-2 mb-4" {...node.fields} />,
     mediaBlock: ({ node }) => (
-      <MediaBlock
+      <MediaBlockTenant
         className="col-start-1 col-span-3"
         imgClassName="m-0"
         {...node.fields}
@@ -52,7 +52,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
       />
     ),
     code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
-    cta: ({ node }) => <CallToActionBlock {...node.fields} />,
+    cta: ({ node }) => <CallToActionBlockMain {...node.fields} />,
   },
 })
 

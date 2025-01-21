@@ -2,8 +2,8 @@ import { draftMode } from 'next/headers'
 import { getPayload } from 'payload'
 import { cache } from 'react'
 import configPromise from '@payload-config'
-import { RenderHero } from '@/heros/RenderHero'
-import { RenderBlocks } from '@/blocks/RenderBlocks'
+import { RenderHero } from '@/heros/Tenant/RenderTenantHero'
+import { RenderBlocks } from '@/blocks/Tenant/RenderTenantBlocks'
 
 export const generateStaticParams = async () => {
   return []

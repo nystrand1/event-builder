@@ -6,7 +6,7 @@ import RichText from '@/components/RichText'
 
 import type { ContentBlock as ContentBlockProps } from '@/payload-types'
 
-import { CMSLink } from '../../components/Link'
+import { CMSLink } from '../../../components/Link'
 import { motion } from 'motion/react'
 
 export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
