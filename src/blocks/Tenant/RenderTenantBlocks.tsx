@@ -10,6 +10,7 @@ import { EventCountdown } from '@/components/EventCountdown/EventCountdown'
 import { ScheduleBlock } from './Schedule/ScheduleBlock'
 import { WishlistBlock } from './Wishlist/WishlistBlock'
 import { PeopleBlock } from '../People/PeopleBlock'
+import { TwoColumnImageAndText } from './TwoColumnImageAndText/TwoColumnImageAndText'
 
 const blockComponents = {
   content: ContentBlock,
@@ -19,6 +20,7 @@ const blockComponents = {
   schedule: ScheduleBlock,
   wishlistBlock: WishlistBlock,
   peopleBlock: PeopleBlock,
+  twoColumnImageAndText: TwoColumnImageAndText,
 }
 
 export const RenderBlocks: React.FC<{
@@ -39,10 +41,8 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div
-                  className={twMerge('py-16', index % 2 === 0 ? 'bg-[#f0e9d6]' : 'bg-secondary')}
-                  key={index}
-                >
+                <div className={twMerge('py-16 bg-primary')} key={index}>
+                  <div className="h-2 bg-accent rounded-xl w-[384px] mx-auto my-10" />
                   <Block {...block} disableInnerContainer />
                 </div>
               )

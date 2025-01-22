@@ -419,6 +419,7 @@ export interface Event {
     | PeopleBlock
     | WishlistBlock
     | ScheduleBlock
+    | ImageTextTwoColumns
   )[];
   updatedAt: string;
   createdAt: string;
@@ -858,6 +859,33 @@ export interface ScheduleBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'schedule';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Image & Text (Two columns)".
+ */
+export interface ImageTextTwoColumns {
+  title: string;
+  text?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image: number | Media;
+  imagePosition?: ('left' | 'right') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'twoColumnImageAndText';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1452,6 +1480,7 @@ export interface EventsSelect<T extends boolean = true> {
         peopleBlock?: T | PeopleBlockSelect<T>;
         wishlistBlock?: T | WishlistBlockSelect<T>;
         schedule?: T | ScheduleBlockSelect<T>;
+        twoColumnImageAndText?: T | ImageTextTwoColumnsSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1501,6 +1530,18 @@ export interface ScheduleBlockSelect<T extends boolean = true> {
       };
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Image & Text (Two columns)_select".
+ */
+export interface ImageTextTwoColumnsSelect {
+  title?: boolean;
+  text?: boolean;
+  image?: boolean;
+  imagePosition?: boolean;
+  id?: boolean;
+  blockName?: boolean;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

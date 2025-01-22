@@ -14,6 +14,7 @@ import { WishlistBlock } from '@/blocks/Tenant/Wishlist/config'
 import { ScheduleBlock } from '@/blocks/Tenant/Schedule/config'
 
 import { colorPickerField } from '@innovixx/payload-color-picker-field'
+import { TwoColumnImageAndTextBlock } from '@/blocks/Tenant/TwoColumnImageAndText/config'
 
 export const Events: CollectionConfig = {
   slug: 'events',
@@ -129,6 +130,7 @@ export const Events: CollectionConfig = {
                 PeopleBlock,
                 WishlistBlock,
                 ScheduleBlock,
+                TwoColumnImageAndTextBlock,
               ],
               required: true,
               admin: {

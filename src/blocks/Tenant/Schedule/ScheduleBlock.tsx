@@ -31,7 +31,7 @@ export function ScheduleBlock({ title, schedule }: ScheduleBlockProps) {
               >
                 <Card className="border-none">
                   <CardHeader>
-                    <Badge className="w-fit text-black text-base">{step.time}</Badge>
+                    <Badge className="w-fit text-black text-base bg-accent">{step.time}</Badge>
                     <CardTitle>{step.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -41,7 +41,7 @@ export function ScheduleBlock({ title, schedule }: ScheduleBlockProps) {
               </motion.div>
             ))}
           <motion.div
-            className="w-[6px] bg-white origin-top h-full absolute -left-5 md:-left-6 !mt-0"
+            className="w-[6px] bg-accent origin-top h-full absolute -left-5 md:-left-6 !mt-0"
             style={{ scaleY: scrollYProgress }}
           />
         </div>
