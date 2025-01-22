@@ -16,16 +16,8 @@ export function ScheduleBlock({ title, schedule }: ScheduleBlockProps) {
   return (
     <div className="container relative" ref={containerRef}>
       <h2 className="text-center text-6xl mb-20">{title}</h2>
-      <div className="relative w-[90%] md:w-3/5 mx-auto flex">
-        <div className="absolute mr-8 w-[6px] h-full -left-5 md:-left-8 top-0">
-          <div className="h-full justify-start items-start">
-            <motion.div
-              className="w-full bg-white origin-top h-full"
-              style={{ scaleY: scrollYProgress }}
-            />
-          </div>
-        </div>
-        <div className="flex flex-col space-y-12">
+      <div className="relative w-[90%] md:w-3/5 justify-center mx-auto flex">
+        <div className="flex flex-col space-y-12 relative">
           {schedule &&
             schedule.map((step) => (
               <motion.div
@@ -37,7 +29,7 @@ export function ScheduleBlock({ title, schedule }: ScheduleBlockProps) {
                 }}
                 transition={{ duration: 0.4 }}
               >
-                <Card className="border-none pl-8">
+                <Card className="border-none">
                   <CardHeader>
                     <Badge className="w-fit text-black text-base">{step.time}</Badge>
                     <CardTitle>{step.title}</CardTitle>
@@ -48,6 +40,10 @@ export function ScheduleBlock({ title, schedule }: ScheduleBlockProps) {
                 </Card>
               </motion.div>
             ))}
+          <motion.div
+            className="w-[6px] bg-white origin-top h-full absolute -left-5 md:-left-6 !mt-0"
+            style={{ scaleY: scrollYProgress }}
+          />
         </div>
       </div>
     </div>

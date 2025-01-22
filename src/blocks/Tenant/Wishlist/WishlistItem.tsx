@@ -49,7 +49,7 @@ export const WishlistItem = ({ item, wishlist, className }: WishlistItemProps) =
           )}
           {item.description && <RichText data={item.description} enableGutter={false} />}
           {item.link && (
-            <Button className="w-full" asChild>
+            <Button variant="link" className="w-full text-black justify-center" asChild>
               <Link href={item.link}>Länk</Link>
             </Button>
           )}
