@@ -406,6 +406,7 @@ export interface Event {
     media: number | Media;
   };
   layout: (
+    | FullScreenWithCountdownHero
     | {
         eventDate?: string | null;
         id?: string | null;
@@ -435,6 +436,33 @@ export interface Guest {
   events?: (number | null) | Event;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FullScreenWithCountdownHero".
+ */
+export interface FullScreenWithCountdownHero {
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  media: number | Media;
+  showCountdown?: boolean | null;
+  eventDate?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'fullScreenWithCountdownHero';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1466,6 +1494,7 @@ export interface EventsSelect<T extends boolean = true> {
   layout?:
     | T
     | {
+        fullScreenWithCountdownHero?: T | FullScreenWithCountdownHeroSelect<T>;
         countdown?:
           | T
           | {
@@ -1484,6 +1513,18 @@ export interface EventsSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FullScreenWithCountdownHero_select".
+ */
+export interface FullScreenWithCountdownHeroSelect<T extends boolean = true> {
+  richText?: T;
+  media?: T;
+  showCountdown?: T;
+  eventDate?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

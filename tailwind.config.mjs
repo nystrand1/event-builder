@@ -97,6 +97,7 @@ export default {
         amatic: ['var(--font-amatic)'],
         'anonymous-pro': ['var(--font-anonymous-pro)'],
         tangerine: ['var(--font-tangerine)'],
+        inter: ['var(--font-inter)'],
       },
       keyframes: {
         'accordion-down': {

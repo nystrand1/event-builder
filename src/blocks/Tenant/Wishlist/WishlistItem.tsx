@@ -1,15 +1,16 @@
 import { Media } from '@/components/Media'
+import RichText from '@/components/RichText'
+import { SubmitButton } from '@/components/SubmitButton/SubmitButton'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Wishlist } from '@/payload-types'
+import { ExternalLink } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { SubmitButton } from '@/components/SubmitButton/SubmitButton'
 import { reserveItem } from './actions'
-import RichText from '@/components/RichText'
 
 interface WishlistItemProps {
   item: NonNullable<Wishlist['items']>[number]
@@ -35,7 +36,7 @@ export const WishlistItem = ({ item, wishlist, className }: WishlistItemProps) =
       transition={{ duration: 0.8, delay: 0.4 }}
       className={twMerge('w-full md:w-1/2 lg:w-1/3', className)}
     >
-      <Card className="rounded-3xl">
+      <Card className="rounded-3xl shadow-lg border-none">
         <CardHeader>
           <h2 className="text-xl">{item.name}</h2>
         </CardHeader>
@@ -49,9 +50,12 @@ export const WishlistItem = ({ item, wishlist, className }: WishlistItemProps) =
           )}
           {item.description && <RichText data={item.description} enableGutter={false} />}
           {item.link && (
-            <Button variant="link" className="w-full text-black justify-center" asChild>
-              <Link href={item.link}>Länk</Link>
-            </Button>
+            <Link href={item.link}>
+              <Button variant="link" className="w-full text-black justify-center">
+                Länk
+                <ExternalLink />
+              </Button>
+            </Link>
           )}
           {reservableAmount(item) > 1 && item.quantity && (
             <div className="flex flex-row justify-center gap-2">

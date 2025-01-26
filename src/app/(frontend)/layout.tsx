@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { cn } from 'src/utilities/cn'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import { Amatic_SC, Anonymous_Pro, Tangerine } from 'next/font/google'
+import { Amatic_SC, Anonymous_Pro, Inter, Tangerine } from 'next/font/google'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
@@ -31,6 +31,12 @@ const tangerine = Tangerine({
   variable: '--font-tangerine',
 })
 
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-inter',
+})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
@@ -42,6 +48,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         amatic.variable,
         anonymousPro.variable,
         tangerine.variable,
+        inter.variable,
       )}
       lang="en"
       suppressHydrationWarning

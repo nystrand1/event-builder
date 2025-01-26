@@ -29,7 +29,7 @@ export function ScheduleBlock({ title, schedule }: ScheduleBlockProps) {
                 }}
                 transition={{ duration: 0.4 }}
               >
-                <Card className="border-none">
+                <Card className="border-none shadow-lg">
                   <CardHeader>
                     <Badge className="w-fit text-black text-base bg-accent">{step.time}</Badge>
                     <CardTitle>{step.title}</CardTitle>

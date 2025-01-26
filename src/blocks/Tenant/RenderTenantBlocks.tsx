@@ -11,6 +11,7 @@ import { ScheduleBlock } from './Schedule/ScheduleBlock'
 import { WishlistBlock } from './Wishlist/WishlistBlock'
 import { PeopleBlock } from '../People/PeopleBlock'
 import { TwoColumnImageAndText } from './TwoColumnImageAndText/TwoColumnImageAndText'
+import { FullScreenWithCountdownHero } from '@/heros/Tenant/FullScreenWithCountdown'
 
 const blockComponents = {
   content: ContentBlock,
@@ -21,6 +22,7 @@ const blockComponents = {
   wishlistBlock: WishlistBlock,
   peopleBlock: PeopleBlock,
   twoColumnImageAndText: TwoColumnImageAndText,
+  fullScreenWithCountdownHero: FullScreenWithCountdownHero,
 }
 
 export const RenderBlocks: React.FC<{
@@ -41,8 +43,10 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div className={twMerge('py-16 bg-primary')} key={index}>
-                  <div className="h-2 bg-accent rounded-xl w-[384px] mx-auto my-10" />
+                <div className={twMerge('py-16 bg-primary', index === 0 ? 'py-0' : '')} key={index}>
+                  {index > 0 && (
+                    <div className="h-2 bg-accent rounded-xl w-[384px] mx-auto my-10" />
+                  )}
                   <Block {...block} disableInnerContainer />
                 </div>
               )
