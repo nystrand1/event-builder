@@ -16,6 +16,7 @@ import { ScheduleBlock } from '@/blocks/Tenant/Schedule/config'
 import { colorPickerField } from '@innovixx/payload-color-picker-field'
 import { TwoColumnImageAndTextBlock } from '@/blocks/Tenant/TwoColumnImageAndText/config'
 import { FullScreenWithCountdownHero } from '@/heros/Tenant/FullScreenWithCountdown/config'
+import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 
 export const Events: CollectionConfig = {
   slug: 'events',
@@ -29,6 +30,25 @@ export const Events: CollectionConfig = {
   admin: {
     defaultColumns: ['name'],
     useAsTitle: 'name',
+    livePreview: {
+      url: ({ data, req }) => {
+        const path = generatePreviewPath({
+          slug: typeof data?.eventDetails.domain === 'string' ? data.eventDetails.domain : '',
+          collection: 'events',
+          req,
+        })
+
+        return path
+      },
+    },
+    preview: (data, { req }) => {
+      const doc = data as unknown as Event
+      return generatePreviewPath({
+        slug: typeof doc?.eventDetails?.domain === 'string' ? doc?.eventDetails?.domain : '',
+        collection: 'events',
+        req,
+      })
+    },
     baseListFilter: ({ req }) => {
       if (req.user?.role === 'admin') return null
       const userEvents = req.user?.events?.map((event: Event) => event.id)
@@ -39,6 +59,7 @@ export const Events: CollectionConfig = {
       }
     },
   },
+
   fields: [
     {
       name: 'name',
@@ -146,4 +167,13 @@ export const Events: CollectionConfig = {
     },
   ],
   timestamps: true,
+  versions: {
+    drafts: {
+      autosave: {
+        interval: 100, // We set this interval for optimal live preview
+      },
+      schedulePublish: true,
+    },
+    maxPerDoc: 10,
+  },
 }

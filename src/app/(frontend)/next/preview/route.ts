@@ -74,12 +74,14 @@ export async function GET(
         depth: 0,
         select: {},
         where: {
-          slug: {
-            equals: slug,
-          },
+          or: [
+            collection === 'events'
+              ? { 'eventDetails.domain': { equals: slug } }
+              : { slug: { equals: slug } },
+          ],
         },
       })
-
+      console.log('docs', docs)
       if (!docs.docs.length) {
         return new Response('Document not found', { status: 404 })
       }

@@ -6,6 +6,7 @@ import { RenderHero } from '@/heros/Tenant/RenderTenantHero'
 import { RenderBlocks } from '@/blocks/Tenant/RenderTenantBlocks'
 import PageClient from './page.client'
 import { hexToHSL } from '@/utilities/hexToHSL'
+import { LivePreviewListener } from '@/components/LivePreviewListener'
 
 export const generateStaticParams = async () => {
   return []
@@ -18,6 +19,7 @@ type Params = {
 }
 
 export const Page = async ({ params }: Params) => {
+  const { isEnabled: draft } = await draftMode()
   const { slug } = await params
 
   if (!slug) {
@@ -28,18 +30,19 @@ export const Page = async ({ params }: Params) => {
 
   const cssVars = {}
 
-  if (page.theme?.accentColor) {
+  if (page?.theme?.accentColor) {
     cssVars['--accent'] = hexToHSL(page.theme.accentColor)
   }
-  if (page.theme?.primaryColor) {
+  if (page?.theme?.primaryColor) {
     cssVars['--primary'] = hexToHSL(page.theme.primaryColor)
   }
-  if (page.theme?.secondaryColor) {
+  if (page?.theme?.secondaryColor) {
     cssVars['--secondary'] = hexToHSL(page.theme.secondaryColor)
   }
 
   return (
     <div style={cssVars}>
+      {draft && <LivePreviewListener />}
       <RenderHero {...page.hero} />
       <RenderBlocks blocks={page.layout} />
     </div>
