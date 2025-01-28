@@ -4,7 +4,6 @@ import { cache } from 'react'
 import configPromise from '@payload-config'
 import { RenderHero } from '@/heros/Tenant/RenderTenantHero'
 import { RenderBlocks } from '@/blocks/Tenant/RenderTenantBlocks'
-import PageClient from './page.client'
 import { hexToHSL } from '@/utilities/hexToHSL'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 
@@ -35,6 +34,8 @@ export const Page = async ({ params }: Params) => {
   }
   if (page?.theme?.primaryColor) {
     cssVars['--primary'] = hexToHSL(page.theme.primaryColor)
+    console.log(hexToHSL(page.theme.primaryColor))
+    cssVars['--background'] = hexToHSL(page.theme.primaryColor)
   }
   if (page?.theme?.secondaryColor) {
     cssVars['--secondary'] = hexToHSL(page.theme.secondaryColor)

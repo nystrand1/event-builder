@@ -14,7 +14,7 @@ export function SubmitButton({
   const { pending } = useFormStatus()
 
   return (
-    <Button variant="outline" className="w-full" type="submit" disabled={isDisabled || pending}>
+    <Button variant="secondary" className="w-full" type="submit" disabled={isDisabled || pending}>
       {pending ? pendingLabel : label}
     </Button>
   )

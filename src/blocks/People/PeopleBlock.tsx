@@ -11,7 +11,7 @@ export const PeopleBlock = ({ people, title }: PeopleBlockProps) => {
   return (
     <div className="container space-y-8">
       <h2 className="text-center text-6xl">{title}</h2>
-      <div className="md:max-w-[50%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 justify-center">
+      <div className="md:max-w-[70%] lg:max-w-[50%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 justify-center">
         {people.map((person, index) => {
           return (
             <motion.div
@@ -24,10 +24,10 @@ export const PeopleBlock = ({ people, title }: PeopleBlockProps) => {
             >
               <Media
                 resource={person.image}
-                className="rounded-full overflow-hidden aspect-square"
+                className="rounded-full overflow-hidden aspect-square size-48 md:size-auto"
               />
-              <div className="text-center space-y-1">
-                <h2 className="text-3xl">{person.name}</h2>
+              <div className="text-center space-y-1 w-full">
+                <h2 className="text-2xl">{person.name}</h2>
                 <p className="font-medium text-lg">{person.role}</p>
               </div>
               <RichText data={person.bio} />

@@ -34,10 +34,17 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                 transition={{ duration: 0.5, delay: 0.1 * index }}
                 className={cn(`col-span-4 lg:col-span-${colsSpanClasses[size!]}`, {
                   'md:col-span-2': size !== 'full',
+                  'text-center': size === 'full',
                 })}
                 key={index}
               >
-                {richText && <RichText data={richText} enableGutter={false} />}
+                {richText && (
+                  <RichText
+                    data={richText}
+                    enableGutter={false}
+                    className="[&_h2]:font-normal [&_h2]:text-3xl"
+                  />
+                )}
 
                 {enableLink && <CMSLink {...link} />}
               </motion.div>

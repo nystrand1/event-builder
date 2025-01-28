@@ -9,12 +9,12 @@ import { Card, CardContent } from '@/components/ui/card'
 import { motion } from 'motion/react'
 import { EventCountdown } from '@/components/EventCountdown/EventCountdown'
 
-export const FullScreenWithCountdownHero: FullScreenWithCountdownHeroProps = ({
+export const FullScreenWithCountdownHero = ({
   media,
   richText,
   eventDate,
   showCountdown,
-}) => {
+}: FullScreenWithCountdownHeroProps) => {
   return (
     <div className="relative flex items-center justify-center py-8 h-dvh">
       {media && typeof media === 'object' && (
@@ -43,7 +43,7 @@ export const FullScreenWithCountdownHero: FullScreenWithCountdownHeroProps = ({
                 enableGutter={false}
               />
             )}
-            {showCountdown && eventDate && <EventCountdown eventDate={eventDate} />}
+            {showCountdown && eventDate && <EventCountdown eventDate={new Date(eventDate)} />}
           </CardContent>
         </Card>
       </motion.div>
