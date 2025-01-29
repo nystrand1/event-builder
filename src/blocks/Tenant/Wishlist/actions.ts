@@ -2,6 +2,7 @@
 
 import { getPayload } from 'payload'
 import payloadConfig from '@payload-config'
+import { revalidatePath } from 'next/cache'
 
 const generateReadableReservationCode = () => {
   // Generate a random string of 4 characters
@@ -51,6 +52,10 @@ export const reserveItem = async (formData: FormData) => {
     },
   })
 
+  if (typeof wishlist.event === 'object') {
+    await revalidatePath(`/event/${wishlist.event?.eventDetails?.domain}`)
+  }
+
   return code
 }
 
@@ -91,4 +96,8 @@ export const cancelReservation = async (formData: FormData) => {
       }),
     },
   })
+
+  if (typeof wishlist.event === 'object') {
+    await revalidatePath(`/event/${wishlist.event?.eventDetails?.domain}`)
+  }
 }
