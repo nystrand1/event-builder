@@ -32,7 +32,7 @@ export const FullScreenWithCountdownHero = ({
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center text-black font-inter"
+        className="text-center text-black font-petit-formal-script"
       >
         <Card className="bg-transparent border-none p-8 z-10 relative flex flex-col items-center justify-center space-y-4 rounded-3xl shadow-none">
           <CardContent>

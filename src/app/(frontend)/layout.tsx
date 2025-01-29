@@ -3,7 +3,14 @@ import type { Metadata } from 'next'
 import { cn } from 'src/utilities/cn'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import { Amatic_SC, Anonymous_Pro, Inter, Tangerine } from 'next/font/google'
+import {
+  Amatic_SC,
+  Anonymous_Pro,
+  Charm,
+  Inter,
+  Tangerine,
+  Petit_Formal_Script,
+} from 'next/font/google'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
@@ -37,6 +44,18 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
+const charm = Charm({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-charm',
+})
+
+const petitFormalScript = Petit_Formal_Script({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-petit-formal-script',
+})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
@@ -49,6 +68,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         anonymousPro.variable,
         tangerine.variable,
         inter.variable,
+        charm.variable,
+        petitFormalScript.variable,
       )}
       lang="en"
       suppressHydrationWarning

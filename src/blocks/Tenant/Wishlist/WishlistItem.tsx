@@ -127,7 +127,8 @@ export const WishlistItem = ({ item, wishlist, className }: WishlistItemProps) =
                   {item.link && (
                     <Link href={item.link}>
                       <Button variant="outline" className="w-full text-black justify-center">
-                        <ExternalLink />
+                        Länk
+                        <ExternalLink className="ml-2" />
                       </Button>
                     </Link>
                   )}
