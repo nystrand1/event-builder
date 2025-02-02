@@ -383,28 +383,17 @@ export interface Event {
     secondaryColor?: string | null;
     accentColor?: string | null;
   };
+  headerNav?:
+    | {
+        label?: string | null;
+        sectionLink?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   guests?: {
     docs?: (number | Guest)[] | null;
     hasNextPage?: boolean | null;
   } | null;
-  hero: {
-    richText?: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    media: number | Media;
-  };
   layout: (
     | FullScreenWithCountdownHero
     | {
@@ -1485,13 +1474,14 @@ export interface EventsSelect<T extends boolean = true> {
         secondaryColor?: T;
         accentColor?: T;
       };
-  guests?: T;
-  hero?:
+  headerNav?:
     | T
     | {
-        richText?: T;
-        media?: T;
+        label?: T;
+        sectionLink?: T;
+        id?: T;
       };
+  guests?: T;
   layout?:
     | T
     | {

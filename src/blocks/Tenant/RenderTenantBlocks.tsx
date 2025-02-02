@@ -36,14 +36,18 @@ export const RenderBlocks: React.FC<{
     return (
       <Fragment>
         {blocks.map((block, index) => {
-          const { blockType } = block
+          const { blockType, blockName } = block
 
           if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType]
 
             if (Block) {
               return (
-                <div className={twMerge('py-16 bg-primary', index === 0 ? 'py-0' : '')} key={index}>
+                <div
+                  id={blockName}
+                  className={twMerge('py-16 bg-primary', index === 0 ? 'py-0' : '')}
+                  key={index}
+                >
                   {index > 0 && (
                     <div className="h-2 bg-accent rounded-xl w-[384px] mx-auto my-10" />
                   )}

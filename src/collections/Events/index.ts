@@ -1,7 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
-import { hero } from '@/heros/Tenant/Default/config'
 import { Content } from '@/blocks/Tenant/Content/config'
 import { MediaBlock } from '@/blocks/Tenant/MediaBlock/config'
 import { Archive } from '@/blocks/Main/ArchiveBlock/config'
@@ -17,7 +16,11 @@ import { colorPickerField } from '@innovixx/payload-color-picker-field'
 import { TwoColumnImageAndTextBlock } from '@/blocks/Tenant/TwoColumnImageAndText/config'
 import { FullScreenWithCountdownHero } from '@/heros/Tenant/FullScreenWithCountdown/config'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
-
+import {
+  extractBlockName,
+  formatSlug,
+  TenantHeaderNavField,
+} from '@/fields/tenantHeaderNav/tenantHeaderNav'
 export const Events: CollectionConfig = {
   slug: 'events',
   access: {
@@ -118,6 +121,10 @@ export const Events: CollectionConfig = {
             },
           ],
         },
+        {
+          label: 'Navigation',
+          fields: [TenantHeaderNavField],
+        },
       ],
     },
     {
@@ -135,14 +142,21 @@ export const Events: CollectionConfig = {
           ],
         },
         {
-          fields: [hero],
-          label: 'Hero',
-        },
-        {
           fields: [
             {
               name: 'layout',
               type: 'blocks',
+              hooks: {
+                beforeChange: [
+                  ({ value }) => {
+                    const valueWithBlockName = value.map((block) => ({
+                      ...block,
+                      blockName: formatSlug(extractBlockName(block) ?? ''),
+                    }))
+                    return valueWithBlockName
+                  },
+                ],
+              },
               blocks: [
                 FullScreenWithCountdownHero,
                 Countdown,
