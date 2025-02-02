@@ -39,7 +39,7 @@ export const FullScreenWithCountdownHero = ({
           <CardContent>
             {richText && (
               <RichText
-                className="mb-6 [&_p]:text-xl md:[&_p]:text-3xl prose-h1:mb-0 [&_h1]:text-8xl [&_h1]:font-thin"
+                className="mb-6 [&_p]:text-xl md:[&_p]:text-3xl prose-h1:mb-0 [&_h1]:text-7xl lg:[&_h1]:text-8xl [&_h1]:font-thin"
                 data={richText}
                 enableGutter={false}
               />
