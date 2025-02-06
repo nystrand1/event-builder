@@ -21,6 +21,7 @@ import {
   formatSlug,
   TenantHeaderNavField,
 } from '@/fields/tenantHeaderNav/tenantHeaderNav'
+import { RSVPFormBlock } from '@/blocks/Tenant/RSVPForm/config'
 export const Events: CollectionConfig = {
   slug: 'events',
   access: {
@@ -146,6 +147,9 @@ export const Events: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
+              admin: {
+                initCollapsed: true,
+              },
               hooks: {
                 beforeChange: [
                   ({ value }) => {
@@ -168,11 +172,9 @@ export const Events: CollectionConfig = {
                 WishlistBlock,
                 ScheduleBlock,
                 TwoColumnImageAndTextBlock,
+                RSVPFormBlock,
               ],
               required: true,
-              admin: {
-                initCollapsed: true,
-              },
             },
           ],
           label: 'Content',

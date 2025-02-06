@@ -410,6 +410,7 @@ export interface Event {
     | WishlistBlock
     | ScheduleBlock
     | ImageTextTwoColumns
+    | RSVPFormBlock
   )[];
   updatedAt: string;
   createdAt: string;
@@ -904,6 +905,31 @@ export interface ImageTextTwoColumns {
   id?: string | null;
   blockName?: string | null;
   blockType: 'twoColumnImageAndText';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RSVPFormBlock".
+ */
+export interface RSVPFormBlock {
+  title?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'rsvpFormBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1501,6 +1527,7 @@ export interface EventsSelect<T extends boolean = true> {
         wishlistBlock?: T | WishlistBlockSelect<T>;
         schedule?: T | ScheduleBlockSelect<T>;
         twoColumnImageAndText?: T | ImageTextTwoColumnsSelect<T>;
+        rsvpFormBlock?: T | RSVPFormBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1575,6 +1602,16 @@ export interface ImageTextTwoColumnsSelect {
   imagePosition?: boolean;
   id?: boolean;
   blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RSVPFormBlock_select".
+ */
+export interface RSVPFormBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -39,6 +39,9 @@ export const TenantHeaderNavField: Field = {
   name: 'headerNav',
   type: 'array',
   label: 'Header Navigation',
+  admin: {
+    initCollapsed: true,
+  },
   hooks: {
     beforeChange: [
       ({ data, value }) => {

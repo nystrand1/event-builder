@@ -12,6 +12,7 @@ import { WishlistBlock } from './Wishlist/WishlistBlock'
 import { PeopleBlock } from '../People/PeopleBlock'
 import { TwoColumnImageAndText } from './TwoColumnImageAndText/TwoColumnImageAndText'
 import { FullScreenWithCountdownHero } from '@/heros/Tenant/FullScreenWithCountdown'
+import { RSVPForm } from './RSVPForm/RSVPForm'
 
 const blockComponents = {
   content: ContentBlock,
@@ -23,6 +24,7 @@ const blockComponents = {
   peopleBlock: PeopleBlock,
   twoColumnImageAndText: TwoColumnImageAndText,
   fullScreenWithCountdownHero: FullScreenWithCountdownHero,
+  rsvpFormBlock: RSVPForm,
 }
 
 export const RenderBlocks: React.FC<{

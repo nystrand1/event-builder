@@ -19,6 +19,7 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.10.0",
     "@innovixx/payload-color-picker-field": "^2.0.1",
     "@payloadcms/db-postgres": "latest",
     "@payloadcms/live-preview-react": "latest",
@@ -33,7 +34,7 @@
     "@payloadcms/ui": "latest",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-dialog": "^1.1.5",
-    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-label": "^2.1.1",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.1.1",
     "@react-three/drei": "^9.120.7",
@@ -56,11 +57,13 @@
     "prism-react-renderer": "^2.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "7.45.4",
+    "react-hook-form": "^7.54.2",
+    "react-hot-toast": "^2.5.1",
     "sharp": "0.32.6",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.172.0"
+    "three": "^0.172.0",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

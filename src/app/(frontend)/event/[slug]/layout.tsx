@@ -3,6 +3,7 @@ import { draftMode } from 'next/headers'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { queryEventBySlug } from './page'
 import { hexToHSL } from '@/utilities/hexToHSL'
+import { Toaster } from 'react-hot-toast'
 
 export default async function EventLayout({
   children,
@@ -36,6 +37,7 @@ export default async function EventLayout({
 
   return (
     <div style={cssVars}>
+      <Toaster position="bottom-center" />
       {draft && <LivePreviewListener />}
       {event.headerNav && <TenantHeader items={navItems} />}
       {children}
