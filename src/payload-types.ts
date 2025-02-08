@@ -424,6 +424,7 @@ export interface Guest {
   id: number;
   name?: string | null;
   guestId?: string | null;
+  relatedGuests?: (number | null) | Guest;
   events?: (number | null) | Event;
   updatedAt: string;
   createdAt: string;
@@ -1650,6 +1651,7 @@ export interface RSVPFormBlockSelect<T extends boolean = true> {
 export interface GuestsSelect<T extends boolean = true> {
   name?: T;
   guestId?: T;
+  relatedGuests?: T;
   events?: T;
   updatedAt?: T;
   createdAt?: T;

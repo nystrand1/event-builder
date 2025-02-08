@@ -47,6 +47,7 @@ export const TenantHeaderNavField: Field = {
       ({ data, value }) => {
         const event = data as Event
         const { layout } = event
+        if (!layout) return []
         // Zip layout and value, allowing the value array to have precedence
         const headerNav = layout
           .filter((block) => Boolean(block.blockName))

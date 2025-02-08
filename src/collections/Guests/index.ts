@@ -1,11 +1,12 @@
 import type { CollectionConfig } from 'payload'
 
-import { authenticated } from '../../access/authenticated'
 import { adminOnly } from '@/access/adminOnly'
 import { Event } from '@/payload-types'
-import { randomUUID } from 'crypto'
 import { defaultEvent } from '@/utilities/defaultValues/defaultEventRelation'
+import { onlyGuestsOnSameEvent } from '@/utilities/filterOptions/onlyGuestsOnSameEvent'
 import { onlyTenantOrAdmin } from '@/utilities/filterOptions/onlyTenantOrAdmin'
+import { randomUUID } from 'crypto'
+import { authenticated } from '../../access/authenticated'
 
 export const Guests: CollectionConfig<'guests'> = {
   slug: 'guests',
@@ -19,6 +20,15 @@ export const Guests: CollectionConfig<'guests'> = {
   admin: {
     defaultColumns: ['name', 'events'],
     useAsTitle: 'name',
+    baseListFilter: ({ req }) => {
+      if (req.user?.role === 'admin') return null
+      const userEvents = req.user?.events?.map((event: Event) => event.id)
+      return {
+        events: {
+          in: userEvents,
+        },
+      }
+    },
   },
   fields: [
     {
@@ -33,6 +43,12 @@ export const Guests: CollectionConfig<'guests'> = {
       admin: {
         condition: (_data, _siblingData, { user }) => user?.role === 'admin',
       },
+    },
+    {
+      name: 'relatedGuests',
+      type: 'relationship',
+      relationTo: 'guests',
+      filterOptions: onlyGuestsOnSameEvent,
     },
     {
       name: 'events',

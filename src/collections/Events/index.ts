@@ -153,6 +153,7 @@ export const Events: CollectionConfig = {
               hooks: {
                 beforeChange: [
                   ({ value }) => {
+                    if (!value) return value
                     const valueWithBlockName = value.map((block) => ({
                       ...block,
                       blockName: formatSlug(extractBlockName(block) ?? ''),
