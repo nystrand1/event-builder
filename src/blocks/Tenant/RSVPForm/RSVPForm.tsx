@@ -2,17 +2,16 @@
 
 import RichText from '@/components/RichText'
 import { Button } from '@/components/ui/button'
-import { Form, FormLabel } from '@/components/ui/form'
+import { Form } from '@/components/ui/form'
 import { RSVPFormBlock } from '@/payload-types'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Heart, Minus, Plus, Trash2, User, Users } from 'lucide-react'
 import { useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { z } from 'zod'
-import { submitRSVP } from './actions'
 import { RSVPFields } from './RSVPFields'
 import { RSVPFormBuilder } from './RSVPFormBuilder'
-import { zodResolver } from '@hookform/resolvers/zod'
 
 const formSchema = z.object({
   people: z.array(z.any()).min(1).max(5),
@@ -135,8 +134,7 @@ export const RSVPForm = ({ title, description, fields: questions }: RSVPFormBloc
                           {...question}
                           type="text"
                           name={`people.${index}.${question.id}`}
-                          control={form.control}
-                          register={form.register}
+                          errors={form.formState.errors}
                         />
                       )
                     })}
@@ -144,11 +142,10 @@ export const RSVPForm = ({ title, description, fields: questions }: RSVPFormBloc
                 </div>
               ))}
             </div>
-
             <Button
               type="submit"
               className="w-full bg-accent hover:bg-accent/90"
-              disabled={isSubmitting}
+              disabled={!form.formState.isValid}
             >
               {isSubmitting ? 'Skickar...' : 'Skicka'}
             </Button>
