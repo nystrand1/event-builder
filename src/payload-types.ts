@@ -927,6 +927,21 @@ export interface RSVPFormBlock {
     };
     [k: string]: unknown;
   } | null;
+  fields?:
+    | {
+        label: string;
+        type?: ('text' | 'email' | 'number' | 'textarea' | 'checkbox' | 'select' | 'radio') | null;
+        required?: boolean | null;
+        options?:
+          | {
+              label: string;
+              value: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'rsvpFormBlock';
@@ -1610,6 +1625,21 @@ export interface ImageTextTwoColumnsSelect {
 export interface RSVPFormBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
+  fields?:
+    | T
+    | {
+        label?: T;
+        type?: T;
+        required?: T;
+        options?:
+          | T
+          | {
+              label?: T;
+              value?: T;
+              id?: T;
+            };
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

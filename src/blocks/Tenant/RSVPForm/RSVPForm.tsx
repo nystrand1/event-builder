@@ -1,46 +1,32 @@
 'use client'
 
+import RichText from '@/components/RichText'
 import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import { Form, FormLabel } from '@/components/ui/form'
 import { RSVPFormBlock } from '@/payload-types'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Eraser, Heart, Mail, Minus, Phone, Plus, Trash, Trash2, User, Users } from 'lucide-react'
+import { Heart, Minus, Plus, Trash2, User, Users } from 'lucide-react'
 import { useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { z } from 'zod'
 import { submitRSVP } from './actions'
-import toast from 'react-hot-toast'
-
-const personSchema = z.object({
-  firstName: z.string().min(2, 'First name must be at least 2 characters'),
-  lastName: z.string().min(2, 'Last name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().min(8, 'Phone number must be at least 8 digits'),
-  isAttending: z.boolean().default(false),
-})
+import { RSVPFields } from './RSVPFields'
+import { RSVPFormBuilder } from './RSVPFormBuilder'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 const formSchema = z.object({
-  people: z.array(personSchema).min(1).max(5),
+  people: z.array(z.any()).min(1).max(5),
 })
 
 type FormValues = z.infer<typeof formSchema>
 
-export const RSVPForm = ({ title }: RSVPFormBlock) => {
+export const RSVPForm = ({ title, description, fields: questions }: RSVPFormBlock) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      people: [{ firstName: '', lastName: '', email: '', phone: '', isAttending: false }],
+      people: [RSVPFormBuilder(questions)],
     },
   })
 
@@ -67,20 +53,15 @@ export const RSVPForm = ({ title }: RSVPFormBlock) => {
   }
 
   async function onSubmit(data: FormValues) {
+    console.log('submitData', data)
     setIsSubmitting(true)
+    const toastId = toast.loading('Skickar...')
     try {
-      await submitRSVP(data)
-      toast({
-        title: 'RSVP Submitted',
-        description: 'Thank you for your response!',
-      })
+      // await submitRSVP(data)
+      toast.success('Tack för ditt svar!', { id: toastId })
       form.reset()
     } catch (error) {
-      toast({
-        variant: 'destructive',
-        title: 'Error',
-        description: 'Failed to submit RSVP. Please try again.',
-      })
+      toast.error('Något gick fel. Försök igen senare.', { id: toastId })
     } finally {
       setIsSubmitting(false)
     }
@@ -92,7 +73,7 @@ export const RSVPForm = ({ title }: RSVPFormBlock) => {
         <div className="px-8 pt-8 pb-6 text-center">
           <Heart className="mx-auto h-12 w-12 text-accent" />
           <h2 className="mt-4 text-3xl font-bold text-gray-900">{title || 'Wedding RSVP'}</h2>
-          <p className="mt-2 text-gray-600">We're excited to celebrate with you!</p>
+          {description && <RichText data={description} className="mt-2 text-gray-600" />}
         </div>
 
         <Form {...form}>
@@ -100,7 +81,6 @@ export const RSVPForm = ({ title }: RSVPFormBlock) => {
             <div className="space-y-8">
               {/* Guest Count */}
               <div>
-                <FormLabel>Number of Guests</FormLabel>
                 <div className="flex items-center justify-center gap-4">
                   <Button
                     type="button"
@@ -132,7 +112,7 @@ export const RSVPForm = ({ title }: RSVPFormBlock) => {
                 <div key={field.id} className="space-y-6 p-6 bg-gray-50 rounded-lg">
                   <div className="flex items-center gap-2 mb-4 relative">
                     <User className="h-5 w-5 text-accent" />
-                    <h3 className="text-lg font-medium">Guest {index + 1}</h3>
+                    <h3 className="text-lg font-medium">Person {index + 1}</h3>
                     {index > 0 && (
                       <Button
                         type="button"
@@ -146,107 +126,20 @@ export const RSVPForm = ({ title }: RSVPFormBlock) => {
                     )}
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <FormField
-                      control={form.control}
-                      name={`people.${index}.firstName`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>First Name</FormLabel>
-                          <FormControl>
-                            <Input {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name={`people.${index}.lastName`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Last Name</FormLabel>
-                          <FormControl>
-                            <Input {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name={`people.${index}.email`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <div className="relative">
-                              <Input {...field} type="email" />
-                              <Mail className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name={`people.${index}.phone`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Phone</FormLabel>
-                          <FormControl>
-                            <div className="relative">
-                              <Input {...field} type="tel" />
-                              <Phone className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name={`people.${index}.isAttending`}
-                      render={({ field }) => (
-                        <FormItem className="flex flex-col items-start space-y-2">
-                          <FormLabel className="font-normal">Will attend</FormLabel>
-                          <FormControl>
-                            <div className="flex flex-row gap-4">
-                              <Button
-                                type="button"
-                                variant="outline"
-                                onClick={() => form.setValue(`people.${index}.isAttending`, true)}
-                                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors
-                                  ${
-                                    field.value === true
-                                      ? 'bg-accent text-white hover:bg-accent/90 hover:text-white'
-                                      : 'bg-transparent text-gray-700 hover:bg-gray-200'
-                                  }`}
-                              >
-                                Joyfully Accept
-                              </Button>
-                              <Button
-                                type="button"
-                                variant="outline"
-                                onClick={() => form.setValue(`people.${index}.isAttending`, false)}
-                                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors
-                                  ${
-                                    field.value === false
-                                      ? 'bg-gray-800 text-white hover:bg-gray-700 hover:text-white'
-                                      : 'bg-transparent text-gray-700 hover:bg-gray-200'
-                                  }`}
-                              >
-                                Regretfully Decline
-                              </Button>
-                            </div>
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
+                    {questions?.map((question, i) => {
+                      const Field = RSVPFields[question.type as keyof typeof RSVPFields]
+                      if (!Field || !question.id) return null
+                      return (
+                        <Field
+                          key={question.id ?? `${i}field`}
+                          {...question}
+                          type="text"
+                          name={`people.${index}.${question.id}`}
+                          control={form.control}
+                          register={form.register}
+                        />
+                      )
+                    })}
                   </div>
                 </div>
               ))}
@@ -257,7 +150,7 @@ export const RSVPForm = ({ title }: RSVPFormBlock) => {
               className="w-full bg-accent hover:bg-accent/90"
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Submitting...' : 'Submit RSVP'}
+              {isSubmitting ? 'Skickar...' : 'Skicka'}
             </Button>
           </form>
         </Form>
