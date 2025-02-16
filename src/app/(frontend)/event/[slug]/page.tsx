@@ -27,12 +27,9 @@ export const Page = async ({ params, searchParams }: Params) => {
   if (!slug) {
     return null
   }
-  console.log('guest', guest)
   const page = await queryEventBySlug({ slug })
 
   const guestFromCms = await queryGuestById({ id: guest })
-
-  console.log('guestFromCms', guestFromCms)
 
   return (
     <GuestProvider guest={guestFromCms}>

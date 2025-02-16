@@ -87,7 +87,7 @@ export const GuestRSVPForm = ({
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
-        <div className="px-8 pt-8 pb-6 text-center">
+        <div className="px-2 md:px-8 pt-8 pb-6 text-center">
           <Heart className="mx-auto h-12 w-12 text-accent" />
           {guestFormTitle && guest.name && (
             <h2 className="mt-4 text-3xl font-bold text-gray-900">
@@ -98,7 +98,7 @@ export const GuestRSVPForm = ({
         </div>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="px-8 pb-8 space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="px-2 md:px-8 pb-8 space-y-6">
             <div className="space-y-8">
               {/* Guest Forms */}
               {fields.map((field, index) => (

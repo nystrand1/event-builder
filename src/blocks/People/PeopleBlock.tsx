@@ -23,7 +23,7 @@ export const PeopleBlock = ({ people, title }: PeopleBlockProps) => {
               transition={{ duration: 0.8, delay: 0.2 * index }}
             >
               <Card className="size-full shadow-md border-none">
-                <CardContent className="p-4">
+                <CardContent className="p-4 flex flex-col items-center space-y-2">
                   <Media
                     resource={person.image}
                     className="rounded-full overflow-hidden aspect-square size-48 md:size-auto"
