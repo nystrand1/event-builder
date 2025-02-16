@@ -922,6 +922,7 @@ export interface ImageTextTwoColumns {
  */
 export interface RSVPFormBlock {
   title?: string | null;
+  guestFormTitle?: string | null;
   description?: {
     root: {
       type: string;
@@ -1634,6 +1635,7 @@ export interface ImageTextTwoColumnsSelect {
  */
 export interface RSVPFormBlockSelect<T extends boolean = true> {
   title?: T;
+  guestFormTitle?: T;
   description?: T;
   fields?:
     | T

@@ -22,11 +22,14 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>
 
-export const RSVPForm = ({ title, description, fields: questions }: RSVPFormBlock) => {
+export const RSVPForm = ({
+  title,
+  guestFormTitle,
+  description,
+  fields: questions,
+}: RSVPFormBlock) => {
   const { guest } = useGuest()
   const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const allGuests = [guest, ...(guest?.relatedGuests ?? [])]
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -77,6 +80,7 @@ export const RSVPForm = ({ title, description, fields: questions }: RSVPFormBloc
       <GuestRSVPForm
         blockType="rsvpFormBlock"
         title={title}
+        guestFormTitle={guestFormTitle}
         description={description}
         fields={questions}
       />

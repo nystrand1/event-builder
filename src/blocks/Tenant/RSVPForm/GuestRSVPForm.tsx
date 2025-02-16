@@ -15,7 +15,11 @@ import { GuestRSVPFormBuilder, slugify } from './GuestRSVPFormBuilder'
 import { RSVPFields } from './RSVPFields'
 import { submitGuestRSVP } from './actions'
 
-export const GuestRSVPForm = ({ description, fields: questions }: RSVPFormBlock) => {
+export const GuestRSVPForm = ({
+  guestFormTitle,
+  description,
+  fields: questions,
+}: RSVPFormBlock) => {
   const { guest } = useGuest()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -76,12 +80,20 @@ export const GuestRSVPForm = ({ description, fields: questions }: RSVPFormBlock)
 
   if (!guest) return null
 
+  const interpolateGuestName = (text: string, guestName: string) => {
+    return text.replace(/{{\s*guestName\s*}}/g, guestName)
+  }
+
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         <div className="px-8 pt-8 pb-6 text-center">
           <Heart className="mx-auto h-12 w-12 text-accent" />
-          <h2 className="mt-4 text-3xl font-bold text-gray-900">{`Kommer du, ${guest.name}?`}</h2>
+          {guestFormTitle && guest.name && (
+            <h2 className="mt-4 text-3xl font-bold text-gray-900">
+              {interpolateGuestName(guestFormTitle, guest.name)}
+            </h2>
+          )}
           {description && <RichText data={description} className="mt-2 text-gray-600" />}
         </div>
 

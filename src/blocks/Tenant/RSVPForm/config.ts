@@ -14,6 +14,11 @@ export const RSVPFormBlock: Block = {
       type: 'text',
     },
     {
+      name: 'guestFormTitle',
+      label: 'Guest Title',
+      type: 'text',
+    },
+    {
       name: 'description',
       label: 'Description',
       type: 'richText',
