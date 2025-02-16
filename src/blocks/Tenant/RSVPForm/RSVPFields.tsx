@@ -13,6 +13,7 @@ type RSVPField = NonNullable<RSVPFormBlock['fields']>[number]
 export interface FieldProps extends RSVPField {
   name: string
   placeholder?: string
+  defaultValue?: string
   errors: Partial<
     FieldErrorsImpl<{
       [x: string]: any
@@ -20,7 +21,15 @@ export interface FieldProps extends RSVPField {
   >
 }
 
-const TextField = ({ name, label, required, errors, placeholder, type }: FieldProps) => {
+const TextField = ({
+  name,
+  label,
+  required,
+  errors,
+  placeholder,
+  type,
+  defaultValue,
+}: FieldProps) => {
   const { register } = useFormContext()
   let fieldType = 'text'
   if (type === 'email') {
@@ -39,7 +48,7 @@ const TextField = ({ name, label, required, errors, placeholder, type }: FieldPr
         id={name}
         type="text"
         placeholder={placeholder}
-        {...register(name, { required: !!required })}
+        {...register(name, { required: !!required, value: defaultValue })}
       />
       {required && errors[name] && <Error />}
     </div>

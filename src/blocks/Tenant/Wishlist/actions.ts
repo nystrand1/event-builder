@@ -20,8 +20,6 @@ export const reserveItem = async (formData: FormData) => {
   const quantity = parseInt(formData.get('quantity') as string)
 
   const payload = await getPayload({ config: payloadConfig })
-  // Simulate delay
-  await new Promise((resolve) => setTimeout(resolve, 2000))
 
   const code = generateReadableReservationCode()
 

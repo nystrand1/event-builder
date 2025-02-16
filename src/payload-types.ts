@@ -424,8 +424,17 @@ export interface Guest {
   id: number;
   name?: string | null;
   guestId?: string | null;
-  relatedGuests?: (number | null) | Guest;
+  relatedGuests?: (number | Guest)[] | null;
   events?: (number | null) | Event;
+  rsvpAnswer?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1653,6 +1662,7 @@ export interface GuestsSelect<T extends boolean = true> {
   guestId?: T;
   relatedGuests?: T;
   events?: T;
+  rsvpAnswer?: T;
   updatedAt?: T;
   createdAt?: T;
 }

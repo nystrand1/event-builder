@@ -14,7 +14,7 @@ export const Guests: CollectionConfig<'guests'> = {
     admin: authenticated,
     create: authenticated,
     delete: adminOnly,
-    read: authenticated,
+    read: () => true,
     update: authenticated,
   },
   admin: {
@@ -49,6 +49,7 @@ export const Guests: CollectionConfig<'guests'> = {
       type: 'relationship',
       relationTo: 'guests',
       filterOptions: onlyGuestsOnSameEvent,
+      hasMany: true,
     },
     {
       name: 'events',
@@ -74,6 +75,10 @@ export const Guests: CollectionConfig<'guests'> = {
       },
       defaultValue: defaultEvent,
       filterOptions: onlyTenantOrAdmin,
+    },
+    {
+      name: 'rsvpAnswer',
+      type: 'json',
     },
   ],
   timestamps: true,

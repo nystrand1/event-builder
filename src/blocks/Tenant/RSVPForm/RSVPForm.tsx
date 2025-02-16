@@ -12,6 +12,9 @@ import toast from 'react-hot-toast'
 import { z } from 'zod'
 import { RSVPFields } from './RSVPFields'
 import { RSVPFormBuilder } from './RSVPFormBuilder'
+import { useParams, usePathname, useSearchParams } from 'next/navigation'
+import { useGuest } from '@/app/(frontend)/event/[slug]/providers/GuestProvider'
+import { GuestRSVPForm } from './GuestRSVPForm'
 
 const formSchema = z.object({
   people: z.array(z.any()).min(1).max(5),
@@ -20,7 +23,10 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>
 
 export const RSVPForm = ({ title, description, fields: questions }: RSVPFormBlock) => {
+  const { guest } = useGuest()
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const allGuests = [guest, ...(guest?.relatedGuests ?? [])]
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -64,6 +70,17 @@ export const RSVPForm = ({ title, description, fields: questions }: RSVPFormBloc
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  if (guest) {
+    return (
+      <GuestRSVPForm
+        blockType="rsvpFormBlock"
+        title={title}
+        description={description}
+        fields={questions}
+      />
+    )
   }
 
   return (
