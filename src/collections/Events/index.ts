@@ -106,6 +106,14 @@ export const Events: CollectionConfig = {
               type: 'group',
               name: 'theme',
               fields: [
+                {
+                  name: 'theme',
+                  type: 'select',
+                  options: [
+                    { label: 'Main', value: 'main' },
+                    { label: 'Simple', value: 'simple' },
+                  ],
+                },
                 colorPickerField({
                   name: 'primaryColor',
                   label: 'Primary color',

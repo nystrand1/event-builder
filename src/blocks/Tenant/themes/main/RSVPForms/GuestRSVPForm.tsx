@@ -1,6 +1,9 @@
 'use client'
 
 import { useGuest } from '@/app/(frontend)/event/[slug]/providers/GuestProvider'
+import { submitGuestRSVP } from '@/blocks/Tenant/RSVPForm/actions'
+import { GuestRSVPFormBuilder, slugify } from '@/blocks/Tenant/RSVPForm/GuestRSVPFormBuilder'
+import { RSVPFields } from '@/blocks/Tenant/RSVPForm/RSVPFields'
 import RichText from '@/components/RichText'
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
@@ -11,9 +14,6 @@ import { useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { z } from 'zod'
-import { GuestRSVPFormBuilder, slugify } from './GuestRSVPFormBuilder'
-import { RSVPFields } from './RSVPFields'
-import { submitGuestRSVP } from './actions'
 
 export const GuestRSVPForm = ({
   guestFormTitle,

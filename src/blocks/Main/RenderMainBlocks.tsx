@@ -7,7 +7,7 @@ import { CallToActionBlock } from '@/blocks/Main/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Main/Content/Component'
 import { MediaBlock } from '@/blocks/Main/MediaBlock/Component'
 import { twMerge } from 'tailwind-merge'
-import { ScheduleBlock } from '../Tenant/Schedule/ScheduleBlock'
+import { ScheduleBlock } from '../Tenant/themes/main/Schedule/ScheduleBlock'
 
 const blockComponents = {
   archive: ArchiveBlock,

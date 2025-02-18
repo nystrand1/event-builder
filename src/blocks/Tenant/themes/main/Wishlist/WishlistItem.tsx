@@ -11,7 +11,7 @@ import { motion } from 'motion/react'
 import Link from 'next/link'
 import { startTransition, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { reserveItem } from './actions'
+import { reserveItem } from '../../../Wishlist/actions'
 import { CancelReservation } from './CancelReservation'
 import { ReservationSuccessDialog } from './ReservationSuccessDialog'
 

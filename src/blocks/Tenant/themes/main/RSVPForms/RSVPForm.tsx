@@ -1,5 +1,6 @@
 'use client'
 
+import { useGuest } from '@/app/(frontend)/event/[slug]/providers/GuestProvider'
 import RichText from '@/components/RichText'
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
@@ -10,10 +11,8 @@ import { useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { z } from 'zod'
-import { RSVPFields } from './RSVPFields'
-import { RSVPFormBuilder } from './RSVPFormBuilder'
-import { useParams, usePathname, useSearchParams } from 'next/navigation'
-import { useGuest } from '@/app/(frontend)/event/[slug]/providers/GuestProvider'
+import { RSVPFields } from '../../../RSVPForm/RSVPFields'
+import { RSVPFormBuilder } from '../../../RSVPForm/RSVPFormBuilder'
 import { GuestRSVPForm } from './GuestRSVPForm'
 
 const formSchema = z.object({

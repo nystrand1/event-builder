@@ -1,49 +1,57 @@
 import React, { Fragment } from 'react'
 
-import type { Page, Event } from '@/payload-types'
+import type { Event } from '@/payload-types'
 
-import { ContentBlock } from '@/blocks/Tenant/Content/Component'
 import { FormBlock } from '@/blocks/Shared/Form/Component'
-import { MediaBlock } from '@/blocks/Tenant/MediaBlock/Component'
-import { twMerge } from 'tailwind-merge'
+import { ContentBlock } from '@/blocks/Tenant/themes/main/Content/ContentBlock'
 import { EventCountdown } from '@/components/EventCountdown/EventCountdown'
-import { ScheduleBlock } from './Schedule/ScheduleBlock'
-import { WishlistBlock } from './Wishlist/WishlistBlock'
-import { PeopleBlock } from '../People/PeopleBlock'
-import { TwoColumnImageAndText } from './TwoColumnImageAndText/TwoColumnImageAndText'
 import { FullScreenWithCountdownHero } from '@/heros/Tenant/FullScreenWithCountdown'
-import { RSVPForm } from './RSVPForm/RSVPForm'
+import { twMerge } from 'tailwind-merge'
+import { PeopleBlock } from '../People/PeopleBlock'
+import { RSVPForm } from './themes/main/RSVPForms/RSVPForm'
+import { ScheduleBlock } from './themes/main/Schedule/ScheduleBlock'
+import { TwoColumnImageAndText } from './themes/main/TwoColumnImageAndText/TwoColumnImageAndText'
+import { WishlistBlock } from './themes/main/Wishlist/WishlistBlock'
+import { MediaBlock } from './themes/main/MediaBlock/MediaBlock'
+
+type Theme = NonNullable<NonNullable<Event['theme']>['theme']>
+
+type BlockType = Event['layout'][0]['blockType']
 
 const blockComponents = {
-  content: ContentBlock,
-  formBlock: FormBlock,
-  mediaBlock: MediaBlock,
-  countdown: EventCountdown,
-  schedule: ScheduleBlock,
-  wishlistBlock: WishlistBlock,
-  peopleBlock: PeopleBlock,
-  twoColumnImageAndText: TwoColumnImageAndText,
-  fullScreenWithCountdownHero: FullScreenWithCountdownHero,
-  rsvpFormBlock: RSVPForm,
-}
+  main: {
+    content: ContentBlock,
+    formBlock: FormBlock,
+    mediaBlock: MediaBlock,
+    countdown: EventCountdown,
+    schedule: ScheduleBlock,
+    wishlistBlock: WishlistBlock,
+    peopleBlock: PeopleBlock,
+    twoColumnImageAndText: TwoColumnImageAndText,
+    fullScreenWithCountdownHero: FullScreenWithCountdownHero,
+    rsvpFormBlock: RSVPForm,
+  },
+  simple: {},
+} as Record<Theme, Record<BlockType, React.FC<any>>>
 
 export const RenderBlocks: React.FC<{
-  blocks: Page['layout'][0][] | Event['layout'][0][]
+  blocks: Event['layout'][0][]
+  theme: NonNullable<Event['theme']>['theme']
 }> = (props) => {
-  const { blocks } = props
+  const { blocks, theme } = props
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
-
+  console.log('theme', theme)
   if (hasBlocks) {
     return (
       <Fragment>
         {blocks.map((block, index) => {
           const { blockType, blockName } = block
+          const components = blockComponents[theme ?? 'main']
+          if (blockType && blockType in components) {
+            const Block = components[blockType]
 
-          if (blockType && blockType in blockComponents) {
-            const Block = blockComponents[blockType]
-
-            if (Block) {
+            if (Block && blockName) {
               return (
                 <div
                   id={blockName}

@@ -3,9 +3,9 @@ import { getPayload } from 'payload'
 import { cache } from 'react'
 import configPromise from '@payload-config'
 import { RenderBlocks } from '@/blocks/Tenant/RenderTenantBlocks'
-import { hexToHSL } from '@/utilities/hexToHSL'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { GuestProvider } from './providers/GuestProvider'
+import { ThemeProvider } from './providers/ThemeProvider'
 
 export const generateStaticParams = async () => {
   return []
@@ -34,7 +34,7 @@ export const Page = async ({ params, searchParams }: Params) => {
   return (
     <GuestProvider guest={guestFromCms}>
       {draft && <LivePreviewListener />}
-      <RenderBlocks blocks={page.layout} />
+      <RenderBlocks blocks={page.layout} theme={page.theme?.theme} />
     </GuestProvider>
   )
 }

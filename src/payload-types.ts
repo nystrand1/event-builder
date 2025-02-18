@@ -379,6 +379,7 @@ export interface Event {
     domain?: string | null;
   };
   theme?: {
+    theme?: ('main' | 'simple') | null;
     primaryColor?: string | null;
     secondaryColor?: string | null;
     accentColor?: string | null;
@@ -1522,6 +1523,7 @@ export interface EventsSelect<T extends boolean = true> {
   theme?:
     | T
     | {
+        theme?: T;
         primaryColor?: T;
         secondaryColor?: T;
         accentColor?: T;

@@ -1,4 +1,4 @@
-import { MediaBlock as MediaBlockTenant } from '@/blocks/Tenant/MediaBlock/Component'
+import { MediaBlock as MediaBlockTenant } from '@/blocks/Tenant/themes/main/MediaBlock/MediaBlock'
 import {
   DefaultNodeTypes,
   SerializedBlockNode,

@@ -6,7 +6,7 @@ import RichText from '@/components/RichText'
 
 import type { ContentBlock as ContentBlockProps } from '@/payload-types'
 
-import { CMSLink } from '../../../components/Link'
+import { CMSLink } from '../../../../../components/Link'
 import { motion } from 'motion/react'
 
 export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
@@ -18,6 +18,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
     oneThird: '4',
     twoThirds: '8',
   }
+
   return (
     <div className="container">
       <div className="grid grid-cols-4 lg:grid-cols-12 gap-y-8 gap-x-16">

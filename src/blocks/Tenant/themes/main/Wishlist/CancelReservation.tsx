@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { useState, useTransition } from 'react'
-import { cancelReservation } from './actions'
+import { cancelReservation } from '../../../Wishlist/actions'
 
 interface CancelReservationProps {
   wishlistId: number
