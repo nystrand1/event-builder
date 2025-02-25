@@ -14,7 +14,7 @@ import { ScheduleBlock } from '@/blocks/Tenant/Schedule/config'
 
 import { colorPickerField } from '@innovixx/payload-color-picker-field'
 import { TwoColumnImageAndTextBlock } from '@/blocks/Tenant/TwoColumnImageAndText/config'
-import { FullScreenWithCountdownHero } from '@/heros/Tenant/FullScreenWithCountdown/config'
+import { FullScreenWithCountdownHero } from '@/blocks/Tenant/FullScreenWithCountdown/config'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import {
   extractBlockName,

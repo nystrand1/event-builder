@@ -18,6 +18,9 @@ import { Header } from '@/Header/Component'
 import { Footer } from '@/Footer/Component'
 
 export async function generateStaticParams() {
+  if (process.env.NEXT_PUBLIC_USE_MOCK === 'true') {
+    return []
+  }
   const payload = await getPayload({ config: configPromise })
   const pages = await payload.find({
     collection: 'pages',
@@ -87,6 +90,11 @@ export default async function Page({ params: paramsPromise }: Args) {
 }
 
 export async function generateMetadata({ params: paramsPromise }): Promise<Metadata> {
+  if (process.env.NEXT_PUBLIC_USE_MOCK === 'true') {
+    return {
+      title: 'Mock Page',
+    }
+  }
   const { slug = 'home' } = await paramsPromise
   const page = await queryPageBySlug({
     slug,

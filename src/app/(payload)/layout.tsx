@@ -15,6 +15,9 @@ type Args = {
 
 const serverFunction: ServerFunctionClient = async function (args) {
   'use server'
+  if (process.env.NEXT_PUBLIC_USE_MOCK === 'true') {
+    return null
+  }
   return handleServerFunctions({
     ...args,
     config,

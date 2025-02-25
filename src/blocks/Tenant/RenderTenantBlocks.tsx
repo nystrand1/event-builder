@@ -5,7 +5,7 @@ import type { Event } from '@/payload-types'
 import { FormBlock } from '@/blocks/Shared/Form/Component'
 import { ContentBlock } from '@/blocks/Tenant/themes/main/Content/ContentBlock'
 import { EventCountdown } from '@/components/EventCountdown/EventCountdown'
-import { FullScreenWithCountdownHero } from '@/heros/Tenant/FullScreenWithCountdown'
+import { FullScreenWithCountdownHero } from '@/blocks/Tenant/themes/main/FullScreenWithCountdown/FullScreenWithCountdown'
 import { twMerge } from 'tailwind-merge'
 import { PeopleBlock } from '../People/PeopleBlock'
 import { RSVPForm } from './themes/main/RSVPForms/RSVPForm'
@@ -13,10 +13,11 @@ import { ScheduleBlock } from './themes/main/Schedule/ScheduleBlock'
 import { TwoColumnImageAndText } from './themes/main/TwoColumnImageAndText/TwoColumnImageAndText'
 import { WishlistBlock } from './themes/main/Wishlist/WishlistBlock'
 import { MediaBlock } from './themes/main/MediaBlock/MediaBlock'
+import { playfulTheme } from './themes/playful'
 
 type Theme = NonNullable<NonNullable<Event['theme']>['theme']>
 
-type BlockType = Event['layout'][0]['blockType']
+export type BlockType = Event['layout'][0]['blockType']
 
 const blockComponents = {
   main: {
@@ -31,7 +32,7 @@ const blockComponents = {
     fullScreenWithCountdownHero: FullScreenWithCountdownHero,
     rsvpFormBlock: RSVPForm,
   },
-  simple: {},
+  simple: playfulTheme,
 } as Record<Theme, Record<BlockType, React.FC<any>>>
 
 export const RenderBlocks: React.FC<{
@@ -41,7 +42,6 @@ export const RenderBlocks: React.FC<{
   const { blocks, theme } = props
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
-  console.log('theme', theme)
   if (hasBlocks) {
     return (
       <Fragment>
