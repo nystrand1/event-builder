@@ -33,7 +33,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
             >
               {richText && <RichText data={richText} enableGutter={false} />}
               {enableLink && link && (
-                <a href={link.url} className="text-black underline mt-4 inline-block">
+                <a href={link.url ?? ''} className="text-black underline mt-4 inline-block">
                   {link.label}
                 </a>
               )}

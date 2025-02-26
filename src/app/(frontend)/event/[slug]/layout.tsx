@@ -1,17 +1,16 @@
 import { TenantHeader } from '@/Header/Tenant/TenantHeader'
 import { draftMode } from 'next/headers'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
-import { queryEventBySlug } from './page'
 import { hexToHSL } from '@/utilities/hexToHSL'
 import { Toaster } from 'react-hot-toast'
+import { queryEventBySlug } from './queryEventBySlug'
 
-export default async function EventLayout({
-  children,
-  params,
-}: {
+interface EventLayoutProps {
   children: React.ReactNode
-  params: { slug: string }
-}) {
+  params: Promise<{ slug: string }>
+}
+
+export default async function EventLayout({ children, params }: EventLayoutProps) {
   const { isEnabled: draft } = await draftMode()
   const { slug } = await params
 

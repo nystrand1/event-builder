@@ -2,6 +2,7 @@ import { RenderBlocks } from '@/blocks/Tenant/RenderTenantBlocks'
 import { mockData } from './mockData'
 import { GuestProvider } from '../event/[slug]/providers/GuestProvider'
 import { hexToHSL } from '@/utilities/hexToHSL'
+import { Event } from '@/payload-types'
 
 export default function Page() {
   const page = mockData
@@ -24,7 +25,10 @@ export default function Page() {
   return (
     <div style={cssVars}>
       <GuestProvider guest={guestFromCms}>
-        <RenderBlocks blocks={page.layout} theme={page.theme?.theme} />
+        <RenderBlocks
+          blocks={page.layout as Event['layout'][0][]}
+          theme={page.theme?.theme as NonNullable<Event['theme']>['theme']}
+        />
       </GuestProvider>
     </div>
   )

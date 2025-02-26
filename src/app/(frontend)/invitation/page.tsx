@@ -1,8 +1,6 @@
-'use client'
-
 import EventCard from '@/components/EventCard/EventCard'
 
-export const Page = () => {
+export default function Page() {
   return (
     <div>
       <h1>Page</h1>
@@ -12,5 +10,3 @@ export const Page = () => {
     </div>
   )
 }
-
-export default Page

@@ -9,10 +9,9 @@ export const GET = async () => {
     collection: 'events',
     data: {
       name: 'My first event',
-      domain: 'snyggdoman.se',
-      eventDate: new Date().toISOString(),
-      hero: {
-        media: 2,
+      eventDetails: {
+        domain: 'snyggdoman.se',
+        eventDate: new Date().toISOString(),
       },
       layout: [
         {
