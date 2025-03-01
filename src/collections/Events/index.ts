@@ -22,6 +22,7 @@ import {
   TenantHeaderNavField,
 } from '@/fields/tenantHeaderNav/tenantHeaderNav'
 import { RSVPFormBlock } from '@/blocks/Tenant/RSVPForm/config'
+import { InviationCardBlock } from '@/blocks/Tenant/InvitationCard/config'
 export const Events: CollectionConfig = {
   slug: 'events',
   access: {
@@ -187,6 +188,16 @@ export const Events: CollectionConfig = {
             },
           ],
           label: 'Content',
+        },
+        {
+          fields: [
+            {
+              name: 'invitationCard',
+              type: 'group',
+              fields: InviationCardBlock.fields,
+            },
+          ],
+          label: 'Invitation Card',
         },
       ],
     },

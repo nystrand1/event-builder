@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 
 interface NavItem {
   label: string
@@ -19,6 +20,8 @@ export const TenantHeader = ({ items = [] }: TenantHeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
+  const pathname = usePathname()
+
   // Handle scroll effect for header background
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +30,10 @@ export const TenantHeader = ({ items = [] }: TenantHeaderProps) => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  if (pathname.includes('invitation')) {
+    return null
+  }
 
   // Smooth scroll handler
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {

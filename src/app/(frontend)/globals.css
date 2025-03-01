@@ -110,3 +110,19 @@
   }
 }
 
+@layer components {
+  .card-container {
+    perspective: 1500px;
+    width: 100%;
+    max-width: 450px;
+    height: 80vh;
+    cursor: pointer;
+  }
+  
+  /* Paper texture */
+  .paper-texture {
+    background-color: #f8f3e3;
+    background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    position: relative;
+  }
+}

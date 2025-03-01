@@ -468,6 +468,26 @@ export interface Event {
     | ImageTextTwoColumns
     | RSVPFormBlock
   )[];
+  invitationCard: {
+    title: string;
+    description: string;
+    image?: (number | null) | Media;
+    information?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -1611,6 +1631,14 @@ export interface EventsSelect<T extends boolean = true> {
         schedule?: T | ScheduleBlockSelect<T>;
         twoColumnImageAndText?: T | ImageTextTwoColumnsSelect<T>;
         rsvpFormBlock?: T | RSVPFormBlockSelect<T>;
+      };
+  invitationCard?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        information?: T;
       };
   updatedAt?: T;
   createdAt?: T;
