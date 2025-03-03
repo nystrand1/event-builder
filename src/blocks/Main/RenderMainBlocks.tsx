@@ -8,6 +8,7 @@ import { ContentBlock } from '@/blocks/Main/Content/Component'
 import { MediaBlock } from '@/blocks/Main/MediaBlock/Component'
 import { twMerge } from 'tailwind-merge'
 import { ScheduleBlock } from '../Tenant/themes/main/Schedule/ScheduleBlock'
+import { TwoColumnImageAndText } from '../Tenant/themes/main/TwoColumnImageAndText/TwoColumnImageAndText'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -15,6 +16,7 @@ const blockComponents = {
   cta: CallToActionBlock,
   mediaBlock: MediaBlock,
   schedule: ScheduleBlock,
+  twoColumnImageAndText: TwoColumnImageAndText,
 }
 
 export const RenderBlocks: React.FC<{
