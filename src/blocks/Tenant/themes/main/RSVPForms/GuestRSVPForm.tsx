@@ -70,7 +70,6 @@ export const GuestRSVPForm = ({
     try {
       await submitGuestRSVP(data)
       toast.success('Tack för ditt svar!', { id: toastId })
-      form.reset()
     } catch (error) {
       toast.error('Något gick fel. Försök igen senare.', { id: toastId })
     } finally {
