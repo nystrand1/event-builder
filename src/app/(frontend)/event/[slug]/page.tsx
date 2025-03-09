@@ -5,6 +5,8 @@ import { GuestProvider } from './providers/GuestProvider'
 import { queryEventBySlug } from './queryEventBySlug'
 import { queryGuestById } from './queryGuestbyId'
 
+export const dynamic = 'force-dynamic'
+
 export const generateStaticParams = async () => {
   return []
 }
