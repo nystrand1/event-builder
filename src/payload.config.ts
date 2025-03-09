@@ -19,6 +19,7 @@ import { plugins } from './plugins'
 import { getServerSideURL } from './utilities/getURL'
 import { Guests } from './collections/Guests'
 import { WishLists } from './collections/Wishlists'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -72,6 +73,14 @@ export default buildConfig({
   globals: [Header, Footer],
   plugins: [
     ...plugins,
+    vercelBlobStorage({
+      enabled: !!process.env.BLOB_READ_WRITE_TOKEN,
+      collections: {
+        media: true,
+      },
+      // Token provided by Vercel once Blob storage is added to your Vercel project
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
     // storage-adapter-placeholder
   ],
   secret: process.env.PAYLOAD_SECRET,
