@@ -22,18 +22,18 @@
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@innovixx/payload-color-picker-field": "^2.0.1",
-    "@payloadcms/db-postgres": "3.24.0",
-    "@payloadcms/live-preview-react": "3.24.0",
-    "@payloadcms/next": "3.24.0",
-    "@payloadcms/payload-cloud": "3.24.0",
-    "@payloadcms/plugin-form-builder": "3.24.0",
-    "@payloadcms/plugin-nested-docs": "3.24.0",
-    "@payloadcms/plugin-redirects": "3.24.0",
-    "@payloadcms/plugin-search": "3.24.0",
-    "@payloadcms/plugin-seo": "3.24.0",
-    "@payloadcms/richtext-lexical": "3.24.0",
+    "@payloadcms/db-postgres": "3.27.0",
+    "@payloadcms/live-preview-react": "3.27.0",
+    "@payloadcms/next": "3.27.0",
+    "@payloadcms/payload-cloud": "3.27.0",
+    "@payloadcms/plugin-form-builder": "3.27.0",
+    "@payloadcms/plugin-nested-docs": "3.27.0",
+    "@payloadcms/plugin-redirects": "3.27.0",
+    "@payloadcms/plugin-search": "3.27.0",
+    "@payloadcms/plugin-seo": "3.27.0",
+    "@payloadcms/richtext-lexical": "3.27.0",
     "@payloadcms/storage-vercel-blob": "^3.27.0",
-    "@payloadcms/ui": "3.24.0",
+    "@payloadcms/ui": "3.27.0",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-dialog": "^1.1.5",
     "@radix-ui/react-label": "^2.1.1",
@@ -54,7 +54,7 @@
     "motion": "^12.4.7",
     "next": "^15.1.0",
     "next-sitemap": "^4.2.3",
-    "payload": "3.24.0",
+    "payload": "3.27.0",
     "payload-admin-bar": "^1.0.6",
     "prism-react-renderer": "^2.3.1",
     "react": "^19.0.0",
@@ -86,5 +86,6 @@
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

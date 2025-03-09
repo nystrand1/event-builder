@@ -175,7 +175,7 @@ export interface Page {
     } | null;
     media: number | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | ImageTextTwoColumns)[];
   meta?: {
     title?: string | null;
     /**
@@ -447,9 +447,10 @@ export interface Event {
       }[]
     | null;
   guests?: {
-    docs?: (number | Guest)[] | null;
-    hasNextPage?: boolean | null;
-  } | null;
+    docs?: (number | Guest)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   layout: (
     | FullScreenWithCountdownHero
     | {
@@ -1319,6 +1320,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        twoColumnImageAndText?: T | ImageTextTwoColumnsSelect<T>;
       };
   meta?:
     | T
@@ -1415,6 +1417,18 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Image & Text (Two columns)_select".
+ */
+export interface ImageTextTwoColumnsSelect<T extends boolean = true> {
+  title?: T;
+  text?: T;
+  image?: T;
+  imagePosition?: T;
   id?: T;
   blockName?: T;
 }
@@ -1699,18 +1713,6 @@ export interface ScheduleBlockSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Image & Text (Two columns)_select".
- */
-export interface ImageTextTwoColumnsSelect<T extends boolean = true> {
-  title?: T;
-  text?: T;
-  image?: T;
-  imagePosition?: T;
   id?: T;
   blockName?: T;
 }
