@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { CardFront } from './CardFront'
 import { CardBack } from './CardBack'
-import { SerializedEditorState } from 'node_modules/lexical/LexicalEditorState'
+import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
 interface InvitationCardProps {
   title: string

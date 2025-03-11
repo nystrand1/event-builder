@@ -1,9 +1,9 @@
-import { MousePointer, Heart } from 'lucide-react'
-import { Media } from '@/payload-types'
-import { motion } from 'framer-motion'
 import { Media as MediaBlock } from '@/components/Media'
 import RichText from '@/components/RichText'
-import { SerializedEditorState } from 'node_modules/lexical/LexicalEditorState'
+import { Media } from '@/payload-types'
+import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import { motion } from 'framer-motion'
+import { Heart } from 'lucide-react'
 
 interface CardFrontProps {
   title: string
