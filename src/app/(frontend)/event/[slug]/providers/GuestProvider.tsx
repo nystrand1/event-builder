@@ -1,7 +1,8 @@
 'use client'
 
 import { Guest } from '@/payload-types'
-import React, { createContext, useContext } from 'react'
+import { useRouter } from 'next/navigation'
+import React, { createContext, useContext, useEffect } from 'react'
 
 type GuestContextType = {
   guest: Guest | null
@@ -20,9 +21,16 @@ export function GuestProvider({
 }
 
 export function useGuest() {
+  const router = useRouter()
   const context = useContext(GuestContext)
   if (context === undefined) {
     throw new Error('useGuest must be used within a GuestProvider')
   }
+
+  useEffect(() => {
+    if (context.guest) {
+      document.cookie = `guestId=${context.guest?.guestId}; path=/; max-age=31536000`
+    }
+  }, [context.guest, router])
   return context
 }

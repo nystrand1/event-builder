@@ -1,10 +1,11 @@
 import { RenderBlocks } from '@/blocks/Tenant/RenderTenantBlocks'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
-import { draftMode } from 'next/headers'
+import { cookies, draftMode } from 'next/headers'
+import { notFound, redirect } from 'next/navigation'
+import { EventProvider } from './providers/EventProvider'
 import { GuestProvider } from './providers/GuestProvider'
 import { queryEventBySlug } from './queryEventBySlug'
 import { queryGuestById } from './queryGuestbyId'
-import { EventProvider } from './providers/EventProvider'
 
 export const dynamic = 'force-dynamic'
 
@@ -26,11 +27,23 @@ export default async function Page({ params, searchParams }: Params) {
   const { slug } = await params
   const { guest } = await searchParams
   if (!slug) {
-    return null
+    return notFound()
   }
   const page = await queryEventBySlug({ slug })
 
-  const guestFromCms = await queryGuestById({ id: guest })
+  if (!page) {
+    return notFound()
+  }
+
+  const c = await cookies()
+
+  const guestIdFromCookie = c.get('guestId')?.value
+
+  const guestFromCms = await queryGuestById({ id: guest || guestIdFromCookie })
+
+  if (guest) {
+    redirect(`/event/${slug}`)
+  }
 
   return (
     <EventProvider eventId={page.id}>

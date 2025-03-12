@@ -3,6 +3,7 @@
 import { getPayload } from 'payload'
 import payloadConfig from '@payload-config'
 import { z } from 'zod'
+import { cookies } from 'next/headers'
 
 const formSchema = z.object({
   people: z.array(
@@ -44,20 +45,19 @@ const unknownRSVPFormSchema = z.object({
   ),
 })
 
-export const submitUnknownRSVP = async (
-  data: z.infer<typeof unknownRSVPFormSchema>,
-  eventId: string | number,
-) => {
+export const submitUnknownRSVP = async (data: z.infer<typeof unknownRSVPFormSchema>) => {
+  const c = await cookies()
+  const eventId = c.get('eventId')?.value as string
   const payload = await getPayload({ config: payloadConfig })
 
   const promises = data.people.map(async (person) => {
-    const { name, ...answers } = person
+    const { name, answers } = person
     return payload.create({
       collection: 'guests',
       data: {
         name,
         rsvpAnswer: answers,
-        events: eventId as number,
+        events: parseInt(eventId),
       },
     })
   })

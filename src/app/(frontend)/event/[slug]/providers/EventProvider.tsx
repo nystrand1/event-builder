@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useContext, useEffect } from 'react'
 
 type GuestContextType = {
   eventId: string | number
@@ -23,5 +23,9 @@ export function useEvent() {
   if (context === undefined) {
     throw new Error('useEvent must be used within an EventProvider')
   }
+  useEffect(() => {
+    document.cookie = `eventId=${context.eventId}; path=/; max-age=31536000`
+  }, [context.eventId])
+
   return context
 }

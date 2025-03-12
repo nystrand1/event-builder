@@ -57,7 +57,7 @@ export const RenderBlocks: React.FC<{
                   key={index}
                 >
                   {index > 0 && (
-                    <div className="h-2 bg-accent rounded-xl w-[384px] mx-auto my-10" />
+                    <div className="h-2 bg-accent rounded-xl w-[90%] md:w-[384px] mx-auto my-10" />
                   )}
                   <Block {...block} disableInnerContainer />
                 </div>
