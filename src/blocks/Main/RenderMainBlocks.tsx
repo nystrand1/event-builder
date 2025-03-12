@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 
 import type { Page, Event } from '@/payload-types'
 
-import { ArchiveBlock } from '@/blocks/Main/ArchiveBlock/Component'
 import { CallToActionBlock } from '@/blocks/Main/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Main/Content/Component'
 import { MediaBlock } from '@/blocks/Main/MediaBlock/Component'
@@ -11,7 +10,6 @@ import { ScheduleBlock } from '../Tenant/themes/main/Schedule/ScheduleBlock'
 import { TwoColumnImageAndText } from '../Tenant/themes/main/TwoColumnImageAndText/TwoColumnImageAndText'
 
 const blockComponents = {
-  archive: ArchiveBlock,
   content: ContentBlock,
   cta: CallToActionBlock,
   mediaBlock: MediaBlock,

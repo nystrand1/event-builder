@@ -3,8 +3,6 @@ import type { CollectionConfig } from 'payload'
 import { authenticated } from '../../access/authenticated'
 import { Content } from '@/blocks/Tenant/Content/config'
 import { MediaBlock } from '@/blocks/Tenant/MediaBlock/config'
-import { Archive } from '@/blocks/Main/ArchiveBlock/config'
-import { FormBlock } from '@/blocks/Shared/Form/config'
 import { adminOnly } from '@/access/adminOnly'
 import { Event } from '@/payload-types'
 import { Countdown } from '@/blocks/Tenant/Countdown/config'
@@ -176,8 +174,6 @@ export const Events: CollectionConfig = {
                 Countdown,
                 Content,
                 MediaBlock,
-                Archive,
-                FormBlock,
                 PeopleBlock,
                 WishlistBlock,
                 ScheduleBlock,

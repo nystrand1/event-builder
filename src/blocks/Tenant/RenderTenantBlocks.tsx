@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 
 import type { Event } from '@/payload-types'
 
-import { FormBlock } from '@/blocks/Shared/Form/Component'
 import { ContentBlock } from '@/blocks/Tenant/themes/main/Content/ContentBlock'
 import { EventCountdown } from '@/components/EventCountdown/EventCountdown'
 import { FullScreenWithCountdownHero } from '@/blocks/Tenant/themes/main/FullScreenWithCountdown/FullScreenWithCountdown'
@@ -22,7 +21,6 @@ export type BlockType = Event['layout'][0]['blockType']
 const blockComponents = {
   main: {
     content: ContentBlock,
-    formBlock: FormBlock,
     mediaBlock: MediaBlock,
     countdown: EventCountdown,
     schedule: ScheduleBlock,
