@@ -11,8 +11,6 @@ export const extractBlockName = (layoutItem: Event['layout'][number]) => {
       return layoutItem.blockName ?? 'Content'
     case 'mediaBlock':
       return layoutItem.blockName ?? 'Media'
-    case 'archive':
-      return layoutItem.blockName ?? 'Archive'
     case 'twoColumnImageAndText':
       return layoutItem.blockName ?? 'Introduction'
     case 'peopleBlock':

@@ -167,7 +167,7 @@ export interface Page {
     } | null;
     media: number | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ImageTextTwoColumns)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | ImageAndTextTwoColumn)[];
   meta?: {
     title?: string | null;
     /**
@@ -434,7 +434,7 @@ export interface Event {
     | PeopleBlock
     | WishlistBlock
     | ScheduleBlock
-    | ImageTextTwoColumns
+    | ImageAndTextTwoColumn
     | RSVPFormBlock
   )[];
   invitationCard: {
@@ -703,9 +703,9 @@ export interface ScheduleBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Image & Text (Two columns)".
+ * via the `definition` "ImageAndTextTwoColumn".
  */
-export interface ImageTextTwoColumns {
+export interface ImageAndTextTwoColumn {
   title: string;
   text?: {
     root: {
@@ -990,7 +990,7 @@ export interface PagesSelect<T extends boolean = true> {
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
-        twoColumnImageAndText?: T | ImageTextTwoColumnsSelect<T>;
+        twoColumnImageAndText?: T | ImageAndTextTwoColumnSelect<T>;
       };
   meta?:
     | T
@@ -1067,15 +1067,15 @@ export interface MediaBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Image & Text (Two columns)_select".
+ * via the `definition` "ImageAndTextTwoColumn_select".
  */
-export interface ImageTextTwoColumnsSelect {
-  title?: boolean;
-  text?: boolean;
-  image?: boolean;
-  imagePosition?: boolean;
-  id?: boolean;
-  blockName?: boolean;
+export interface ImageAndTextTwoColumnSelect<T extends boolean = true> {
+  title?: T;
+  text?: T;
+  image?: T;
+  imagePosition?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1265,7 +1265,7 @@ export interface EventsSelect<T extends boolean = true> {
         peopleBlock?: T | PeopleBlockSelect<T>;
         wishlistBlock?: T | WishlistBlockSelect<T>;
         schedule?: T | ScheduleBlockSelect<T>;
-        twoColumnImageAndText?: T | ImageTextTwoColumnsSelect<T>;
+        twoColumnImageAndText?: T | ImageAndTextTwoColumnSelect<T>;
         rsvpFormBlock?: T | RSVPFormBlockSelect<T>;
       };
   invitationCard?:

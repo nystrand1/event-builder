@@ -1,8 +1,8 @@
-import { Block } from 'payload'
+import type { Block } from 'payload'
 
 export const TwoColumnImageAndTextBlock: Block = {
   slug: 'twoColumnImageAndText',
-  interfaceName: 'Image & Text (Two columns)',
+  interfaceName: 'ImageAndTextTwoColumn',
   labels: {
     singular: 'Image & Text (Two columns)',
     plural: 'Image & Text (Two columns)',
