@@ -34,3 +34,33 @@ export const submitGuestRSVP = async (data: z.infer<typeof formSchema>) => {
 
   await Promise.all(promises)
 }
+
+const unknownRSVPFormSchema = z.object({
+  people: z.array(
+    z.object({
+      name: z.string(),
+      answers: z.record(z.string(), z.unknown()),
+    }),
+  ),
+})
+
+export const submitUnknownRSVP = async (
+  data: z.infer<typeof unknownRSVPFormSchema>,
+  eventId: string | number,
+) => {
+  const payload = await getPayload({ config: payloadConfig })
+
+  const promises = data.people.map(async (person) => {
+    const { name, ...answers } = person
+    return payload.create({
+      collection: 'guests',
+      data: {
+        name,
+        rsvpAnswer: answers,
+        events: eventId as number,
+      },
+    })
+  })
+
+  await Promise.all(promises)
+}

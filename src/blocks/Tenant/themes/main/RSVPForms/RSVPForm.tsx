@@ -12,14 +12,28 @@ import { useFieldArray, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { z } from 'zod'
 import { RSVPFields } from '../../../RSVPForm/RSVPFields'
-import { RSVPFormBuilder } from '../../../RSVPForm/RSVPFormBuilder'
+import { RSVPFormBuilder, slugify } from '../../../RSVPForm/RSVPFormBuilder'
 import { GuestRSVPForm } from './GuestRSVPForm'
+import { submitUnknownRSVP } from '@/blocks/Tenant/RSVPForm/actions'
+import { useEvent } from '@/app/(frontend)/event/[slug]/providers/EventProvider'
 
 const formSchema = z.object({
-  people: z.array(z.any()).min(1).max(5),
+  people: z.array(
+    z.object({
+      name: z.string(),
+      answers: z.record(z.string(), z.unknown()),
+    }),
+  ),
 })
 
 type FormValues = z.infer<typeof formSchema>
+
+const nameField = {
+  label: 'Namn',
+  type: 'text',
+  required: true,
+  id: 'name',
+} as const
 
 export const RSVPForm = ({
   title,
@@ -28,12 +42,24 @@ export const RSVPForm = ({
   fields: questions,
 }: RSVPFormBlock) => {
   const { guest } = useGuest()
+  const { eventId } = useEvent()
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const existingNameField = questions?.find(
+    (field) =>
+      field.id === nameField.id ||
+      field.label.toLowerCase().includes(nameField.label.toLowerCase()),
+  )
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      people: [RSVPFormBuilder(questions)],
+      people: [
+        {
+          name: '',
+          answers: RSVPFormBuilder(questions)!,
+        },
+      ],
     },
   })
 
@@ -49,7 +75,7 @@ export const RSVPForm = ({
     if (count > currentCount) {
       // Add new guests
       for (let i = 0; i < count - currentCount; i++) {
-        append({ firstName: '', lastName: '', email: '', phone: '', isAttending: false })
+        append({ name: '', answers: RSVPFormBuilder(questions)! })
       }
     } else if (count < currentCount) {
       // Remove extra guests
@@ -64,7 +90,7 @@ export const RSVPForm = ({
     setIsSubmitting(true)
     const toastId = toast.loading('Skickar...')
     try {
-      // await submitRSVP(data)
+      await submitUnknownRSVP(data, eventId)
       toast.success('Tack för ditt svar!', { id: toastId })
       form.reset()
     } catch (error) {
@@ -145,15 +171,28 @@ export const RSVPForm = ({
                     )}
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {!existingNameField && (
+                      <RSVPFields.text
+                        {...nameField}
+                        name={`people.${index}.${nameField.id}`}
+                        errors={form.formState.errors}
+                      />
+                    )}
                     {questions?.map((question, i) => {
                       const Field = RSVPFields[question.type as keyof typeof RSVPFields]
                       if (!Field || !question.id) return null
+                      const isNameField = question.id === existingNameField?.id
+                      const fieldKey = slugify(question.label)
+                      const fieldName = isNameField
+                        ? `people.${index}.answers.${fieldKey}`
+                        : `people.${index}.answers.${fieldKey}`
                       return (
                         <Field
                           key={question.id ?? `${i}field`}
                           {...question}
                           type="text"
-                          name={`people.${index}.${question.id}`}
+                          defaultValue={field[fieldKey]}
+                          name={fieldName}
                           errors={form.formState.errors}
                         />
                       )

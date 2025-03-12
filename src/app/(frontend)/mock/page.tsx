@@ -3,6 +3,7 @@ import { mockData } from './mockData'
 import { GuestProvider } from '../event/[slug]/providers/GuestProvider'
 import { hexToHSL } from '@/utilities/hexToHSL'
 import { Event } from '@/payload-types'
+import { EventProvider } from '../event/[slug]/providers/EventProvider'
 
 export default function Page() {
   const page = mockData
@@ -24,12 +25,14 @@ export default function Page() {
 
   return (
     <div style={cssVars}>
-      <GuestProvider guest={guestFromCms}>
-        <RenderBlocks
-          blocks={page.layout as Event['layout'][0][]}
-          theme={page.theme?.theme as NonNullable<Event['theme']>['theme']}
-        />
-      </GuestProvider>
+      <EventProvider eventId={page.id}>
+        <GuestProvider guest={guestFromCms}>
+          <RenderBlocks
+            blocks={page.layout as Event['layout'][0][]}
+            theme={page.theme?.theme as NonNullable<Event['theme']>['theme']}
+          />
+        </GuestProvider>
+      </EventProvider>
     </div>
   )
 }

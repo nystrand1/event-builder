@@ -4,6 +4,7 @@ import { draftMode } from 'next/headers'
 import { GuestProvider } from './providers/GuestProvider'
 import { queryEventBySlug } from './queryEventBySlug'
 import { queryGuestById } from './queryGuestbyId'
+import { EventProvider } from './providers/EventProvider'
 
 export const dynamic = 'force-dynamic'
 
@@ -32,9 +33,11 @@ export default async function Page({ params, searchParams }: Params) {
   const guestFromCms = await queryGuestById({ id: guest })
 
   return (
-    <GuestProvider guest={guestFromCms}>
-      {draft && <LivePreviewListener />}
-      <RenderBlocks blocks={page.layout} theme={page.theme?.theme} />
-    </GuestProvider>
+    <EventProvider eventId={page.id}>
+      <GuestProvider guest={guestFromCms}>
+        {draft && <LivePreviewListener />}
+        <RenderBlocks blocks={page.layout} theme={page.theme?.theme} />
+      </GuestProvider>
+    </EventProvider>
   )
 }
