@@ -2,10 +2,10 @@
 
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
-import { ImageTextTwoColumns } from '@/payload-types'
+import { ImageAndTextTwoColumn } from '@/payload-types'
 import { motion } from 'motion/react'
 
-export const TwoColumnImageAndText = (props: ImageTextTwoColumns) => {
+export const TwoColumnImageAndText = (props: ImageAndTextTwoColumn) => {
   const { title, text, image, imagePosition = 'left' } = props
 
   const imageContent = (
