@@ -15,6 +15,9 @@ export function EventProvider({
   children: React.ReactNode
   eventId: string | number
 }) {
+  useEffect(() => {
+    document.cookie = `eventId=${eventId}; path=/; max-age=31536000`
+  }, [eventId])
   return <GuestContext.Provider value={{ eventId }}>{children}</GuestContext.Provider>
 }
 
@@ -23,9 +26,5 @@ export function useEvent() {
   if (context === undefined) {
     throw new Error('useEvent must be used within an EventProvider')
   }
-  useEffect(() => {
-    document.cookie = `eventId=${context.eventId}; path=/; max-age=31536000`
-  }, [context.eventId])
-
   return context
 }

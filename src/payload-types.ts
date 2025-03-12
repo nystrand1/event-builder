@@ -402,6 +402,7 @@ export interface Event {
   eventDetails?: {
     eventDate?: string | null;
     domain?: string | null;
+    eventId?: string | null;
   };
   theme?: {
     theme?: ('main' | 'simple') | null;
@@ -1232,6 +1233,7 @@ export interface EventsSelect<T extends boolean = true> {
     | {
         eventDate?: T;
         domain?: T;
+        eventId?: T;
       };
   theme?:
     | T

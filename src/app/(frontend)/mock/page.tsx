@@ -25,7 +25,7 @@ export default function Page() {
 
   return (
     <div style={cssVars}>
-      <EventProvider eventId={page.id}>
+      <EventProvider eventId={page.eventDetails.eventId}>
         <GuestProvider guest={guestFromCms}>
           <RenderBlocks
             blocks={page.layout as Event['layout'][0][]}

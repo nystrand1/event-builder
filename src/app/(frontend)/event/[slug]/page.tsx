@@ -31,7 +31,7 @@ export default async function Page({ params, searchParams }: Params) {
   }
   const page = await queryEventBySlug({ slug })
 
-  if (!page) {
+  if (!page || !page.eventDetails?.eventId) {
     return notFound()
   }
 
@@ -46,7 +46,7 @@ export default async function Page({ params, searchParams }: Params) {
   }
 
   return (
-    <EventProvider eventId={page.id}>
+    <EventProvider eventId={page.eventDetails.eventId}>
       <GuestProvider guest={guestFromCms}>
         {draft && <LivePreviewListener />}
         <RenderBlocks blocks={page.layout} theme={page.theme?.theme} />

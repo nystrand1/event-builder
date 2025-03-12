@@ -49,6 +49,16 @@ export const submitUnknownRSVP = async (data: z.infer<typeof unknownRSVPFormSche
   const c = await cookies()
   const eventId = c.get('eventId')?.value as string
   const payload = await getPayload({ config: payloadConfig })
+  const {
+    docs: [event],
+  } = await payload.find({
+    collection: 'events',
+    where: {
+      'eventDetails.eventId': {
+        equals: eventId,
+      },
+    },
+  })
 
   const promises = data.people.map(async (person) => {
     const { name, answers } = person
@@ -57,7 +67,7 @@ export const submitUnknownRSVP = async (data: z.infer<typeof unknownRSVPFormSche
       data: {
         name,
         rsvpAnswer: answers,
-        events: parseInt(eventId),
+        events: event.id,
       },
     })
   })

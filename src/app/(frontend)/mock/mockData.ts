@@ -5,6 +5,7 @@ export const mockData = {
   eventDetails: {
     eventDate: '2025-11-08T12:00:00.000Z',
     domain: 'filipjosefin',
+    eventId: '8ea078c9-f162-4423-a0e6-8652b4e4689a',
   },
 
   theme: {

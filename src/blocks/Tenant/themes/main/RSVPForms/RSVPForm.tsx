@@ -1,6 +1,7 @@
 'use client'
 
 import { useGuest } from '@/app/(frontend)/event/[slug]/providers/GuestProvider'
+import { submitUnknownRSVP } from '@/blocks/Tenant/RSVPForm/actions'
 import RichText from '@/components/RichText'
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
@@ -14,8 +15,6 @@ import { z } from 'zod'
 import { RSVPFields } from '../../../RSVPForm/RSVPFields'
 import { RSVPFormBuilder, slugify } from '../../../RSVPForm/RSVPFormBuilder'
 import { GuestRSVPForm } from './GuestRSVPForm'
-import { submitUnknownRSVP } from '@/blocks/Tenant/RSVPForm/actions'
-import { useEvent } from '@/app/(frontend)/event/[slug]/providers/EventProvider'
 
 const formSchema = z.object({
   people: z.array(
@@ -42,7 +41,6 @@ export const RSVPForm = ({
   fields: questions,
 }: RSVPFormBlock) => {
   const { guest } = useGuest()
-  const { eventId } = useEvent()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const existingNameField = questions?.find(
@@ -90,7 +88,7 @@ export const RSVPForm = ({
     setIsSubmitting(true)
     const toastId = toast.loading('Skickar...')
     try {
-      await submitUnknownRSVP(data, eventId)
+      await submitUnknownRSVP(data)
       toast.success('Tack för ditt svar!', { id: toastId })
       form.reset()
     } catch (error) {

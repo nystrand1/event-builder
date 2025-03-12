@@ -21,6 +21,7 @@ import {
 } from '@/fields/tenantHeaderNav/tenantHeaderNav'
 import { RSVPFormBlock } from '@/blocks/Tenant/RSVPForm/config'
 import { InviationCardBlock } from '@/blocks/Tenant/InvitationCard/config'
+import { randomUUID } from 'crypto'
 export const Events: CollectionConfig = {
   slug: 'events',
   access: {
@@ -92,6 +93,24 @@ export const Events: CollectionConfig = {
                   access: {
                     create: adminOnly,
                     update: adminOnly,
+                  },
+                },
+                {
+                  name: 'eventId',
+                  type: 'text',
+                  defaultValue: () => randomUUID(),
+                  index: true,
+                  unique: true,
+                  hooks: {
+                    beforeChange: [
+                      ({ value }) => {
+                        if (value) return value
+                        return randomUUID()
+                      },
+                    ],
+                  },
+                  admin: {
+                    condition: (_data, _siblingData, { user }) => user?.role === 'admin',
                   },
                 },
               ],
