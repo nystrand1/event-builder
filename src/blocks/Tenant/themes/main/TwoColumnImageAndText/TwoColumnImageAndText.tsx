@@ -1,5 +1,6 @@
 'use client'
 
+import { useDemo } from '@/app/(frontend)/event/[slug]/providers/DemoProvider'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { ImageAndTextTwoColumn } from '@/payload-types'
@@ -7,6 +8,7 @@ import { motion } from 'motion/react'
 
 export const TwoColumnImageAndText = (props: ImageAndTextTwoColumn) => {
   const { title, text, image, imagePosition = 'left' } = props
+  const { demo } = useDemo()
 
   const imageContent = (
     <div className="w-full ">
@@ -19,7 +21,7 @@ export const TwoColumnImageAndText = (props: ImageAndTextTwoColumn) => {
   )
 
   const textContent = (
-    <div className="w-full flex flex-col justify-center space-y-6 md:px-12">
+    <div contentEditable={demo} className="w-full flex flex-col justify-center space-y-6 md:px-12">
       {text && <RichText className="pl-0" data={text} />}
     </div>
   )
@@ -33,7 +35,10 @@ export const TwoColumnImageAndText = (props: ImageAndTextTwoColumn) => {
         className="grid md:grid-cols-2 md:flex-row gap-12 items-center"
       >
         {title && (
-          <h2 className="text-6xl font-anonymous-pro text-center mx-auto font-bold w-full md:col-span-2">
+          <h2
+            contentEditable={demo}
+            className="text-6xl font-anonymous-pro text-center mx-auto font-bold w-full md:col-span-2"
+          >
             {title}
           </h2>
         )}
