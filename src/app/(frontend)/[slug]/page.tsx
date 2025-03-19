@@ -2,19 +2,17 @@ import type { Metadata } from 'next'
 
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
-import React, { cache } from 'react'
-
-import type { Page as PageType } from '@/payload-types'
+import { getPayload } from 'payload'
+import { cache } from 'react'
 
 import { RenderBlocks } from '@/blocks/Main/RenderMainBlocks'
+import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { Footer } from '@/Footer/Component'
+import { Header } from '@/Header/Component'
 import { RenderHero } from '@/heros/Main/RenderMainHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
-import { LivePreviewListener } from '@/components/LivePreviewListener'
-import { Header } from '@/Header/Component'
-import { Footer } from '@/Footer/Component'
 
 export async function generateStaticParams() {
   if (process.env.NEXT_PUBLIC_USE_MOCK === 'true') {

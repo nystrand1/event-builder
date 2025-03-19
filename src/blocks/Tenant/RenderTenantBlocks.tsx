@@ -2,21 +2,20 @@ import React, { Fragment } from 'react'
 
 import type { Event } from '@/payload-types'
 
+import { ComponentPicker } from '@/app/(frontend)/demo/ComponentPicker'
+import MoveComponent from '@/app/(frontend)/demo/MoveComponent'
+import RemoveComponent from '@/app/(frontend)/demo/RemoveComponent'
 import { ContentBlock } from '@/blocks/Tenant/themes/main/Content/ContentBlock'
-import { EventCountdown } from '@/components/EventCountdown/EventCountdown'
 import { FullScreenWithCountdownHero } from '@/blocks/Tenant/themes/main/FullScreenWithCountdown/FullScreenWithCountdown'
+import { EventCountdown } from '@/components/EventCountdown/EventCountdown'
 import { twMerge } from 'tailwind-merge'
 import { PeopleBlock } from '../People/PeopleBlock'
+import { MediaBlock } from './themes/main/MediaBlock/MediaBlock'
 import { RSVPForm } from './themes/main/RSVPForms/RSVPForm'
 import { ScheduleBlock } from './themes/main/Schedule/ScheduleBlock'
 import { TwoColumnImageAndText } from './themes/main/TwoColumnImageAndText/TwoColumnImageAndText'
 import { WishlistBlock } from './themes/main/Wishlist/WishlistBlock'
-import { MediaBlock } from './themes/main/MediaBlock/MediaBlock'
 import { playfulTheme } from './themes/playful'
-import { useDemo } from '@/app/(frontend)/event/[slug]/providers/DemoProvider'
-import { ComponentPicker } from '@/app/(frontend)/demo/ComponentPicker'
-import RemoveComponent from '@/app/(frontend)/demo/RemoveComponent'
-import MoveComponent from '@/app/(frontend)/demo/MoveComponent'
 
 type Theme = NonNullable<NonNullable<Event['theme']>['theme']>
 
@@ -65,10 +64,12 @@ export const RenderBlocks: React.FC<{
                     <div className="h-2 bg-accent rounded-xl w-[90%] md:w-[384px] mx-auto my-10" />
                   )}
                   {showEditBlocks && <ComponentPicker index={index} />}
-                  <div className="flex flex-col space-y-4 mb-4">
-                    {showEditBlocks && <MoveComponent index={index} />}
-                    {showEditBlocks && <RemoveComponent index={index} />}
-                  </div>
+                  {showEditBlocks && (
+                    <div className="flex flex-col space-y-4 mb-4">
+                      <MoveComponent index={index} />
+                      <RemoveComponent index={index} />
+                    </div>
+                  )}
                   <Block {...block} disableInnerContainer id={index} />
                 </div>
               )
