@@ -4,8 +4,12 @@ import { GuestProvider } from '../event/[slug]/providers/GuestProvider'
 import { hexToHSL } from '@/utilities/hexToHSL'
 import { Event } from '@/payload-types'
 import { EventProvider } from '../event/[slug]/providers/EventProvider'
+import { notFound } from 'next/navigation'
 
 export default function Page() {
+  if (process.env.TENANT_DOMAIN) {
+    return notFound()
+  }
   const page = mockData
 
   const [guestFromCms] = page.guests.docs ?? []

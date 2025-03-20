@@ -5,11 +5,15 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
 import PageClient from './page.client'
+import { notFound } from 'next/navigation'
 
 export const dynamic = 'force-static'
 export const revalidate = 600
 
 export default async function Page() {
+  if (process.env.TENANT_DOMAIN) {
+    return notFound()
+  }
   const payload = await getPayload({ config: configPromise })
 
   const posts = await payload.find({

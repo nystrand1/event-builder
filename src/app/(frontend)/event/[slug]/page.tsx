@@ -22,14 +22,17 @@ type Params = {
   }>
 }
 
-export default async function Page({ params, searchParams }: Params) {
+export default async function EventPage({ params, searchParams }: Params) {
   const { isEnabled: draft } = await draftMode()
-  const { slug } = await params
+  const { slug } = (await params) ?? {}
   const { guest } = await searchParams
-  if (!slug) {
+
+  const eventSlug = slug
+
+  if (!eventSlug) {
     return notFound()
   }
-  const page = await queryEventBySlug({ slug })
+  const page = await queryEventBySlug({ slug: eventSlug })
 
   if (!page || !page.eventDetails?.eventId) {
     return notFound()
@@ -42,7 +45,8 @@ export default async function Page({ params, searchParams }: Params) {
   const guestFromCms = await queryGuestById({ id: guest || guestIdFromCookie })
 
   if (guest) {
-    redirect(`/event/${slug}`)
+    const redirectLink = process.env.TENANT_DOMAIN ? '/' : `/event/${slug}`
+    redirect(redirectLink)
   }
 
   return (

@@ -1,3 +1,4 @@
+'use server'
 import type { Metadata } from 'next'
 
 import { PayloadRedirects } from '@/components/PayloadRedirects'
@@ -13,6 +14,7 @@ import { Header } from '@/Header/Component'
 import { RenderHero } from '@/heros/Main/RenderMainHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
+import { notFound } from 'next/navigation'
 
 export async function generateStaticParams() {
   if (process.env.NEXT_PUBLIC_USE_MOCK === 'true') {
@@ -48,6 +50,9 @@ type Args = {
 }
 
 export default async function Page({ params: paramsPromise }: Args) {
+  if (process.env.TENANT_DOMAIN) {
+    return notFound()
+  }
   const { isEnabled: draft } = await draftMode()
   const { slug = 'home' } = await paramsPromise
   const url = '/' + slug
