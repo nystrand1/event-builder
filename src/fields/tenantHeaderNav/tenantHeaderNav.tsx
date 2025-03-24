@@ -19,6 +19,8 @@ export const extractBlockName = (layoutItem: Event['layout'][number]) => {
       return layoutItem.title ?? layoutItem.blockName ?? 'Wishlist'
     case 'schedule':
       return layoutItem.blockName ?? 'Schedule'
+    case 'rsvpFormBlock':
+      return layoutItem.blockName ?? 'RSVP'
     default:
       return 'unnamed'
   }
