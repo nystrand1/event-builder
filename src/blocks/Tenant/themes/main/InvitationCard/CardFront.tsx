@@ -4,27 +4,39 @@ import { Media } from '@/payload-types'
 import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import { motion } from 'framer-motion'
 import { Heart } from 'lucide-react'
+import { twMerge } from 'tailwind-merge'
 
 interface CardFrontProps {
   title: string
   description?: string
   image?: Media
   information: SerializedEditorState
+  className?: string
 }
 
-export const CardFront = ({ title, description, image, information }: CardFrontProps) => {
+export const CardFront = ({
+  title,
+  description,
+  image,
+  information,
+  className,
+}: CardFrontProps) => {
   return (
     <motion.div
-      className="card-front size-full overflow-auto absolute"
+      className={twMerge('card-front size-full overflow-auto absolute', className)}
       style={{
         backfaceVisibility: 'hidden',
         WebkitBackfaceVisibility: 'hidden',
       }}
     >
-      <div className="h-full paper-texture overflow-hidden">
+      <div className="h-full paper-texture overflow-scroll pb-4">
         {/* Main image */}
-        <div className="relative mx-8 mt-16 mb-6 overflow-hidden border-8 border-white shadow-lg">
-          <MediaBlock resource={image} className="w-full md:h-64 object-cover" />
+        <div className="relative mx-8 mt-8 mb-6 overflow-hidden border-8 border-white shadow-lg">
+          <MediaBlock
+            resource={image}
+            className="w-full md:h-64 object-bottom relative overflow-hidden"
+            imgClassName="w-full h-full object-cover"
+          />
         </div>
 
         {/* Names */}

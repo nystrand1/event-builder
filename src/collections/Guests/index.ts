@@ -45,6 +45,23 @@ export const Guests: CollectionConfig<'guests'> = {
       },
     },
     {
+      name: 'invitationLink',
+      type: 'text',
+      hooks: {
+        beforeChange: [
+          async ({ value, data }) => {
+            if (data?.invitationLink) return data.invitationLink
+            if (!data?.guestId) return value
+            // TODO: Fix for local dev
+            if (!process.env.TENANT_DOMAIN && data?.events[0]?.eventDetails?.domain) {
+              return `http://localhost:3000/event/${data.events[0].eventDetails.domain}/?guest=${data.guestId}`
+            }
+            return `https://${process.env.TENANT_DOMAIN}?guest=${data.guestId}`
+          },
+        ],
+      },
+    },
+    {
       name: 'relatedGuests',
       type: 'relationship',
       relationTo: 'guests',

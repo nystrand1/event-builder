@@ -36,6 +36,7 @@ export const InvitationCard = (props: InvitationCardProps) => {
       }}
       onClick={handleCardClick}
     >
+      {/* <CardFront title={title} description={description} image={image} information={information} /> */}
       <motion.div
         className="h-full size-full relative"
         animate={{ rotateY: isFlipped ? -180 : 0 }}
@@ -52,8 +53,14 @@ export const InvitationCard = (props: InvitationCardProps) => {
           description={description}
           image={image}
           information={information}
+          className={!isFlipped ? 'z-10' : ''}
         />
-        <CardBack title={title} description={description} url={url} />
+        <CardBack
+          title={title}
+          description={description}
+          url={url}
+          className={isFlipped ? 'z-10' : ''}
+        />
       </motion.div>
     </motion.div>
   )

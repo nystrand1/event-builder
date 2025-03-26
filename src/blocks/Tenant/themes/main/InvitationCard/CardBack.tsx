@@ -3,14 +3,16 @@ import { Button } from '@/components/ui/button'
 import { Guest } from '@/payload-types'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { twMerge } from 'tailwind-merge'
 
 interface CardBackProps {
   title: string
   description?: string
   url: string
+  className?: string
 }
 
-export const CardBack = ({ url }: CardBackProps) => {
+export const CardBack = ({ url, className }: CardBackProps) => {
   const { guest } = useGuest()
 
   const allGuests = [guest, ...(guest?.relatedGuests ?? [])]
@@ -19,13 +21,10 @@ export const CardBack = ({ url }: CardBackProps) => {
 
   return (
     <motion.div
+      className={twMerge('card-back size-full overflow-auto absolute', className)}
       style={{
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
         backfaceVisibility: 'hidden',
         WebkitBackfaceVisibility: 'hidden',
-        overflow: 'hidden',
         transform: 'rotateY(180deg)',
       }}
     >
