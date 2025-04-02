@@ -6,6 +6,7 @@ import React, { createContext, useContext, useEffect } from 'react'
 
 type GuestContextType = {
   guest: Guest | null
+  clearParams?: boolean
 }
 
 const GuestContext = createContext<GuestContextType | undefined>(undefined)
@@ -13,9 +14,11 @@ const GuestContext = createContext<GuestContextType | undefined>(undefined)
 export function GuestProvider({
   children,
   guest,
+  clearParams,
 }: {
   children: React.ReactNode
   guest: Guest | null
+  clearParams?: boolean
 }) {
   const router = useRouter()
   useEffect(() => {
@@ -23,6 +26,12 @@ export function GuestProvider({
       document.cookie = `guestId=${guest?.guestId}; path=/; max-age=31536000`
     }
   }, [guest, router])
+
+  useEffect(() => {
+    if (clearParams) {
+      router.replace(window.location.pathname)
+    }
+  }, [clearParams, router])
   return <GuestContext.Provider value={{ guest }}>{children}</GuestContext.Provider>
 }
 

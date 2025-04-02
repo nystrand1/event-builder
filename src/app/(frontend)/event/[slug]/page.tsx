@@ -44,14 +44,9 @@ export default async function EventPage({ params, searchParams }: Params) {
 
   const guestFromCms = await queryGuestById({ id: guest || guestIdFromCookie })
 
-  if (guest) {
-    const redirectLink = process.env.TENANT_DOMAIN ? process.env.TENANT_DOMAIN : `/event/${slug}`
-    redirect(redirectLink, RedirectType.replace)
-  }
-
   return (
     <EventProvider eventId={page.eventDetails.eventId}>
-      <GuestProvider guest={guestFromCms}>
+      <GuestProvider guest={guestFromCms} clearParams={!!guest}>
         {draft && <LivePreviewListener />}
         <RenderBlocks blocks={page.layout} theme={page.theme?.theme} />
       </GuestProvider>
