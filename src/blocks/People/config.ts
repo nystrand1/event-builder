@@ -47,7 +47,6 @@ export const PeopleBlock: Block = {
               ]
             },
           }),
-          required: true,
         },
       ],
     },

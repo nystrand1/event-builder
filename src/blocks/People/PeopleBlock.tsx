@@ -32,7 +32,7 @@ export const PeopleBlock = ({ people, title }: PeopleBlockProps) => {
                     <h2 className="text-2xl">{person.name}</h2>
                     <p className="font-medium text-lg">{person.role}</p>
                   </div>
-                  <RichText data={person.bio} className="px-0" />
+                  {person.bio && <RichText data={person.bio} className="px-0" />}
                 </CardContent>
               </Card>
             </motion.div>

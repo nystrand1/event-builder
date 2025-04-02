@@ -470,6 +470,7 @@ export interface Guest {
   id: number;
   name?: string | null;
   guestId?: string | null;
+  invitationLink?: string | null;
   relatedGuests?: (number | Guest)[] | null;
   events?: (number | null) | Event;
   rsvpAnswer?:
@@ -582,7 +583,7 @@ export interface PeopleBlock {
         name: string;
         role: string;
         image: number | Media;
-        bio: {
+        bio?: {
           root: {
             type: string;
             children: {
@@ -596,7 +597,7 @@ export interface PeopleBlock {
             version: number;
           };
           [k: string]: unknown;
-        };
+        } | null;
         id?: string | null;
       }[]
     | null;
@@ -1373,6 +1374,7 @@ export interface RSVPFormBlockSelect<T extends boolean = true> {
 export interface GuestsSelect<T extends boolean = true> {
   name?: T;
   guestId?: T;
+  invitationLink?: T;
   relatedGuests?: T;
   events?: T;
   rsvpAnswer?: T;
