@@ -1,7 +1,7 @@
 import { RenderBlocks } from '@/blocks/Tenant/RenderTenantBlocks'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { cookies, draftMode } from 'next/headers'
-import { notFound, redirect } from 'next/navigation'
+import { notFound, redirect, RedirectType } from 'next/navigation'
 import { EventProvider } from './providers/EventProvider'
 import { GuestProvider } from './providers/GuestProvider'
 import { queryEventBySlug } from './queryEventBySlug'
@@ -45,8 +45,8 @@ export default async function EventPage({ params, searchParams }: Params) {
   const guestFromCms = await queryGuestById({ id: guest || guestIdFromCookie })
 
   if (guest) {
-    const redirectLink = process.env.TENANT_DOMAIN ? '/' : `/event/${slug}`
-    redirect(redirectLink)
+    const redirectLink = process.env.TENANT_DOMAIN ? process.env.TENANT_DOMAIN : `/event/${slug}`
+    redirect(redirectLink, RedirectType.replace)
   }
 
   return (
