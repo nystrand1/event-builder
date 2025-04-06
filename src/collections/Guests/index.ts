@@ -62,6 +62,15 @@ export const Guests: CollectionConfig<'guests'> = {
       },
     },
     {
+      name: 'excludedFromRsvp',
+      label: 'Exclude from RSVP',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        description: 'Exclude this guest from RSVP, but show them in the guest list and invitation',
+      },
+    },
+    {
       name: 'relatedGuests',
       type: 'relationship',
       relationTo: 'guests',

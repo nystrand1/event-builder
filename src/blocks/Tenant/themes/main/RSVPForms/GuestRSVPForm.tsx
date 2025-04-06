@@ -48,7 +48,9 @@ export const GuestRSVPForm = ({
 
   type FormValues = z.infer<typeof formSchema>
 
-  const allGuests = [guest, ...(guest?.relatedGuests ?? [])]
+  const allGuests = [guest, ...(guest?.relatedGuests ?? [])].filter(
+    (g: Guest) => !g.excludedFromRsvp,
+  )
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
