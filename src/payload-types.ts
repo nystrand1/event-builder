@@ -439,24 +439,60 @@ export interface Event {
     | RSVPFormBlock
   )[];
   invitationCard: {
-    title: string;
-    description: string;
-    image?: (number | null) | Media;
-    information?: {
-      root: {
-        type: string;
-        children: {
+    cardFront: {
+      title: string;
+      description: string;
+      image?: (number | null) | Media;
+      information?: {
+        root: {
           type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
           version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
+        };
+        [k: string]: unknown;
+      } | null;
+      buttonLabel: string;
+    };
+    cardBack: {
+      firstTextSection?: {
+        root: {
+          type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      } | null;
+      secondTextSection?: {
+        root: {
+          type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      } | null;
+      buttonlabel: string;
+    };
   };
   updatedAt: string;
   createdAt: string;
@@ -471,6 +507,10 @@ export interface Guest {
   name?: string | null;
   guestId?: string | null;
   invitationLink?: string | null;
+  /**
+   * Exclude this guest from RSVP, but show them in the guest list and invitation
+   */
+  excludedFromRsvp?: boolean | null;
   relatedGuests?: (number | Guest)[] | null;
   events?: (number | null) | Event;
   rsvpAnswer?:
@@ -1274,10 +1314,22 @@ export interface EventsSelect<T extends boolean = true> {
   invitationCard?:
     | T
     | {
-        title?: T;
-        description?: T;
-        image?: T;
-        information?: T;
+        cardFront?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              image?: T;
+              information?: T;
+              buttonLabel?: T;
+            };
+        cardBack?:
+          | T
+          | {
+              firstTextSection?: T;
+              secondTextSection?: T;
+              buttonlabel?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1375,6 +1427,7 @@ export interface GuestsSelect<T extends boolean = true> {
   name?: T;
   guestId?: T;
   invitationLink?: T;
+  excludedFromRsvp?: T;
   relatedGuests?: T;
   events?: T;
   rsvpAnswer?: T;

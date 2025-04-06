@@ -14,9 +14,15 @@ export const GET = async () => {
         eventDate: new Date().toISOString(),
       },
       invitationCard: {
-        title: 'Welcome to my event',
-        description: 'This is a description',
-        image: 1, // Placeholder image,
+        cardFront: {
+          title: 'Welcome to my event',
+          description: 'This is a description',
+          image: 1, // Placeholder image,
+          buttonLabel: 'Button label',
+        },
+        cardBack: {
+          buttonlabel: 'Button label',
+        },
       },
       layout: [
         {

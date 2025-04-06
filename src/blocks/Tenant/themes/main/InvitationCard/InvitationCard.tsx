@@ -1,22 +1,19 @@
 'use client'
 
-import { Media } from '@/payload-types'
+import { Event, Media } from '@/payload-types'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { CardFront } from './CardFront'
 import { CardBack } from './CardBack'
 import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
-interface InvitationCardProps {
-  title: string
-  description: string
-  information: SerializedEditorState
-  image: Media
+type InvitationCardPropsCMS = Event['invitationCard']
+interface InvitationCardProps extends InvitationCardPropsCMS {
   url: string
 }
 
 export const InvitationCard = (props: InvitationCardProps) => {
-  const { title, description, information, image, url } = props
+  const { cardFront, cardBack, url } = props
   const [isFlipped, setIsFlipped] = useState(false)
 
   const handleCardClick = () => {
@@ -36,7 +33,6 @@ export const InvitationCard = (props: InvitationCardProps) => {
       }}
       onClick={handleCardClick}
     >
-      {/* <CardFront title={title} description={description} image={image} information={information} /> */}
       <motion.div
         className="h-full size-full relative"
         animate={{ rotateY: isFlipped ? -180 : 0 }}
@@ -49,17 +45,19 @@ export const InvitationCard = (props: InvitationCardProps) => {
         }}
       >
         <CardFront
-          title={title}
-          description={description}
-          image={image}
-          information={information}
+          title={cardFront.title}
+          description={cardFront.description}
+          image={cardFront.image as Media}
+          information={cardFront.information}
+          buttonLabel={cardFront.buttonLabel}
           className={!isFlipped ? 'z-10' : ''}
         />
         <CardBack
-          title={title}
-          description={description}
           url={url}
           className={isFlipped ? 'z-10' : ''}
+          firstTextSection={cardBack.firstTextSection}
+          secondTextSection={cardBack.secondTextSection}
+          buttonlabel={cardBack.buttonlabel}
         />
       </motion.div>
     </motion.div>

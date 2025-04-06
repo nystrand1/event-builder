@@ -1,23 +1,46 @@
 import { useGuest } from '@/app/(frontend)/event/[slug]/providers/GuestProvider'
+import RichText from '@/components/RichText'
 import { Button } from '@/components/ui/button'
 import { Guest } from '@/payload-types'
+import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 
 interface CardBackProps {
-  title: string
-  description?: string
   url: string
   className?: string
+  firstTextSection?: SerializedEditorState | null
+  secondTextSection?: SerializedEditorState | null
+  buttonlabel?: string
 }
 
-export const CardBack = ({ url, className }: CardBackProps) => {
+export const CardBack = ({
+  url,
+  className,
+  firstTextSection,
+  secondTextSection,
+  buttonlabel = 'Till hemsidan',
+}: CardBackProps) => {
   const { guest } = useGuest()
 
   const allGuests = [guest, ...(guest?.relatedGuests ?? [])]
 
-  const guestNames = allGuests.map((g: Guest) => g.name?.split(' ')[0]).join(', ')
+  let guestNames = ''
+
+  if (allGuests.length === 2) {
+    guestNames = allGuests.map((g: Guest) => g.name?.split(' ')[0]).join(' & ')
+  } else if (allGuests.length > 2) {
+    guestNames = allGuests.map((g: Guest) => g.name?.split(' ')[0]).join(', ')
+    // Replace last comma with ' & '
+    const lastCommaIndex = guestNames.lastIndexOf(',')
+    if (lastCommaIndex !== -1) {
+      guestNames =
+        guestNames.substring(0, lastCommaIndex) + ' & ' + guestNames.substring(lastCommaIndex + 1)
+    }
+  } else {
+    guestNames = guest?.name?.split(' ')[0] ?? ''
+  }
 
   return (
     <motion.div
@@ -28,27 +51,31 @@ export const CardBack = ({ url, className }: CardBackProps) => {
         transform: 'rotateY(180deg)',
       }}
     >
-      <div className="h-full paper-texture p-8 text-center">
+      <div className="h-full paper-texture p-8 text-center bg-white">
         <h2 className="text-3xl tracking-wide font-light mb-8 text-gray-900 mt-12">{guestNames}</h2>
 
         <div className="mb-8 text-center">
-          <p className="text-lg leading-relaxed text-gray-800">
-            Vi skulle vara hedrade att få ha er med oss på vår speciella dag.
-          </p>
+          {firstTextSection && (
+            <RichText data={firstTextSection} className="[&_p]:text-lg text-gray-800 mb-2" />
+          )}
         </div>
 
-        <div className="my-8 py-6 border-t border-b border-accent">
-          <p className="text-lg mb-2 text-gray-800">
-            Vi har samlat all information kring bröllopet och destinationen på vår hemsida. Där kan
-            ni även OSA och anmäla tal
-          </p>
-        </div>
+        {secondTextSection && (
+          <div className="my-8 py-6 border-t border-b border-accent">
+            <RichText data={secondTextSection} className="[&_p]:text-lg text-gray-800 mb-2" />
+          </div>
+        )}
 
         <div className="mt-8 space-y-4">
-          <Button variant="secondary" className="w-[300px] text-base" asChild>
-            <Link href={url} target="_blank">
+          <Button
+            onClick={(e) => e.stopPropagation()}
+            variant="secondary"
+            className="w-[300px] text-base touch-none"
+            asChild
+          >
+            <Link href={url} target="_blank" className="size-full">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <span>Till hemsidan</span>
+                {buttonlabel}
               </motion.div>
             </Link>
           </Button>

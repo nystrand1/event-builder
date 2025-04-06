@@ -1,5 +1,4 @@
 import { InvitationCard } from '@/blocks/Tenant/themes/main/InvitationCard/InvitationCard'
-import { Media } from '@/payload-types'
 import { notFound } from 'next/navigation'
 import EventLayout from '../event/[slug]/layout'
 import { GuestProvider } from '../event/[slug]/providers/GuestProvider'
@@ -35,10 +34,8 @@ export default async function Page({ searchParams }: InvitationPageProps) {
       <EventLayout tenantDomain={tenantDomain}>
         <div className="min-h-screen bg-gradient-to-br from-primary to-primary/20 flex items-center justify-center p-4">
           <InvitationCard
-            title={page.invitationCard.title}
-            description={page.invitationCard.description}
-            image={page.invitationCard.image as Media}
-            information={page.invitationCard.information!}
+            cardFront={page.invitationCard.cardFront}
+            cardBack={page.invitationCard.cardBack}
             url={`https://${tenantDomain}?guest=${guestFromCms.guestId}`}
           />
         </div>
