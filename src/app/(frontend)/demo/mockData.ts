@@ -2105,167 +2105,237 @@ export const mockData = {
     },
   ],
   invitationCard: {
-    title: 'Filip & Josefin',
-    description: 'Varmt välkomna på vårt bröllop',
+    cardFront: {
+      title: 'Varmt välkomna på vårt bröllop',
+      description: 'Filip & Josefin',
+      image: {
+        id: 18,
+        alt: null,
+        caption: null,
+        updatedAt: '2025-03-01T17:25:43.856Z',
+        createdAt: '2025-01-22T20:43:57.260Z',
+        url: '/static/iks_background.jpg',
+        thumbnailURL: '/static/iks_background.jpg',
+        filename: '20240726_203611.jpg',
+        mimeType: 'image/jpeg',
+        filesize: 723270,
+        width: 2544,
+        height: 2044,
+        focalX: 50,
+        focalY: 50,
+        sizes: {
+          thumbnail: {
+            url: '/static/iks_background.jpg',
+            width: 300,
+            height: 241,
+            mimeType: 'image/jpeg',
+            filesize: 16232,
+            filename: '20240726_203611-300x241.jpg',
+          },
+          square: {
+            url: '/static/iks_background.jpg',
+            width: 500,
+            height: 500,
+            mimeType: 'image/jpeg',
+            filesize: 45959,
+            filename: '20240726_203611-500x500.jpg',
+          },
+          small: {
+            url: '/static/iks_background.jpg',
+            width: 600,
+            height: 482,
+            mimeType: 'image/jpeg',
+            filesize: 54766,
+            filename: '20240726_203611-600x482.jpg',
+          },
 
-    image: {
-      id: 18,
-      alt: null,
-      caption: null,
-      updatedAt: '2025-03-01T17:25:43.856Z',
-      createdAt: '2025-01-22T20:43:57.260Z',
-      url: '/static/iks_background.jpg',
-      thumbnailURL: '/static/iks_background.jpg',
-      filename: '20240726_203611.jpg',
-      mimeType: 'image/jpeg',
-      filesize: 723270,
-      width: 2544,
-      height: 2044,
-      focalX: 50,
-      focalY: 50,
+          medium: {
+            url: '/static/iks_background.jpg',
+            width: 900,
+            height: 723,
+            mimeType: 'image/jpeg',
+            filesize: 113107,
+            filename: '20240726_203611-900x723.jpg',
+          },
 
-      sizes: {
-        thumbnail: {
-          url: '/static/iks_background.jpg',
-          width: 300,
-          height: 241,
-          mimeType: 'image/jpeg',
-          filesize: 16232,
-          filename: '20240726_203611-300x241.jpg',
-        },
+          large: {
+            url: '/static/iks_background.jpg',
+            width: 1400,
+            height: 1125,
+            mimeType: 'image/jpeg',
+            filesize: 250192,
+            filename: '20240726_203611-1400x1125.jpg',
+          },
 
-        square: {
-          url: '/static/iks_background.jpg',
-          width: 500,
-          height: 500,
-          mimeType: 'image/jpeg',
-          filesize: 45959,
-          filename: '20240726_203611-500x500.jpg',
-        },
+          xlarge: {
+            url: '/static/iks_background.jpg',
+            width: 1920,
+            height: 1543,
+            mimeType: 'image/jpeg',
+            filesize: 442126,
+            filename: '20240726_203611-1920x1543.jpg',
+          },
 
-        small: {
-          url: '/static/iks_background.jpg',
-          width: 600,
-          height: 482,
-          mimeType: 'image/jpeg',
-          filesize: 54766,
-          filename: '20240726_203611-600x482.jpg',
-        },
-
-        medium: {
-          url: '/static/iks_background.jpg',
-          width: 900,
-          height: 723,
-          mimeType: 'image/jpeg',
-          filesize: 113107,
-          filename: '20240726_203611-900x723.jpg',
-        },
-
-        large: {
-          url: '/static/iks_background.jpg',
-          width: 1400,
-          height: 1125,
-          mimeType: 'image/jpeg',
-          filesize: 250192,
-          filename: '20240726_203611-1400x1125.jpg',
-        },
-
-        xlarge: {
-          url: '/static/iks_background.jpg',
-          width: 1920,
-          height: 1543,
-          mimeType: 'image/jpeg',
-          filesize: 442126,
-          filename: '20240726_203611-1920x1543.jpg',
-        },
-
-        og: {
-          url: '/static/iks_background.jpg',
-          width: 1200,
-          height: 630,
-          mimeType: 'image/jpeg',
-          filesize: 131858,
-          filename: '20240726_203611-1200x630.jpg',
+          og: {
+            url: '/static/iks_background.jpg',
+            width: 1200,
+            height: 630,
+            mimeType: 'image/jpeg',
+            filesize: 131858,
+            filename: '20240726_203611-1200x630.jpg',
+          },
         },
       },
+
+      information: {
+        root: {
+          type: 'root',
+          format: '',
+          indent: 0,
+          version: 1,
+
+          children: [
+            {
+              type: 'paragraph',
+              format: 'center',
+              indent: 0,
+              version: 1,
+
+              children: [
+                {
+                  mode: 'normal',
+                  text: 'Villa Bermeja, Estepona, Spanien',
+                  type: 'text',
+                  style: '',
+                  detail: 0,
+                  format: 0,
+                  version: 1,
+                },
+              ],
+              direction: 'ltr',
+              textStyle: '',
+              textFormat: 0,
+            },
+
+            {
+              type: 'paragraph',
+              format: 'center',
+              indent: 0,
+              version: 1,
+
+              children: [
+                {
+                  mode: 'normal',
+                  text: 'Lördag 8 November 2025',
+                  type: 'text',
+                  style: '',
+                  detail: 0,
+                  format: 0,
+                  version: 1,
+                },
+              ],
+              direction: 'ltr',
+              textStyle: '',
+              textFormat: 0,
+            },
+
+            {
+              type: 'paragraph',
+              format: 'center',
+              indent: 0,
+              version: 1,
+
+              children: [
+                {
+                  mode: 'normal',
+                  text: 'OSA senast 26 Juni',
+                  type: 'text',
+                  style: '',
+                  detail: 0,
+                  format: 1,
+                  version: 1,
+                },
+              ],
+              direction: 'ltr',
+              textStyle: '',
+              textFormat: 1,
+            },
+          ],
+          direction: 'ltr',
+        },
+      },
+      buttonLabel: 'Mer information',
     },
 
-    information: {
-      root: {
-        type: 'root',
-        format: '',
-        indent: 0,
-        version: 1,
+    cardBack: {
+      firstTextSection: {
+        root: {
+          type: 'root',
+          format: '',
+          indent: 0,
+          version: 1,
 
-        children: [
-          {
-            type: 'paragraph',
-            format: 'center',
-            indent: 0,
-            version: 1,
+          children: [
+            {
+              type: 'paragraph',
+              format: '',
+              indent: 0,
+              version: 1,
 
-            children: [
-              {
-                mode: 'normal',
-                text: 'Villa Bermeja, Estepona, Spanien',
-                type: 'text',
-                style: '',
-                detail: 0,
-                format: 0,
-                version: 1,
-              },
-            ],
-            direction: 'ltr',
-            textStyle: '',
-            textFormat: 0,
-          },
-
-          {
-            type: 'paragraph',
-            format: 'center',
-            indent: 0,
-            version: 1,
-
-            children: [
-              {
-                mode: 'normal',
-                text: 'Lördag 8 November 2025',
-                type: 'text',
-                style: '',
-                detail: 0,
-                format: 0,
-                version: 1,
-              },
-            ],
-            direction: 'ltr',
-            textStyle: '',
-            textFormat: 0,
-          },
-
-          {
-            type: 'paragraph',
-            format: 'center',
-            indent: 0,
-            version: 1,
-
-            children: [
-              {
-                mode: 'normal',
-                text: 'OSA senast 26 Juni',
-                type: 'text',
-                style: '',
-                detail: 0,
-                format: 1,
-                version: 1,
-              },
-            ],
-            direction: 'ltr',
-            textStyle: '',
-            textFormat: 1,
-          },
-        ],
-        direction: 'ltr',
+              children: [
+                {
+                  mode: 'normal',
+                  text: 'Vi skulle vara hedrade att få ha er med oss på vår speciella dag. dadsadsad',
+                  type: 'text',
+                  style: '',
+                  detail: 0,
+                  format: 0,
+                  version: 1,
+                },
+              ],
+              direction: 'ltr',
+              textStyle: '',
+              textFormat: 0,
+            },
+          ],
+          direction: 'ltr',
+        },
       },
+
+      secondTextSection: {
+        root: {
+          type: 'root',
+          format: '',
+          indent: 0,
+          version: 1,
+
+          children: [
+            {
+              type: 'paragraph',
+              format: '',
+              indent: 0,
+              version: 1,
+
+              children: [
+                {
+                  mode: 'normal',
+                  text: 'Vi har samlat all information kring bröllopet och destinationen på vår hemsida. Där kan ni även OSA och anmäla tal',
+                  type: 'text',
+                  style: '',
+                  detail: 0,
+                  format: 0,
+                  version: 1,
+                },
+              ],
+              direction: 'ltr',
+              textStyle: '',
+              textFormat: 0,
+            },
+          ],
+          direction: 'ltr',
+        },
+      },
+      buttonlabel: 'Till hemsidan',
     },
   },
   updatedAt: '2025-02-18T17:37:16.963Z',
