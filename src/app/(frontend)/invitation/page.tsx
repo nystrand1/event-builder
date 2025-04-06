@@ -4,6 +4,7 @@ import EventLayout from '../event/[slug]/layout'
 import { GuestProvider } from '../event/[slug]/providers/GuestProvider'
 import { queryEventBySlug } from '../event/[slug]/queryEventBySlug'
 import { queryGuestById } from '../event/[slug]/queryGuestbyId'
+import { generateEventMetadata } from '@/utilities/event/generateEventMeta'
 
 interface InvitationPageProps {
   searchParams: Promise<{
@@ -43,3 +44,5 @@ export default async function Page({ searchParams }: InvitationPageProps) {
     </GuestProvider>
   )
 }
+
+export const generateMetadata = generateEventMetadata

@@ -1,6 +1,7 @@
 'use server'
 
-import PageTemplate, { generateMetadata } from './[slug]/page'
+import { generateEventMetadata } from '@/utilities/event/generateEventMeta'
+import PageTemplate from './[slug]/page'
 import EventLayout from './event/[slug]/layout'
 import EventPage from './event/[slug]/page'
 
@@ -30,4 +31,4 @@ export default async function Page({ searchParams }: Params) {
   )
 }
 
-export { generateMetadata }
+export const generateMetadata = generateEventMetadata
