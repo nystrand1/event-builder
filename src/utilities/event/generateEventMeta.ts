@@ -13,7 +13,7 @@ export const generateEventMetadata = async () => {
 
   const page = await queryEventBySlug({ slug: tenantDomain })
 
-  if (!page) {
+  if (!page || !page.name) {
     return {
       title: 'Home',
       description: 'Home page',
@@ -21,12 +21,14 @@ export const generateEventMetadata = async () => {
   }
 
   const ogImage = getImageURL(page.invitationCard.cardFront.image)
-
+  console.log(page.invitationCard.cardFront.description)
   return {
     title: page.name,
-    description: page.invitationCard.cardFront.description,
+    description: page.invitationCard.cardFront.title,
     openGraph: mergeOpenGraph({
-      description: page.invitationCard.cardFront.description,
+      siteName: page.name,
+      title: page.name,
+      description: page.invitationCard.cardFront.title,
       images: ogImage
         ? [
             {
