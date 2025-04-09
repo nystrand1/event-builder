@@ -19,7 +19,6 @@ export const ScheduleBlock: Block = {
       label: 'Schedule',
       type: 'array',
       minRows: 1,
-      maxRows: 4,
       fields: [
         {
           name: 'title',
