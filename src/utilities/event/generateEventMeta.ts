@@ -21,14 +21,14 @@ export const generateEventMetadata = async () => {
   }
 
   const ogImage = getImageURL(page.invitationCard.cardFront.image)
-  console.log(page.invitationCard.cardFront.description)
+
   return {
     title: page.name,
-    description: page.invitationCard.cardFront.title,
+    description: page.invitationCard.cardFront.description,
     openGraph: mergeOpenGraph({
       siteName: page.name,
       title: page.name,
-      description: page.invitationCard.cardFront.title,
+      description: page.invitationCard.cardFront.description,
       images: ogImage
         ? [
             {
