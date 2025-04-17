@@ -17,7 +17,6 @@ export const Text: React.FC<
     register: UseFormRegister<FieldValues>
   }
 > = ({ name, errors, label, register, required: requiredFromProps, width }) => {
-  console.log('textfield', name)
   return (
     <div>
       <Label htmlFor={name}>{label}</Label>

@@ -84,7 +84,6 @@ export const RSVPForm = ({
   }
 
   async function onSubmit(data: FormValues) {
-    console.log('submitData', data)
     setIsSubmitting(true)
     const toastId = toast.loading('Skickar...')
     try {

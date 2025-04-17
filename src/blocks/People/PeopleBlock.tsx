@@ -5,12 +5,14 @@ import RichText from '@/components/RichText'
 import { Card, CardContent } from '@/components/ui/card'
 import { PeopleBlock as PeopleBlockProps } from '@/payload-types'
 import { motion } from 'motion/react'
+import { Icon } from '../Tenant/themes/main/Icon/Icon'
 
-export const PeopleBlock = ({ people, title }: PeopleBlockProps) => {
+export const PeopleBlock = ({ people, title, icon }: PeopleBlockProps) => {
   if (!people || !people.length) return null
 
   return (
     <div className="container space-y-8">
+      <Icon iconField={icon} className="mb-8" />
       <h2 className="text-center text-6xl">{title}</h2>
       <div className="md:max-w-[70%] lg:max-w-[50%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 justify-center">
         {people.map((person, index) => {

@@ -5,8 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ScheduleBlock as ScheduleBlockProps } from '@/payload-types'
 import { motion, useScroll } from 'framer-motion'
 import { useRef } from 'react'
+import { Icon } from '../Icon/Icon'
 
-export function ScheduleBlock({ title, schedule }: ScheduleBlockProps) {
+export function ScheduleBlock({ title, schedule, icon }: ScheduleBlockProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -15,6 +16,7 @@ export function ScheduleBlock({ title, schedule }: ScheduleBlockProps) {
 
   return (
     <div className="container relative" ref={containerRef}>
+      <Icon iconField={icon} className="mb-8" />
       <h2 className="text-center text-6xl mb-20">{title}</h2>
       <div className="relative w-[90%] md:w-3/5 justify-center mx-auto flex">
         <div className="flex flex-col space-y-12 relative">

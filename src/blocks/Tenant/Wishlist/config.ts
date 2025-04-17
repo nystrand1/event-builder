@@ -1,3 +1,4 @@
+import { iconField } from '@/fields/iconField'
 import { defaultEvent } from '@/utilities/defaultValues/defaultEventRelation'
 import {
   FixedToolbarFeature,
@@ -11,6 +12,7 @@ export const WishlistBlock: Block = {
   slug: 'wishlistBlock',
   interfaceName: 'WishlistBlock',
   fields: [
+    iconField,
     {
       name: 'title',
       type: 'text',

@@ -1,3 +1,4 @@
+import { iconField } from '@/fields/iconField'
 import type { Block } from 'payload'
 
 export const TwoColumnImageAndTextBlock: Block = {
@@ -8,6 +9,7 @@ export const TwoColumnImageAndTextBlock: Block = {
     plural: 'Image & Text (Two columns)',
   },
   fields: [
+    iconField,
     {
       name: 'title',
       type: 'text',

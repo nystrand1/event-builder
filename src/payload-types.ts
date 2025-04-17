@@ -557,6 +557,11 @@ export interface FullScreenWithCountdownHero {
  * via the `definition` "ContentBlock".
  */
 export interface ContentBlock {
+  icon?: {
+    variant?:
+      | ('none' | 'Heart' | 'Blend' | 'Users' | 'GanttChartSquare' | 'Gift' | 'Hotel' | 'MicVocal' | 'ListTodo')
+      | null;
+  };
   columns?:
     | {
         size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
@@ -617,6 +622,11 @@ export interface MediaBlock {
  * via the `definition` "PeopleBlock".
  */
 export interface PeopleBlock {
+  icon?: {
+    variant?:
+      | ('none' | 'Heart' | 'Blend' | 'Users' | 'GanttChartSquare' | 'Gift' | 'Hotel' | 'MicVocal' | 'ListTodo')
+      | null;
+  };
   title?: string | null;
   people?:
     | {
@@ -650,6 +660,11 @@ export interface PeopleBlock {
  * via the `definition` "WishlistBlock".
  */
 export interface WishlistBlock {
+  icon?: {
+    variant?:
+      | ('none' | 'Heart' | 'Blend' | 'Users' | 'GanttChartSquare' | 'Gift' | 'Hotel' | 'MicVocal' | 'ListTodo')
+      | null;
+  };
   title?: string | null;
   text?: {
     root: {
@@ -716,6 +731,11 @@ export interface Wishlist {
  * via the `definition` "ScheduleBlock".
  */
 export interface ScheduleBlock {
+  icon?: {
+    variant?:
+      | ('none' | 'Heart' | 'Blend' | 'Users' | 'GanttChartSquare' | 'Gift' | 'Hotel' | 'MicVocal' | 'ListTodo')
+      | null;
+  };
   title: string;
   schedule?:
     | {
@@ -748,6 +768,11 @@ export interface ScheduleBlock {
  * via the `definition` "ImageAndTextTwoColumn".
  */
 export interface ImageAndTextTwoColumn {
+  icon?: {
+    variant?:
+      | ('none' | 'Heart' | 'Blend' | 'Users' | 'GanttChartSquare' | 'Gift' | 'Hotel' | 'MicVocal' | 'ListTodo')
+      | null;
+  };
   title: string;
   text?: {
     root: {
@@ -1077,6 +1102,11 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
  * via the `definition` "ContentBlock_select".
  */
 export interface ContentBlockSelect<T extends boolean = true> {
+  icon?:
+    | T
+    | {
+        variant?: T;
+      };
   columns?:
     | T
     | {
@@ -1112,6 +1142,11 @@ export interface MediaBlockSelect<T extends boolean = true> {
  * via the `definition` "ImageAndTextTwoColumn_select".
  */
 export interface ImageAndTextTwoColumnSelect<T extends boolean = true> {
+  icon?:
+    | T
+    | {
+        variant?: T;
+      };
   title?: T;
   text?: T;
   image?: T;
@@ -1352,6 +1387,11 @@ export interface FullScreenWithCountdownHeroSelect<T extends boolean = true> {
  * via the `definition` "PeopleBlock_select".
  */
 export interface PeopleBlockSelect<T extends boolean = true> {
+  icon?:
+    | T
+    | {
+        variant?: T;
+      };
   title?: T;
   people?:
     | T
@@ -1370,6 +1410,11 @@ export interface PeopleBlockSelect<T extends boolean = true> {
  * via the `definition` "WishlistBlock_select".
  */
 export interface WishlistBlockSelect<T extends boolean = true> {
+  icon?:
+    | T
+    | {
+        variant?: T;
+      };
   title?: T;
   text?: T;
   wishList?: T;
@@ -1381,6 +1426,11 @@ export interface WishlistBlockSelect<T extends boolean = true> {
  * via the `definition` "ScheduleBlock_select".
  */
 export interface ScheduleBlockSelect<T extends boolean = true> {
+  icon?:
+    | T
+    | {
+        variant?: T;
+      };
   title?: T;
   schedule?:
     | T

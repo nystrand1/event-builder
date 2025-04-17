@@ -1,3 +1,4 @@
+import { iconField } from '@/fields/iconField'
 import {
   FixedToolbarFeature,
   HeadingFeature,
@@ -10,6 +11,7 @@ export const PeopleBlock: Block = {
   slug: 'peopleBlock',
   interfaceName: 'PeopleBlock',
   fields: [
+    iconField,
     {
       name: 'title',
       type: 'text',

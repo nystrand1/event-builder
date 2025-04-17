@@ -42,7 +42,7 @@ export const CardFront = ({
         </div>
 
         {/* Names */}
-        <div className="text-center px-8">
+        <div className="text-center px-4">
           <h1 className="font-tangerine text-6xl tracking-widest font-light mb-8 text-gray-900">
             {title}
           </h1>

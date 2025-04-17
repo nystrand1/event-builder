@@ -1,3 +1,4 @@
+import { iconField } from '@/fields/iconField'
 import { Block } from 'payload'
 
 export const ScheduleBlock: Block = {
@@ -8,6 +9,7 @@ export const ScheduleBlock: Block = {
     plural: 'Schedules',
   },
   fields: [
+    iconField,
     {
       name: 'title',
       label: 'Title',

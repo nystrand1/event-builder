@@ -5,6 +5,7 @@ import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { ImageAndTextTwoColumn } from '@/payload-types'
 import { motion } from 'motion/react'
+import { Icon } from '../Icon/Icon'
 
 export const TwoColumnImageAndText = (props: ImageAndTextTwoColumn) => {
   const { title, text, image, imagePosition = 'left' } = props
@@ -27,6 +28,7 @@ export const TwoColumnImageAndText = (props: ImageAndTextTwoColumn) => {
   )
   return (
     <section className="container">
+      <Icon iconField={props.icon} className="mb-8" />
       <motion.div
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
