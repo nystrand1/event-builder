@@ -2,10 +2,9 @@
 
 import { Event, Media } from '@/payload-types'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { CardFront } from './CardFront'
 import { CardBack } from './CardBack'
-import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
 type InvitationCardPropsCMS = Event['invitationCard']
 interface InvitationCardProps extends InvitationCardPropsCMS {
@@ -15,6 +14,30 @@ interface InvitationCardProps extends InvitationCardPropsCMS {
 export const InvitationCard = (props: InvitationCardProps) => {
   const { cardFront, cardBack, url } = props
   const [isFlipped, setIsFlipped] = useState(false)
+  const [cardHeight, setCardHeight] = useState<number>(0)
+  const frontRef = useRef<HTMLDivElement>(null)
+  const backRef = useRef<HTMLDivElement>(null)
+
+  // Update card height when content changes or on window resize
+  useEffect(() => {
+    const updateCardHeight = () => {
+      // Get the height of both sides and use the larger one
+      const frontHeight = frontRef.current?.scrollHeight || 0
+      const backHeight = backRef.current?.scrollHeight || 0
+      const maxHeight = Math.max(frontHeight, backHeight)
+      setCardHeight(maxHeight)
+    }
+
+    // Initial height calculation
+    updateCardHeight()
+
+    // Recalculate on window resize
+    window.addEventListener('resize', updateCardHeight)
+
+    return () => {
+      window.removeEventListener('resize', updateCardHeight)
+    }
+  }, [cardFront, cardBack])
 
   const handleCardClick = () => {
     setIsFlipped(!isFlipped)
@@ -22,8 +45,12 @@ export const InvitationCard = (props: InvitationCardProps) => {
 
   return (
     <motion.div
-      className="w-full max-w-[450px] cursor-pointer h-[120dvh] md:h-[80vh] font-anonymous-pro drop-shadow-2xl bg-transparent"
-      style={{ perspective: '1400px' }}
+      className="w-full max-w-[450px] cursor-pointer font-anonymous-pro drop-shadow-2xl bg-transparent overflow-visible"
+      style={{
+        perspective: '1400px',
+        height: cardHeight > 0 ? `${cardHeight}px` : 'auto',
+        minHeight: '500px',
+      }}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
@@ -45,6 +72,7 @@ export const InvitationCard = (props: InvitationCardProps) => {
         }}
       >
         <CardFront
+          ref={frontRef}
           title={cardFront.title}
           description={cardFront.description}
           image={cardFront.image as Media}
@@ -53,6 +81,7 @@ export const InvitationCard = (props: InvitationCardProps) => {
           className={!isFlipped ? 'z-10' : ''}
         />
         <CardBack
+          ref={backRef}
           url={url}
           className={isFlipped ? 'z-10' : ''}
           firstTextSection={cardBack.firstTextSection}
