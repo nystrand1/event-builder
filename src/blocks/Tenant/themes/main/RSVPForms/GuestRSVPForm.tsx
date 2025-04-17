@@ -86,7 +86,7 @@ export const GuestRSVPForm = ({
   }
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         <div className="px-2 md:px-8 pt-8 pb-6 text-center">
           <Heart className="mx-auto h-12 w-12 text-accent" />

@@ -44,7 +44,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="[&_h2]:font-normal [&_h2]:text-3xl"
+                    className="[&_h2]:font-normal [&_h2]:text-6xl"
                   />
                 )}
 

@@ -21,7 +21,7 @@ export const WishlistBlock = (props: WishlistBlockProps) => {
       className="container flex flex-col space-y-8 items-center"
     >
       <Icon iconField={props.icon} />
-      <h2 className="text-3xl">{props.title}</h2>
+      <h2 className="text-6xl">{props.title}</h2>
       {props.text && <RichText data={props.text} />}
       {wishlist && typeof wishlist === 'object' && (
         <ul className="flex items-stretch flex-col justify-center w-full gap-4 flex-wrap">

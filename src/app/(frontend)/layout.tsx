@@ -10,6 +10,8 @@ import {
   Inter,
   Tangerine,
   Petit_Formal_Script,
+  Funnel_Display,
+  Funnel_Sans,
 } from 'next/font/google'
 import React from 'react'
 
@@ -56,6 +58,12 @@ const petitFormalScript = Petit_Formal_Script({
   variable: '--font-petit-formal-script',
 })
 
+const funnelSans = Funnel_Sans({
+  subsets: ['latin'],
+  weight: ['300', '700'],
+  variable: '--font-funnel-sans',
+})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
@@ -70,6 +78,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         inter.variable,
         charm.variable,
         petitFormalScript.variable,
+        funnelSans.variable,
       )}
       lang="en"
       suppressHydrationWarning

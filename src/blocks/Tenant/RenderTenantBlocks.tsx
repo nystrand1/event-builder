@@ -57,11 +57,14 @@ export const RenderBlocks: React.FC<{
               return (
                 <div
                   id={blockName}
-                  className={twMerge('py-16 bg-primary relative', index === 0 ? 'py-0' : '')}
+                  className={twMerge(
+                    'pt-16 last:pb-16 bg-primary relative',
+                    index === 0 ? 'py-0' : '',
+                  )}
                   key={index}
                 >
                   {index > 0 && (
-                    <div className="h-2 bg-accent rounded-xl w-[90%] md:w-[384px] mx-auto my-10" />
+                    <div className="h-2 bg-accent rounded-xl w-[90%] md:w-[384px] mx-auto mb-10" />
                   )}
                   {showEditBlocks && <ComponentPicker index={index} />}
                   {showEditBlocks && (

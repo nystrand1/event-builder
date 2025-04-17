@@ -37,10 +37,7 @@ export const TwoColumnImageAndText = (props: ImageAndTextTwoColumn) => {
         className="grid md:grid-cols-2 md:flex-row gap-12 items-center"
       >
         {title && (
-          <h2
-            contentEditable={demo}
-            className="text-6xl font-anonymous-pro text-center mx-auto font-bold w-full md:col-span-2"
-          >
+          <h2 contentEditable={demo} className="text-6xl text-center mx-auto w-full md:col-span-2">
             {title}
           </h2>
         )}
