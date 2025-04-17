@@ -15,7 +15,6 @@ import { RSVPForm } from './themes/main/RSVPForms/RSVPForm'
 import { ScheduleBlock } from './themes/main/Schedule/ScheduleBlock'
 import { TwoColumnImageAndText } from './themes/main/TwoColumnImageAndText/TwoColumnImageAndText'
 import { WishlistBlock } from './themes/main/Wishlist/WishlistBlock'
-import { playfulTheme } from './themes/playful'
 
 type Theme = NonNullable<NonNullable<Event['theme']>['theme']>
 
@@ -33,7 +32,6 @@ const blockComponents = {
     fullScreenWithCountdownHero: FullScreenWithCountdownHero,
     rsvpFormBlock: RSVPForm,
   },
-  simple: playfulTheme,
 } as Record<Theme, Record<BlockType, React.FC<any>>>
 
 export const RenderBlocks: React.FC<{
