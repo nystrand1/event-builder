@@ -30,7 +30,7 @@ export const GuestRSVPForm = ({
       const key = slugify(field.label)
       shape[key] = field.required
         ? z.string().nonempty('This field is required')
-        : z.string().optional()
+        : z.string().nullish()
     })
     return z.object(shape)
   }
