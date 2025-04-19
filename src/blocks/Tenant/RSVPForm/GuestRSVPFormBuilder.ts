@@ -21,7 +21,7 @@ export const GuestRSVPFormBuilder = (fields: RSVPFormBlock['fields'], guest: Gue
     if (field.type === 'radio') {
       return {
         ...initialSchema,
-        [key]: defaultValue ?? field.options?.[0].value ?? false,
+        [key]: defaultValue ?? false,
       }
     }
 
