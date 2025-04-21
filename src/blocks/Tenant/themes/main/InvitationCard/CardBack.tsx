@@ -50,7 +50,7 @@ export const CardBack = forwardRef<HTMLDivElement, CardBackProps>(
           perspective: '1000px',
         }}
       >
-        <div className="paper-texture p-8 text-center bg-white">
+        <div className="paper-texture p-8 px-4 text-center bg-white">
           <h2 className="text-3xl tracking-wide font-light mb-8 text-gray-900 mt-12">
             {guestNames}
           </h2>
@@ -71,7 +71,7 @@ export const CardBack = forwardRef<HTMLDivElement, CardBackProps>(
             <Button
               onClick={(e) => e.stopPropagation()}
               variant="secondary"
-              className="w-[300px] text-base touch-none"
+              className="w-full text-base touch-none py-6"
               asChild
             >
               <Link href={url} target="_blank" className="size-full">

@@ -42,13 +42,15 @@ export const CardFront = forwardRef<HTMLDivElement, CardFrontProps>(
           </div>
 
           {/* Names */}
-          <div className="text-center px-4">
-            <h1 className="font-tangerine text-6xl tracking-widest font-light mb-8 text-gray-900">
+          <div className="text-center px-4 space-y-6">
+            <h1 className="font-tangerine text-6xl tracking-widest font-light text-gray-900">
               {title}
             </h1>
 
-            <div className="mb-8 text-center">
-              <p className="text-lg leading-relaxed text-gray-800 mb-2">{description}</p>
+            <div className="text-center space-y-6">
+              {description && (
+                <p className="text-lg leading-relaxed text-gray-800 mb-2">{description}</p>
+              )}
               <div className="flex items-center justify-center">
                 <div className="h-0.5 bg-accent w-16"></div>
                 <Heart className="text-pink-500 mx-4" size={24} />
@@ -60,17 +62,9 @@ export const CardFront = forwardRef<HTMLDivElement, CardFrontProps>(
               )}
             </div>
 
-            <motion.div
-              className="click-instruction mt-6 flex items-center justify-center bg-accent py-3 px-4 rounded-2xl border"
-              animate={{ opacity: [0.8, 1, 0.8] }}
-              transition={{
-                repeat: Infinity,
-                duration: 2,
-                ease: 'easeInOut',
-              }}
-            >
+            <div className="click-instruction mt-6 flex items-center justify-center bg-accent py-3 px-4 rounded-2xl border">
               <p className="text-accent-foreground font-medium">{buttonLabel}</p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </motion.div>
