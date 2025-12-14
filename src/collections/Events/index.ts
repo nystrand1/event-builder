@@ -86,6 +86,12 @@ export const Events: CollectionConfig = {
                 {
                   name: 'eventDate',
                   type: 'date',
+                  timezone: true,
+                  admin: {
+                    date: {
+                      pickerAppearance: 'dayAndTime',
+                    },
+                  },
                 },
                 {
                   name: 'domain',
