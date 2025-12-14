@@ -66,7 +66,7 @@ export const TenantHeader = ({ items = [] }: TenantHeaderProps) => {
                     href={item.href}
                     onClick={(e) => scrollToSection(e, item.href)}
                     className={cn(
-                      'text-sm font-medium transition-colors hover:text-gray-900/60',
+                      'font-medium transition-colors hover:text-gray-900/60',
                       isScrolled ? 'text-gray-900' : 'text-gray-700',
                     )}
                   >

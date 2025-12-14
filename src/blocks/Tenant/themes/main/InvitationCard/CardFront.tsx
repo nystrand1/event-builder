@@ -1,5 +1,6 @@
 import { Media as MediaBlock } from '@/components/Media'
 import RichText from '@/components/RichText'
+import { Button } from '@/components/ui/button'
 import { Media } from '@/payload-types'
 import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import { motion } from 'framer-motion'
@@ -43,9 +44,7 @@ export const CardFront = forwardRef<HTMLDivElement, CardFrontProps>(
 
           {/* Names */}
           <div className="text-center px-4 space-y-6">
-            <h1 className="font-tangerine text-6xl tracking-widest font-light text-gray-900">
-              {title}
-            </h1>
+            <h1 className="font-ms-madi text-5xl tracking-widest  text-gray-900">{title}</h1>
 
             <div className="text-center space-y-6">
               {description && (
@@ -53,18 +52,17 @@ export const CardFront = forwardRef<HTMLDivElement, CardFrontProps>(
               )}
               <div className="flex items-center justify-center">
                 <div className="h-0.5 bg-accent w-16"></div>
-                <Heart className="text-pink-500 mx-4" size={24} />
+                <Heart className="text-accent mx-4" size={24} />
                 <div className="h-0.5 bg-accent w-16"></div>
               </div>
-
               {information && (
                 <RichText data={information} className="[&_p]:text-lg text-gray-800" />
               )}
             </div>
 
-            <div className="click-instruction mt-6 flex items-center justify-center bg-accent py-3 px-4 rounded-2xl border">
-              <p className="text-accent-foreground font-medium">{buttonLabel}</p>
-            </div>
+            <Button variant="secondary" className="w-full text-base touch-none py-6">
+              {buttonLabel}
+            </Button>
           </div>
         </div>
       </motion.div>

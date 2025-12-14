@@ -86,7 +86,7 @@ const RadioField = ({ name, label, options = [], errors, required }: FieldProps)
             type="button"
             variant="outline"
             onClick={() => setValue(name, option.value, { shouldValidate: true })}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-colors
+            className={`px-6 py-2 rounded-full font-medium transition-colors
             ${
               fieldValue === option.value
                 ? 'bg-accent text-white hover:bg-accent/90 hover:text-white'

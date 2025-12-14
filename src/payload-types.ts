@@ -441,7 +441,7 @@ export interface Event {
   invitationCard: {
     cardFront: {
       title: string;
-      description: string;
+      description?: string | null;
       image?: (number | null) | Media;
       information?: {
         root: {

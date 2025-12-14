@@ -16,14 +16,15 @@ export default async function Page({ params, searchParams }: InvitationPageProps
   const { guest } = await searchParams
   const page = await queryEventBySlug({ slug })
 
-  if (!page || !guest) {
+  if (!page) {
     notFound()
   }
 
   const guestFromCms = await queryGuestById({ id: guest })
 
-  if (!guestFromCms) {
-    notFound()
+  let link = `/event/${slug}`
+  if (guestFromCms) {
+    link += `?guest=${guestFromCms.guestId}`
   }
 
   return (
@@ -32,7 +33,7 @@ export default async function Page({ params, searchParams }: InvitationPageProps
         <InvitationCard
           cardFront={page.invitationCard.cardFront}
           cardBack={page.invitationCard.cardBack}
-          url={`/event/${slug}?guest=${guestFromCms.guestId}`}
+          url={link}
         />
       </div>
     </GuestProvider>

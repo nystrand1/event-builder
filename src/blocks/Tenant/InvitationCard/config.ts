@@ -1,8 +1,11 @@
 import {
   FixedToolbarFeature,
+  HeadingFeature,
   InlineToolbarFeature,
   lexicalEditor,
+  ParagraphFeature,
 } from '@payloadcms/richtext-lexical'
+import { HeadingFeatureClient } from '@payloadcms/richtext-lexical/client'
 import { Block } from 'payload'
 
 export const InviationCardBlock: Block = {
@@ -24,7 +27,6 @@ export const InviationCardBlock: Block = {
             {
               name: 'description',
               type: 'textarea',
-              required: true,
             },
             {
               name: 'image',
@@ -56,7 +58,12 @@ export const InviationCardBlock: Block = {
               type: 'richText',
               editor: lexicalEditor({
                 features: ({ rootFeatures }) => {
-                  return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
+                  return [
+                    ...rootFeatures,
+                    FixedToolbarFeature(),
+                    InlineToolbarFeature(),
+                    HeadingFeature(),
+                  ]
                 },
               }),
             },
@@ -65,7 +72,12 @@ export const InviationCardBlock: Block = {
               type: 'richText',
               editor: lexicalEditor({
                 features: ({ rootFeatures }) => {
-                  return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
+                  return [
+                    ...rootFeatures,
+                    FixedToolbarFeature(),
+                    InlineToolbarFeature(),
+                    HeadingFeature(),
+                  ]
                 },
               }),
             },

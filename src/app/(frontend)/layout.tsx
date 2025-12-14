@@ -12,6 +12,8 @@ import {
   Petit_Formal_Script,
   Funnel_Display,
   Funnel_Sans,
+  Ms_Madi,
+  Pompiere,
 } from 'next/font/google'
 import React from 'react'
 
@@ -64,6 +66,18 @@ const funnelSans = Funnel_Sans({
   variable: '--font-funnel-sans',
 })
 
+const msMadi = Ms_Madi({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-ms-madi',
+})
+
+const pompiere = Pompiere({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-pompiere',
+})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
@@ -79,6 +93,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         charm.variable,
         petitFormalScript.variable,
         funnelSans.variable,
+        msMadi.variable,
+        pompiere.variable,
       )}
       lang="en"
       suppressHydrationWarning

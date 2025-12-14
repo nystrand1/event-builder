@@ -33,13 +33,13 @@ export const FullScreenWithCountdownHero = ({
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.5 }}
         viewport={{ once: true }}
-        className="text-center text-black font-petit-formal-script z-10"
+        className="text-center text-black font-ms-madi z-10"
       >
         <Card className="bg-transparent border-none  lg:p-8 z-10 relative flex flex-col items-center justify-center space-y-4 rounded-3xl shadow-none">
           <CardContent>
             {richText && (
               <RichText
-                className="mb-6 [&_p]:text-xl md:[&_p]:text-3xl prose-h1:mb-0  [&_h1]:text-7xl lg:[&_h1]:text-8xl [&_h1]:font-thin"
+                className="mb-6 [&_p]:text-3xl md:[&_p]:text-4xl prose-h1:mb-0  [&_h1]:text-7xl lg:[&_h1]:text-9xl [&_h1]:font-thin"
                 data={richText}
                 enableGutter={false}
               />

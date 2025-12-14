@@ -97,7 +97,7 @@ export const RSVPForm = ({
     }
   }
 
-  if (guest) {
+  if (guest && false) {
     return (
       <GuestRSVPForm
         blockType="rsvpFormBlock"

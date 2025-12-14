@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  p, nav a {
+    font-size: 1.25rem;
+  }
+
   h1,
   h2,
   h3,

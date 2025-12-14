@@ -165,6 +165,9 @@ export const Events: CollectionConfig = {
               type: 'join',
               collection: 'guests',
               on: 'events',
+              admin: {
+                defaultColumns: ['name', 'rsvpAnswer'],
+              },
             },
           ],
         },

@@ -62,10 +62,12 @@ export const submitUnknownRSVP = async (data: z.infer<typeof unknownRSVPFormSche
 
   const promises = data.people.map(async (person) => {
     const { name, answers } = person
+    const nameInAnswers = (answers['name'] ?? answers['namn']) as string
+
     return payload.create({
       collection: 'guests',
       data: {
-        name,
+        name: name || nameInAnswers,
         rsvpAnswer: answers,
         events: event.id,
       },

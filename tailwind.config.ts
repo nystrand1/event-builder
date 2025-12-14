@@ -99,8 +99,8 @@ export default {
         },
       },
       fontFamily: {
-        mono: ['var(--font-geist-mono)'],
-        sans: ['var(--font-geist-sans)'],
+        mono: ['var(--font-pompiere)'],
+        sans: ['var(--font-pompiere)'],
         amatic: ['var(--font-amatic)'],
         'anonymous-pro': ['var(--font-anonymous-pro)'],
         tangerine: ['var(--font-tangerine)'],
@@ -108,6 +108,8 @@ export default {
         charm: ['var(--font-charm)'],
         'petit-formal-script': ['var(--font-petit-formal-script)'],
         'funnel-sans': ['var(--font-funnel-sans)'],
+        'ms-madi': ['var(--font-ms-madi)'],
+        pompiere: ['var(--font-pompiere)'],
       },
       keyframes: {
         'accordion-down': {

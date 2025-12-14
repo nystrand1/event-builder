@@ -57,7 +57,10 @@ export const CardBack = forwardRef<HTMLDivElement, CardBackProps>(
 
           <div className="mb-8 text-center">
             {firstTextSection && (
-              <RichText data={firstTextSection} className="[&_p]:text-lg text-gray-800 mb-2" />
+              <RichText
+                data={firstTextSection}
+                className="[&_p]:text-lg text-gray-800 mb-2 prose-h2:font-medium"
+              />
             )}
           </div>
 
