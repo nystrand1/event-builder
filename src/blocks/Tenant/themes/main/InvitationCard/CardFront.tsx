@@ -10,7 +10,7 @@ import { twMerge } from 'tailwind-merge'
 
 interface CardFrontProps {
   title: string
-  description?: string
+  description?: string | null
   image?: Media
   information?: SerializedEditorState | null
   className?: string

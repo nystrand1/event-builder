@@ -28,7 +28,7 @@ export const generateEventMetadata = async () => {
     openGraph: mergeOpenGraph({
       siteName: page.name,
       title: page.name,
-      description: page.invitationCard.cardFront.description,
+      description: page.invitationCard.cardFront.description ?? '',
       images: ogImage
         ? [
             {
